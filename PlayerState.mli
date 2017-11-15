@@ -6,8 +6,8 @@
 	- player_deck
 *)
 
-type playerid = string
-type cardid = string
+type playerID = string
+type cardID = string
 
 type player_state = {player_id: string;
                      player_score: string;
@@ -15,13 +15,13 @@ type player_state = {player_id: string;
                     }
 
 (* [generate_player_id i] generates the player_id of a player *)
-val generate_player_id: int -> playerid
+val generate_player_id: int -> playerID
 
 (* [change_player_score s i] changes the score of a player by i *)
 val change_player_score: player_state -> int -> player_state
 
 (* [add_card s c] adds card c to the player_deck *)
-val add_card: player_state -> cardid -> player_state
+val add_card: player_state -> cardID -> player_state
 
 (* [remove_card s c] removes card c from the player_deck *)
-val remove_card: player_state -> cardid -> player_state
+val remove_card: player_state -> cardID -> player_state
