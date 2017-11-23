@@ -43,7 +43,7 @@ type card = Soldier of soldier | Spell of spell
 
 type recruitPile = card list
 
-let soldier_of_json j = {
+let soldier_of_json j = Soldier {
   card_name = j |> member "card_name" |> to_string;
   card_id = j |> member "card_id" |> to_int;
   faction =  j |> member "faction" |> to_string;
@@ -54,12 +54,13 @@ let soldier_of_json j = {
   card_type = j |> member "type" |> to_string;
 }
 
-let spell_of_json j = {
+let spell_of_json j = Spell {
   card_name = j |> member "card_name" |> to_string;
   card_id = j |> member "card_id" |> to_int;
   cost = j |> member "card_id" |> to_int;
   faction =  j |> member "faction" |> to_string;
   rarity =  j |> member "rarity" |> to_int;
+
   flavor =  j |> member "flavor" |> to_string;
   abilities = j |> member "abilities" |> to_list |> List.map to_string;
   card_type = j |> member "type" |> to_string
