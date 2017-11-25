@@ -29,3 +29,6 @@ val add_card: player_state -> cardID -> player_state
 
 (* [remove_card s c] removes card c from the player_deck *)
 val remove_card: player_state -> cardID -> player_state
+
+(* [init_player_state i] initialises a player_state, with player_id_int i *)
+val init_player_state: int -> player_state
