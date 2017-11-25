@@ -8,17 +8,19 @@
    - available_picks: 3 cards from recruit pool that current player can pick
    - player_states: list of player_states, which will be elaborated later
 *)
+open Yojson
 open PlayerState
+open RecruitPile
 
-type state = {description: string;
-              sec_description: string list;
-              current_player: playerID;
-              recruit_pool: cardID list;
-              available_picks: cardID list;
-              player_states: player_state list;
-}
+type state
 
-(* [change_description st s] returns a new state with description s *)
+(* [change_available_picks s] returns a new state where
+   state's available_picks randomised   to be chosen by
+   player*)
+val change_available_picks: state -> state
+
+(* [change_description st s] returns a new state with
+   description s *)
 val change_description: state -> string -> state
 
 (* [change_sec_description st s] returns a new state with
@@ -35,5 +37,5 @@ val add_card_recruit_pool: state -> cardID -> player_state
 (* [remove_card s c] removes card c from the recruit_pool *)
 val remove_card_recruit_pool: state -> cardID -> player_state
 
-(* [change_player_score s i] changes the score of a player by i *)
-val change_player_states: state -> state
+(* [init_state i j] removes card c from the recruit_pool *)
+val init_state: int -> Yojson.Basic.json -> state
