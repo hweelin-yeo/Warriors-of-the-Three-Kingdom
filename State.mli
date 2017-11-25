@@ -37,3 +37,7 @@ val remove_card_recruit_pool: state -> cardID -> player_state
 
 (* [change_player_score s i] changes the score of a player by i *)
 val change_player_states: state -> state
+
+(* [init_state i j] initialises the state. it takes in int i,
+   the number of players, and a json file for the recruit pool*)
+val init_state: int -> Yojson.Basic.json -> state
