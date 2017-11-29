@@ -45,7 +45,7 @@ let rec generate_nums num bound accum =
       else generate_nums num bound (new_num :: accum)
     else accum
 
-let picks_from_index num_lst card_lst =
+let rec picks_from_index num_lst card_lst =
     match num_lst with
     | [] -> []
     | h :: t -> (List.nth card_lst h) :: picks_from_index t card_lst

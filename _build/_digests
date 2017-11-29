@@ -1,4 +1,0 @@
-"Rule: ocaml: cmo* -> byte (%=main )": "\r\020H\170\017\141\"\129|\203L\015~\026c\016"
-"Rule: ocaml: ml -> cmo & cmi (%=main )": "\006\n\212|D\218\232\171\1673{j\228|N\020"
-"Resource: /home/vagrant/Documents/finalProject/main.ml": "v\171R\252\007\182(\142[N]\196\175\253\159\202"
-"Rule: ocaml dependencies ml (%=main )": "\174W\023\237\184ci\242\139U\247m\027\181E2"

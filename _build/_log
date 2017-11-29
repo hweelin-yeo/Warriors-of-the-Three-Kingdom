@@ -1,8 +1,0 @@
-### Starting build.
-# Target: main.ml.depends, tags: { package(str), package(yojson), extension:ml, file:main.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package yojson -package str -modules main.ml > main.ml.depends # cached
-# Target: main.cmo, tags: { package(str), package(yojson), byte, compile, extension:cmo, extension:ml, file:main.cmo, file:main.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package yojson -package str -o main.cmo main.ml # cached
-# Target: main.byte, tags: { package(str), package(yojson), byte, dont_link_with, extension:byte, file:main.byte, link, ocaml, program, quiet, traverse }
-ocamlfind ocamlc -linkpkg -package yojson -package str main.cmo -o main.byte # cached
-# Compilation successful.
