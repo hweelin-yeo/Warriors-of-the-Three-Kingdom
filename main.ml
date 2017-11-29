@@ -2,9 +2,6 @@
  *
  * CS 3110 Fall 2017 Final Project
  *
- *
- *
- *
  *)
 
 type state = {
