@@ -6,20 +6,16 @@
 	- player_deck
 *)
 
-type playerID = string
-type cardID = string
+type playerID
+type cardID
 
-type player_state = {player_id: string;
-                     player_id_int: int;
-                     player_score: string;
-                     player_deck: string list
-                    }
+type player_state
 
 (* [generate_player_id_int i] generates the player_id_int, i, of a player *)
-val generate_player_id_int: int -> int
+(* val generate_player_id_int: int -> int *)
 
 (* [generate_player_id i] generates the player_id of a player *)
-val generate_player_id: int -> playerID
+(* val generate_player_id: int -> playerID *)
 
 (* [change_player_score s i] changes the score of a player by i *)
 val change_player_score: player_state -> int -> player_state
@@ -32,3 +28,7 @@ val remove_card: player_state -> cardID -> player_state
 
 (* [init_player_state i] initialises a player_state, with player_id_int i *)
 val init_player_state: int -> player_state
+
+(* [skip_turn s] is the player_state with the player's resource incremented
+   by 1. Nothing else in the state changes.*)
+val skip_turn: player_state -> player_state
