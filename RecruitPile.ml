@@ -20,6 +20,7 @@ type json = [
 type soldier = {
   card_name: string;
   card_id: int;
+  cost : int;
   faction: string;
   rarity: int;
   power: int;
@@ -33,7 +34,6 @@ type spell = {
   card_id: int;
   cost: int;
   faction: string;
-  rarity: int;
   flavor: string;
   abilities: string list;
   card_type: string;
@@ -46,7 +46,7 @@ let soldier_of_json j = Soldier {
   card_name = j |> member "card_name" |> to_string;
   card_id = j |> member "card_id" |> to_int;
   faction =  j |> member "faction" |> to_string;
-  rarity =  j |> member "rarity" |> to_int;
+  cost = j |> member "cost" |> to_int;
   power =  j |> member "power" |> to_int;
   flavor =  j |> member "flavor" |> to_string;
   abilities = j |> member "abilities" |> to_list |> List.map to_string;
@@ -56,10 +56,8 @@ let soldier_of_json j = Soldier {
 let spell_of_json j = Spell {
   card_name = j |> member "card_name" |> to_string;
   card_id = j |> member "card_id" |> to_int;
-  cost = j |> member "card_id" |> to_int;
+  cost = j |> member "cost" |> to_int;
   faction =  j |> member "faction" |> to_string;
-  rarity =  j |> member "rarity" |> to_int;
-
   flavor =  j |> member "flavor" |> to_string;
   abilities = j |> member "abilities" |> to_list |> List.map to_string;
   card_type = j |> member "type" |> to_string
