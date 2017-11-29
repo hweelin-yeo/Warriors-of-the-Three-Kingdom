@@ -4,11 +4,9 @@ open Yojson
 (*Card is a abstract type used to represent cards*)
 type card
 
-type recruitPile
-
 (*init_pile represents the initial recruit pile of the game from a JSON
   file parsed into a card list *)
-val init_pile : Yojson.Basic.json -> recruitPile
+val init_pile : Yojson.Basic.json -> card list
 
 (*curr_pile is the current state of the recruit deck*)
 val curr_pile : card list

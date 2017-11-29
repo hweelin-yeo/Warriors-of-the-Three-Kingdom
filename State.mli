@@ -17,7 +17,7 @@ type state
 (* [change_available_picks s] returns a new state where
    state's available_picks randomised   to be chosen by
    player*)
-val change_available_picks: state -> state
+(*  val change_available_picks: state -> state *)
 
 (* [change_description st s] returns a new state with
    description s *)
@@ -25,21 +25,21 @@ val change_description: state -> string -> state
 
 (* [change_sec_description st s] returns a new state with
    secondary description s *)
-val change_sec_description: state -> string -> state
+val change_sec_description: state -> string list-> state
 
 (* [change_current_player st p] returns a new state with
    the next player p *)
 val change_current_player: state -> playerID -> state
 
 (* [add_card s c] adds card c to the recruit_pool *)
-val add_card_recruit_pool: state -> cardID -> player_state
+val add_card_recruit_pool: state -> card -> state
 
 (* [remove_card s c] removes card c from the recruit_pool *)
-val remove_card_recruit_pool: state -> cardID -> player_state
+val remove_card_recruit_pool: state -> card -> state
 
 (* [change_player_score s i] changes the score of a player by i *)
-val change_player_states: state -> state
+(* val change_player_states: state -> state *)
 
 (* [init_state i j] initialises the state. it takes in int i,
    the number of players, and a json file for the recruit pool*)
-val init_state: int -> Yojson.Basic.json -> state
+(* val init_state: int -> Yojson.Basic.json -> state *)

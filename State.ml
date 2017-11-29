@@ -1,13 +1,14 @@
 (* state.ml *)
 
 open PlayerState
+open RecruitPile
 
 type state = {
   description: string;
   sec_description: string list;
   current_player: playerID;
-  recruit_pool: cardID list;
-  available_picks: cardID list;
+  recruit_pool: card list;
+  available_picks: card list;
   player_states: player_state list;
 }
 
@@ -31,7 +32,7 @@ let rec remove_card pool card =
 
 let remove_card_recruit_pool st card =
   let recpool_new = remove_card (st.recruit_pool) card in
-    { st with sec_description = recpool_new }
+    { st with recruit_pool = recpool_new }
 
 let rec contains e lst =
   match lst with
@@ -51,21 +52,21 @@ let rec picks_from_index num_lst card_lst =
     | h :: t -> (List.nth card_lst h) :: picks_from_index t card_lst
 
 let refresh_state st =
-  let new_picks = picks_from_index (generate_nums 3 24 []) in
+  let new_picks = picks_from_index (generate_nums 3 24 []) (st.recruit_pool) in
   { st with available_picks = new_picks}
 
 let rec init_player_states n accum =
   match n with
   | 0 -> accum
-  | _ -> let new_player = PlayerState.init_player_state n in
+  | _ -> let new_player = init_player_state n in
     init_player_states (n-1) (new_player :: accum)
 
 let init_state i j =
   {
     description = "";
-    sec_description = "";
+    sec_description = "" :: [];
     current_player = "Player 1";
     recruit_pool = init_pile j;
-    available_picks = picks_from_index (generate_nums 3 24 []);
+    available_picks = picks_from_index (generate_nums 3 24 []) (init_pile j);
     player_states = init_player_states i [];
   }
