@@ -2,6 +2,7 @@ type playerID = string
 type cardID = string
 
 type player_state = {player_id: playerID;
+                     player_resource: int;
                      player_score: int;
                      player_deck: cardID list}
 

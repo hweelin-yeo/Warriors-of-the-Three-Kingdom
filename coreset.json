@@ -1,0 +1,279 @@
+{
+	"cards": [{
+			"card_name": "Zhuge Liang, Sleeping Dragon",
+			"card_id": 0,
+			"faction": "Shu",
+			"power": 2,
+			"cost": 4,
+			"flavor": "Coiled like a dragon beneath the mighty Yangtze, \n lay the Sleeping Dragon",
+			"card_description": "when you draft Zhuge Liang, create a copy of \n each card Shu in your deck. Then \n add those cards to your deck",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Shu Footsoldier",
+			"card_id": 1,
+			"faction": "Shu",
+			"power": 2,
+			"cost": 1,
+			"flavor": "Shu's soldiers were often recruited from \n farms and the common folk of China",
+			"card_description": "Vanilla",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Shu Recruit",
+			"card_id": 2,
+			"faction": "Shu",
+			"power": 1,
+			"cost": 1,
+			"flavor": "Liu Bei's recruits often had more enthusiasm than \n training or experience",
+			"card_description": "When you draft Shu Recruit, copy it \n and add it to your deck",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Liu Bei, Lord of Shu",
+			"card_id": 4,
+			"faction": "Shu",
+			"power": 3,
+			"cost": 5,
+			"flavor": "Of the ancient rulers of China, none were more \n righteous or just than Lord Liu Bei of Shu",
+			"card_description": "When you draft Liu Bei, Lord of Shu, gain power equal to the \n number of cards in your deck",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Zhuge Liang's Theatmaturge",
+			"card_id": 4,
+			"faction": "Shu",
+			"power": 2,
+			"cost": 3,
+			"flavor": "While reknowned as a strategist, /n Zhuge Liang was also an incomparable mage",
+			"card_description": "When you draft Zhuge Liang's Theatmaturge, \n copy the top and bottom cards of your deck",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Zhuge Liang's Strategem",
+			"card_id": 5,
+			"faction": "Shu",
+			"power": 0,
+			"cost": 1,
+			"flavor": "The army with more options, is the army that will win",
+			"card_description": "Draw an additional three cards this turn",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Spell"
+		},
+		{
+			"card_name": "Xiahou Dun, One-Eyed Demon",
+			"card_id": 6,
+			"faction": "Wei",
+			"power": 4,
+			"cost": 5,
+			"flavor": "He used to have two eyes.  He ate one.",
+			"card_description": "When you draft Xiahou Dun, \n discard the top cards of every player's decks",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Sima Yi, Traitor",
+			"card_id": 7,
+			"faction": "Wei",
+			"power": 10,
+			"cost": 5,
+			"flavor": "The Sima clan would eventually usurp the Cao clan \n and wrest control of all of China",
+			"card_description": "When you draft Sima Yi, discard the top three cards of your deck",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Wei Elite Infantry",
+			"card_id": 8,
+			"faction": "Wei",
+			"power": 3,
+			"cost": 3,
+			"flavor": "Wei Soldiers were highly trained, seasoned veterans \n of countless campaigns",
+			"card_description": "Vanilla",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Wei Recruit",
+			"card_id": 9,
+			"faction": "Wei",
+			"power": 3,
+			"cost": 1,
+			"flavor": "",
+			"card_description": "When you draft Wei Recruit, discard the top card of your deck",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Cao Cao, Lord of Wei",
+			"card_id": 1,
+			"faction": "Wei",
+			"power": 3,
+			"cost": 6,
+			"flavor": "Cao Cao was, without a doubt, the most ruthless Warlord in all of China",
+			"card_description": "When you draft Cao Cao, \n discard the top card from each other player's deck",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Wei Saboteurs",
+			"card_id": 10,
+			"faction": "Wei",
+			"power": 2,
+			"cost": 4,
+			"flavor": "No bar was too low for Cao Cao to go under",
+			"card_description": "When you draft Wei Saboteurs,  \n discard the lowest power unit in each player's deck",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Sun Quan, Lord of Wu",
+			"card_id": 12,
+			"faction": "Wu",
+			"power": 1,
+			"cost": 1,
+			"flavor": "Sun Quan fought only for unity, \n and family",
+			"card_description": "When you draft Sun Quan, Lord of Wu, \n he gains power equal to your current resources",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Wu Recruit",
+			"card_id": 13,
+			"faction": "Wu",
+			"power": 1,
+			"cost": 1,
+			"flavor": "Wu's Farms overflowed with exuberance and bounty",
+			"card_description": "When you draft Wu Recruit, increase your maximum resource by 1",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Lady Sun",
+			"card_id": 1,
+			"faction": "Wu",
+			"power": 1,
+			"cost": 3,
+			"flavor": "Sister to Sun Quan and Husband to Liu Bei, \n the in-law fights were savage",
+			"card_description": "When you draft Lady Sun, \n she gains one power for each Wu or Shu card in your deck",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Wu Seaman",
+			"card_id": 14,
+			"faction": "Wu",
+			"power": 2,
+			"cost": 2,
+			"flavor": "We're Seamen. Get that thought out of your mind",
+			"card_description": "Vanilla",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Huang Gai, Wu Admiral",
+			"card_id": 15,
+			"faction": "Wu",
+			"power": 5,
+			"cost": 3,
+			"flavor": "If it wasn't for Huang Gai's strategem at Xiabi, \n Wu would have been overrun by Wei",
+			"card_description": "When you draft Huang Gai, destroy all Wei units in your deck",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Gan Ning, Pirate Lord",
+			"card_id": 16,
+			"Faction": "Wu",
+			"Power": 4,
+			"Cost": 2,
+			"card_description": "When you draft Gan Ning, destroy one of your own resources",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Long Term Planning",
+			"card_id": 17,
+			"faction": "Wu",
+			"power": 0,
+			"cost": 3,
+			"flavor": "Patience is a Virtue",
+			"card_description": "Gain 2 resources. Draw an extra card every turn",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Spell"
+		},
+		{
+			"card_name": "Jeanne D'Arc, Patron Saint",
+			"card_id": 18,
+			"faction": "Other",
+			"power": 2,
+			"cost": 3,
+			"flavor": "Although she was burned at the Stake, her soul remained pure \n a guardian for future warriors",
+			"card_description": "If Jeanne is discarded, give +1 power to each unit in your deck",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Lu bu, Demon Warrior",
+			"card_id": 19,
+			"faction": "Other",
+			"power": 12,
+			"cost": 6,
+			"flavor": "Lu Bu was without a doubt, the most violent and vicious warrior in all of China",
+			"card_description": "Vanilla",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "David Gries",
+			"card_id": 20,
+			"faction": "Other",
+			"power": 1,
+			"cost": 6,
+			"flavor": "He has 56 years of programming experience",
+			"card_description": "Minigame: list the four loopy questions. \n correct answer to any one wins you the game",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Sherlock Holmes",
+			"card_id": 21,
+			"faction": "Other",
+			"power": 3,
+			"cost": 5,
+			"flavor": "Elementary, my dear Watson",
+			"card_description": "When you draft Sherlock Holmes, \n You may take an extra turn",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Lu Zuishen of the Drunken Fist",
+			"card_id": 22,
+			"faction": "Shu",
+			"power": 5,
+			"cost": 3,
+			"flavor": "When you draft this card, \n there is a 50% chance that it is added to another player's deck",
+			"card_description": "Vanilla",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		},
+		{
+			"card_name": "Mordred, Traitor Knight",
+			"card_id": 23,
+			"faction": "Other",
+			"power": 3,
+			"cost": 3,
+			"flavor": "You will fall before me",
+			"card_description": "When you draft Mordred, Traitor Knight, \n discard the top card of target opponent's deck \n then replace it with Mordred",
+			"abilities": "Lorem Ipsum Dolorem Sit",
+			"type": "Warrior"
+		}
+
+	]
+
+}
