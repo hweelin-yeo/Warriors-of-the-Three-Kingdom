@@ -46,12 +46,15 @@ let rec generate_nums num bound accum =
       else generate_nums num bound (new_num :: accum)
     else accum
 
+(* [cpicks_from_index num_lst card_lst] returns a list of elements in
+    card_lst whose positions correspond to the numbers in the num_lst *)
+
 let rec picks_from_index num_lst card_lst =
     match num_lst with
     | [] -> []
     | h :: t -> (List.nth card_lst h) :: picks_from_index t card_lst
 
-let refresh_state st =
+let refresh_available_picks st =
   let new_picks = picks_from_index (generate_nums 3 24 []) (st.recruit_pool) in
   { st with available_picks = new_picks}
 
@@ -70,3 +73,7 @@ let init_state i j =
     available_picks = picks_from_index (generate_nums 3 24 []) (init_pile j);
     player_states = init_player_states i [];
   }
+
+(* [return_player_state s i] returns the playerstate who has id_int i*)
+
+let return_player_state s
