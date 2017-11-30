@@ -8,6 +8,9 @@
 open State
 open PlayerState
 
-(* [ai_generate_next_move s] perform a move, returning a new game state. *)
-
-val ai_generate_next_move: state -> cardID
+(**
+ * returns: [greedy_ai_next_move s] is the cardID that the greedy AI will
+ * play in a turn given a state [s].
+ * requires: [s] is a state.
+*)
+val greedy_ai_next_move: state -> cardID
