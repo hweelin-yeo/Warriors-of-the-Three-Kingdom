@@ -44,7 +44,7 @@ val remove_card: cardID -> player_state -> player_state
 
 (**
  * returns: [init_player_state i] initialises a player_state,
- * with player_id_int [i].
+ * with player_id_int [i]. The created player is played by a human.
  * requires: [i] is an int.
 *)
 val init_player_state: int -> player_state
@@ -64,3 +64,11 @@ val skip_turn: player_state -> player_state
  *  - [s] is a player_state
 *)
 val change_player_resource: int -> player_state -> player_state
+
+(* returns: [change_player_to_ai s] is [s] with the player played by an ai.
+ * requires: [s] is a player_state *)
+val change_player_to_ai: player_state -> player_state
+
+(* returns: [change_player_to_human s] is [s] with the player played by a human.
+ * requires: [s] is a player_state *)
+val change_player_to_human: player_state -> player_state
