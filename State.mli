@@ -29,7 +29,7 @@ val change_sec_description: state -> string list-> state
 
 (* [change_current_player st p] returns a new state with
    the next player p *)
-val change_current_player: state -> playerID -> state
+val change_current_player: state -> int -> state
 
 (* [add_card s c] adds card c to the recruit_pool *)
 val add_card_recruit_pool: state -> card -> state

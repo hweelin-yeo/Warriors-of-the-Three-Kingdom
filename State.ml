@@ -3,7 +3,6 @@
 open PlayerState
 open RecruitPile
 
-
 type playerID = string
 type cardID = string
 
@@ -23,8 +22,8 @@ let change_description st str =
 let change_sec_description st str =
   { st with sec_description = str}
 
-let change_current_player st pl =
-  { st with current_player = pl}
+let change_current_player st i =
+  { st with current_player = i}
 
 let add_card_recruit_pool st card =
   { st with recruit_pool = card :: st.recruit_pool}
@@ -86,7 +85,7 @@ let init_state i j =
 let rec return_pstate ps i =
   match ps with
   | [] -> failwith "No player with that id found"
-  | (i, h) :: t -> if h.player_id_int = id then h else return_pstate t id
+  | (i, h) :: t -> if h.player_id_int = i then h else return_pstate t i
 
 (* [return_player_state s id] returns a playerstate with id [id]. *)
 
@@ -99,3 +98,5 @@ let change_player_state s i f =
   let pstates = List.remove_assoc i (s.player_states) in
   let new_player_states = (i, changed_ps) :: pstates in
   { s with player_states = new_player_states}
+
+(* let refresh_state s *)

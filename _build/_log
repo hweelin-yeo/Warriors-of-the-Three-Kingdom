@@ -2,7 +2,7 @@
 # Target: main.ml.depends, tags: { package(str), package(yojson), extension:ml, file:main.ml, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package yojson -package str -modules main.ml > main.ml.depends # cached
 # Target: State.mli.depends, tags: { package(str), package(yojson), extension:mli, file:State.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package yojson -package str -modules State.mli > State.mli.depends # cached
+ocamlfind ocamldep -package yojson -package str -modules State.mli > State.mli.depends
 # Target: PlayerState.mli.depends, tags: { package(str), package(yojson), extension:mli, file:PlayerState.mli, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package yojson -package str -modules PlayerState.mli > PlayerState.mli.depends # cached
 # Target: PlayerState.cmi, tags: { package(str), package(yojson), byte, compile, extension:mli, file:PlayerState.mli, interf, ocaml, quiet, traverse }
@@ -12,15 +12,23 @@ ocamlfind ocamldep -package yojson -package str -modules RecruitPile.mli > Recru
 # Target: RecruitPile.cmi, tags: { package(str), package(yojson), byte, compile, extension:mli, file:RecruitPile.mli, interf, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package yojson -package str -o RecruitPile.cmi RecruitPile.mli # cached
 # Target: State.cmi, tags: { package(str), package(yojson), byte, compile, extension:mli, file:State.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package yojson -package str -o State.cmi State.mli # cached
+ocamlfind ocamlc -c -package yojson -package str -o State.cmi State.mli
 # Target: main.cmo, tags: { package(str), package(yojson), byte, compile, extension:cmo, extension:ml, file:main.cmo, file:main.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package yojson -package str -o main.cmo main.ml # cached
+ocamlfind ocamlc -c -package yojson -package str -o main.cmo main.ml
 # Target: State.ml.depends, tags: { package(str), package(yojson), extension:ml, file:State.ml, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package yojson -package str -modules State.ml > State.ml.depends
 # Target: State.cmo, tags: { package(str), package(yojson), byte, compile, extension:cmo, extension:ml, file:State.cmo, file:State.ml, implem, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package yojson -package str -o State.cmo State.ml
-+ ocamlfind ocamlc -c -package yojson -package str -o State.cmo State.ml
-File "State.ml", line 90, characters 40-42:
-Error: Unbound value id
+# Target: PlayerState.ml.depends, tags: { package(str), package(yojson), extension:ml, file:PlayerState.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package yojson -package str -modules PlayerState.ml > PlayerState.ml.depends
+# Target: RecruitPile.ml.depends, tags: { package(str), package(yojson), extension:ml, file:RecruitPile.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package yojson -package str -modules RecruitPile.ml > RecruitPile.ml.depends
+# Target: PlayerState.cmo, tags: { package(str), package(yojson), byte, compile, extension:cmo, extension:ml, file:PlayerState.cmo, file:PlayerState.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package yojson -package str -o PlayerState.cmo PlayerState.ml
+# Target: RecruitPile.cmo, tags: { package(str), package(yojson), byte, compile, extension:cmo, extension:ml, file:RecruitPile.cmo, file:RecruitPile.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package yojson -package str -o RecruitPile.cmo RecruitPile.ml
++ ocamlfind ocamlc -c -package yojson -package str -o RecruitPile.cmo RecruitPile.ml
+File "RecruitPile.ml", line 45, characters 32-428:
+Error: Some record fields are undefined: rarity
 Command exited with code 2.
 # Compilation unsuccessful.
