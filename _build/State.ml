@@ -3,6 +3,10 @@
 open PlayerState
 open RecruitPile
 
+
+type playerID = string
+type cardID = string
+
 type state = {
   description: string;
   sec_description: string list;

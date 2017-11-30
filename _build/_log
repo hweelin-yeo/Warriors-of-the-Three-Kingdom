@@ -2,7 +2,7 @@
 # Target: main.ml.depends, tags: { package(str), package(yojson), extension:ml, file:main.ml, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package yojson -package str -modules main.ml > main.ml.depends # cached
 # Target: State.mli.depends, tags: { package(str), package(yojson), extension:mli, file:State.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package yojson -package str -modules State.mli > State.mli.depends
+ocamlfind ocamldep -package yojson -package str -modules State.mli > State.mli.depends # cached
 # Target: PlayerState.mli.depends, tags: { package(str), package(yojson), extension:mli, file:PlayerState.mli, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package yojson -package str -modules PlayerState.mli > PlayerState.mli.depends # cached
 # Target: PlayerState.cmi, tags: { package(str), package(yojson), byte, compile, extension:mli, file:PlayerState.mli, interf, ocaml, quiet, traverse }
@@ -12,16 +12,15 @@ ocamlfind ocamldep -package yojson -package str -modules RecruitPile.mli > Recru
 # Target: RecruitPile.cmi, tags: { package(str), package(yojson), byte, compile, extension:mli, file:RecruitPile.mli, interf, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package yojson -package str -o RecruitPile.cmi RecruitPile.mli # cached
 # Target: State.cmi, tags: { package(str), package(yojson), byte, compile, extension:mli, file:State.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package yojson -package str -o State.cmi State.mli
+ocamlfind ocamlc -c -package yojson -package str -o State.cmi State.mli # cached
 # Target: main.cmo, tags: { package(str), package(yojson), byte, compile, extension:cmo, extension:ml, file:main.cmo, file:main.ml, implem, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package yojson -package str -o main.cmo main.ml # cached
 # Target: State.ml.depends, tags: { package(str), package(yojson), extension:ml, file:State.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package yojson -package str -modules State.ml > State.ml.depends # cached
+ocamlfind ocamldep -package yojson -package str -modules State.ml > State.ml.depends
 # Target: State.cmo, tags: { package(str), package(yojson), byte, compile, extension:cmo, extension:ml, file:State.cmo, file:State.ml, implem, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package yojson -package str -o State.cmo State.ml
 + ocamlfind ocamlc -c -package yojson -package str -o State.cmo State.ml
-File "State.ml", line 74, characters 24-34:
-Error: This expression has type string but an expression was expected of type
-         PlayerState.playerID
+File "State.ml", line 90, characters 40-42:
+Error: Unbound value id
 Command exited with code 2.
 # Compilation unsuccessful.
