@@ -9,7 +9,11 @@
 type playerID
 type cardID
 
-type player_state
+type player_state = {player_id: playerID;
+                     player_id_int: int;
+                     player_score: int;
+                     player_deck: cardID list;
+                     player_resource: int}
 
 (* [generate_player_id_int i] generates the player_id_int, i, of a player *)
 (* val generate_player_id_int: int -> int *)
