@@ -33,7 +33,7 @@ let rec remove_card pool card =
 
 let remove_card_recruit_pool st card =
   let recpool_new = remove_card (st.recruit_pool) card in
-    { st with recruit_pool = recpool_new }
+  { st with recruit_pool = recpool_new }
 
 let rec contains e lst =
   match lst with
@@ -67,8 +67,7 @@ let rec init_player_states n accum =
     init_player_states (n-1) (new_player_st :: accum)
 
 let init_state i j =
-  {
-    description = "";
+  { description = "";
     sec_description = "" :: [];
     current_player = 1;
     current_player_id = "Player 1";
