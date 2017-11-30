@@ -40,5 +40,3 @@ val remove_card_recruit_pool: state -> card -> state
 (* [init_state i j] initialises the state. it takes in int i,
    the number of players, and a json file for the recruit pool*)
 val init_state: int -> Yojson.Basic.json -> state
-
-(* [return_player_state s id] returns a playerstate with id [id]. *)
