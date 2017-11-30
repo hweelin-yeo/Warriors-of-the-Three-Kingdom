@@ -9,11 +9,15 @@
 type playerID
 type cardID
 
-type player_state = {player_id: playerID;
-                     player_id_int: int;
-                     player_score: int;
-                     player_deck: cardID list;
-                     player_resource: int}
+type player_state =
+{
+  player_id: playerID; (* Does not change *)
+  player_id_int: int; (* Does not change *)
+  player_score: int;
+  player_deck: cardID list;
+  player_resource: int;
+  player_is_human: bool;
+}
 
 (**
  * returns: [change_player_score i s] changes the score of a player in
