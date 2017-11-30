@@ -14,22 +14,32 @@ open RecruitPile
 
 type state
 
-(* [change_available_picks s] returns a new state where
-   state's available_picks randomised   to be chosen by
-   player*)
-(*  val change_available_picks: state -> state *)
 
-(* [change_description st s] returns a new state with
-   description s *)
-val change_description: state -> string -> state
 
-(* [change_sec_description st s] returns a new state with
-   secondary description s *)
-val change_sec_description: state -> string list-> state
+(* [change_next_player st ] returns a new state for the next player *)
+val change_next_player: state -> state
 
 (* [change_current_player st p] returns a new state with
-   the next player p *)
-val change_current_player: state -> int -> state
+   the next player p
+ * Use case: skip function
+ * requires: p <= state.total_players *)
+val change_to_player: state -> int -> state
+
+
+(*--------------- KIV -------------------------*)
+(* [change_description st s] returns a new state with
+   description s *)
+(* val change_description: state -> string -> state *)
+(* [change_sec_description st s] returns a new state with
+   secondary description s *)
+(* val change_sec_description: state -> string list-> state *)
+(*--------------- KIV -------------------------*)
+
+
+
+(* [pick_card st c] returns a new state with
+   card drawn as some c *)
+val draw_card: state -> card -> state
 
 (* [add_card s c] adds card c to the recruit_pool *)
 val add_card_recruit_pool: state -> card -> state
