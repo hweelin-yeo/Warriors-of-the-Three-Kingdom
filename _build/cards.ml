@@ -1,6 +1,8 @@
 open PlayerState
 open State
 
+let add x y = x + y
+
 type card = {
   card_name : string;
   card_id : int;
