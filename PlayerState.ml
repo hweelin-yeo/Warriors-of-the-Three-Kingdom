@@ -4,7 +4,7 @@
 
 
 type playerID = string
-type cardID = string
+type cardID = int
 
 type player_state =
 {
@@ -21,8 +21,9 @@ type player_state =
 let change_player_score i s =
   {s with player_score = max 0 (s.player_score + i)}
 
+    (*Removed the list.filter section for null string since changed type to int*)
 let add_card c s =
-  {s with player_deck = List.filter (fun x -> x <> "") (c :: s.player_deck)}
+  {s with player_deck = (c :: s.player_deck)}
 
 let remove_card c s =
   {s with player_deck = List.filter (fun x -> x <> c) s.player_deck}
@@ -43,7 +44,7 @@ let skip_turn s =
 let change_player_resource i s =
   {s with player_resource = s.player_resource + i}
 
-let change_player_to_ai s = 
+let change_player_to_ai s =
   {s with player_is_human = false}
 
 let change_player_to_human s =
