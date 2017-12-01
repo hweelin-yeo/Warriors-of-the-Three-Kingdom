@@ -43,7 +43,41 @@ let rec picks_from_index num_lst card_lst =
 
 let refresh_available_picks st =
   let n = List.length (st.recruit_pool) in
-   picks_from_index (generate_nums 3 n []) (st.recruit_pool)
+  picks_from_index (generate_nums 3 n []) (st.recruit_pool)
+
+let add_card_recruit_pool st card =
+  { st with recruit_pool = card :: st.recruit_pool}
+
+let rec remove_card pool card =
+  match pool with
+  | [] -> []
+  | h :: t -> if h = card then t else
+      h :: remove_card t card
+
+let remove_card_recruit_pool st card =
+  let recpool_new = remove_card (st.recruit_pool) card in
+  { st with recruit_pool = recpool_new }
+
+(* [return_pstate ps i] is a helper function for [return_player_state s id].
+    It returns a playerstate with player_id_int [i]. *)
+
+let rec return_pstate ps i =
+  match ps with
+  | [] -> failwith "No player with that id found"
+  | (i, h) :: t -> if h.player_id_int = i then h else return_pstate t i
+
+(* [return_player_state s id] returns a playerstate with id [id]. *)
+
+let rec return_player_state s i =
+  return_pstate (s.player_states) i
+
+(* [change_player_state s ps i] returns a state with playerstate,
+   whose player_id_int is 1, changed. *)
+
+let change_player_state s ps i =
+  let pstates = List.remove_assoc i (s.player_states) in
+  let new_player_states = (i, ps) :: pstates in
+  { s with player_states = new_player_states}
 
 let return_next_player st prev =
   if prev = st.total_players then 1
@@ -70,20 +104,11 @@ let card_f_state st f = f st
 (* let change s p_id c_id f = failwith "unimplemented" *)
 
 let draw_card st c =
-  { st with card_drawn = Some c }
-
-let add_card_recruit_pool st card =
-  { st with recruit_pool = card :: st.recruit_pool}
-
-let rec remove_card pool card =
-  match pool with
-  | [] -> []
-  | h :: t -> if h = card then t else
-      h :: remove_card t card
-
-let remove_card_recruit_pool st card =
-  let recpool_new = remove_card (st.recruit_pool) card in
-  { st with recruit_pool = recpool_new }
+  let remove_rec_pool = remove_card_recruit_pool st c in
+  let ps = return_player_state st (st.current_player) in
+  let new_ps = add_card c ps in
+  let changed_ps = change_player_state remove_rec_pool new_ps (st.current_player) in
+  { changed_ps with card_drawn = Some c }
 
 (* [init_player_states n h accum] returns a list of playerstates,
    where n is the number of playerstates, h is the number of human
@@ -110,29 +135,6 @@ let init_state i h j =
     available_picks = picks_from_index (generate_nums 3 24 []) (init_pile j);
     player_states = init_player_states i h [];
   }
-
-(* [return_pstate ps i] is a helper function for [return_player_state s id].
-    It returns a playerstate with player_id_int [i]. *)
-
-let rec return_pstate ps i =
-  match ps with
-  | [] -> failwith "No player with that id found"
-  | (i, h) :: t -> if h.player_id_int = i then h else return_pstate t i
-
-(* [return_player_state s id] returns a playerstate with id [id]. *)
-
-let rec return_player_state s i =
-  return_pstate (s.player_states) i
-
-(* [change_player_state s i] returns a state with playerstate,
-   whose player_id_int is 1, changed. *)
-
-let change_player_state s i =
-  let ps = return_player_state s i in
-  let changed_ps = f ps in
-  let pstates = List.remove_assoc i (s.player_states) in
-  let new_player_states = (i, changed_ps) :: pstates in
-  { s with player_states = new_player_states}
 
 
 

@@ -12,7 +12,17 @@ open Yojson
 open PlayerState
 open RecruitPile
 
-type state
+type state = {
+  (* description: string;
+     sec_description: string list; *)
+  total_players: int;
+  card_drawn: card option;
+  current_player: int;
+  (* current_player_id: playerID; *)
+  recruit_pool: card list;
+  available_picks: card list;
+  player_states: (int * player_state) list;
+}
 
 
 
