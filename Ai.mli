@@ -9,15 +9,15 @@ open State
 open PlayerState
 
 (**
- * returns: [easy_ai_next_move s] is the cardID that the easy difficulty AI
+ * returns: [easy_ai_next_move s] is the card that the easy difficulty AI
  * will play in a turn given a state [s].
  * requires: [s] is a state.
 *)
-val easy_ai_next_move: state -> cardID
+val easy_ai_next_move: state -> card option
 
 (**
- * returns: [medium_ai_next_move s] is the cardID that the medium difficulty AI
+ * returns: [medium_ai_next_move s] is the card that the medium difficulty AI
  * will play in a turn given a state [s].
  * requires: [s] is a state.
 *)
-val medium_ai_next_move: state -> cardID
+val medium_ai_next_move: state -> card option
