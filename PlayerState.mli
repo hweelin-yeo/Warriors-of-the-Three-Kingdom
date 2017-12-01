@@ -14,7 +14,7 @@ type player_state =
   player_id: playerID; (* Does not change *)
   player_id_int: int; (* Does not change *)
   player_score: int;
-  player_deck: playerID list;
+  player_deck: card list;
   player_resource: int;
   player_is_human: bool;
 }
@@ -32,19 +32,19 @@ val change_player_score: int -> player_state -> player_state
  * returns: [add_card c s] adds card [c] to the player_deck in [s].
  * If [c] is "" then no card will be added to the deck.
  * requires:
- *  - [c] is a cardID
+ *  - [c] is a card
  *  - [s] is a player_state
 *)
-val add_card: cardID -> player_state -> player_state
+val add_card: card -> player_state -> player_state
 
 (**
  * returns: [remove_card c s] removes card [c] from the player_deck in [s].
  * The player's card deck will remain unchanged if the player does not have [c].
  * requires:
- *  - [c] is a cardID
+ *  - [c] is a card
  *  - [s] is a player_state
 *)
-val remove_card: cardID -> player_state -> player_state
+val remove_card: card -> player_state -> player_state
 
 (**
  * returns: [init_player_state i] initialises a player_state,
