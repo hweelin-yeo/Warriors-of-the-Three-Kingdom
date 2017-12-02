@@ -1,4 +1,0 @@
-"Rule: ocaml: cmo* -> byte (%=main )": "\001\\/\163>\\\028\000\188\234\n=sg\208\243"
-"Rule: ocaml: ml -> cmo & cmi (%=main )": "\029\132\174#\130+l\215\174;\154\004\131z\1815"
-"Rule: ocaml dependencies ml (%=main )": "\212\224w\159z\206\2183\153\148\180\ng>\129A"
-"Resource: /Users/yanglu/Documents/3110/cs3110FinalProject/main.ml": "a9S\145]\167\195\171\198\0069_\167K\149\197"
