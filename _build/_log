@@ -1,26 +1,27 @@
 ### Starting build.
 # Target: main.ml.depends, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), extension:ml, file:main.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules main.ml > main.ml.depends
+ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules main.ml > main.ml.depends # cached
 # Target: State.mli.depends, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), extension:mli, file:State.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules State.mli > State.mli.depends
+ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules State.mli > State.mli.depends # cached
 # Target: PlayerState.mli.depends, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), extension:mli, file:PlayerState.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules PlayerState.mli > PlayerState.mli.depends
-# Target: RecruitPile.mli.depends, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), extension:mli, file:RecruitPile.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules RecruitPile.mli > RecruitPile.mli.depends
+ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules PlayerState.mli > PlayerState.mli.depends # cached
 # Target: PlayerState.cmi, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), byte, compile, extension:mli, file:PlayerState.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o PlayerState.cmi PlayerState.mli
+ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o PlayerState.cmi PlayerState.mli # cached
+# Target: RecruitPile.mli.depends, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), extension:mli, file:RecruitPile.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules RecruitPile.mli > RecruitPile.mli.depends # cached
 # Target: RecruitPile.cmi, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), byte, compile, extension:mli, file:RecruitPile.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o RecruitPile.cmi RecruitPile.mli
+ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o RecruitPile.cmi RecruitPile.mli # cached
 # Target: State.cmi, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), byte, compile, extension:mli, file:State.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o State.cmi State.mli
+ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o State.cmi State.mli # cached
 # Target: main.cmo, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), byte, compile, extension:cmo, extension:ml, file:main.cmo, file:main.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o main.cmo main.ml
+ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o main.cmo main.ml # cached
 # Target: State.ml.depends, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), extension:ml, file:State.ml, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules State.ml > State.ml.depends
 # Target: State.cmo, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), byte, compile, extension:cmo, extension:ml, file:State.cmo, file:State.ml, implem, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o State.cmo State.ml
 + ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o State.cmo State.ml
-File "State.ml", line 195, characters 19-28:
-Error: Unbound value init_pile
+File "State.ml", line 84, characters 17-18:
+Error: This expression has type card list
+       but an expression was expected of type cardID = int
 Command exited with code 2.
 # Compilation unsuccessful.

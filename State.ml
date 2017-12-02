@@ -76,7 +76,7 @@ let vanilla (s : state) (cid : cardID) = s
 
 (*id_to_card takes a card id int and returns the card object option associated with it.
   The inputs are the card id and the card list that represents the card set*)
-let rec id_to_card (id : cardID) (cl : cardList) =
+let rec id_to_card (id : cardID) (cl : card list) =
   match cl with
   | [] -> None (*Should not happen*)
   | h :: t -> if (h.card_id = id) then Some h

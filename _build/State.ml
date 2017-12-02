@@ -3,18 +3,17 @@
 open PlayerState
 
 type playerID = string
-type cardID = string
-type cardIDint = int
+type cardID = int
 
 type state = {
   (* description: string;
      sec_description: string list; *)
   total_players: int;
-  card_drawn: cardIDint option;
+  card_drawn: cardID option;
   current_player: int;
   (* current_player_id: playerID; *)
-  recruit_pool: cardIDint list;
-  available_picks: cardIDint list;
+  recruit_pool: cardID list;
+  available_picks: cardID list;
   player_states: (int * player_state) list;
 }
 
@@ -70,8 +69,35 @@ let zhuge_liang_funct (s : state) (p : player_state) (c_id : int) =
     player_states = new_players_list;
   }*)
 
-let vanilla (s : state) (p : player_state) (c_id : int) = s
 
+(*Function for vanilla cards, simulates a blank abilities box thus
+the returned state is the same as the called state*)
+let vanilla (s : state) (cid : cardID) = s
+
+(*id_to_card takes a card id int and returns the card object option associated with it.
+  The inputs are the card id and the card list that represents the card set*)
+let rec id_to_card (id : cardID) (cl : card list) =
+  match cl with
+  | [] -> None (*Should not happen*)
+  | h :: t -> if (h.card_id = id) then Some h
+    else
+      id_to_card t id
+
+(*map_id_list maps a list of card ids to their respective cards*)
+let rec map_id_list (idl : cardID list) (cl : card list) acc =
+  match idl with
+  | [] -> List.rev acc
+  | h :: t -> map_id_list t cl ((id_to_card h cl) :: acc)
+
+
+(*compute_deck_score takes in a card_list that represents the deck and returns
+  the total score of the deck*)
+let compute_deck_score (cl : card list) acc =
+  match cl with
+  | [] -> acc
+  | h :: t -> compute_deck_score t (h.power + acc)
+
+    (*List of card records that simulates every card available*)
 let cardList = [
   {
     card_name = "Shu Footsoldier";
@@ -100,6 +126,7 @@ Dragon, Zhuge Liang";
   }
 ]
 
+    (****************************************************************************************************)
 
 let rec contains e lst =
   match lst with
@@ -154,7 +181,11 @@ let card_f_state st f = f st
 (* let change s p_id c_id f = failwith "unimplemented" *)
 
 let draw_card st c =
-  { st with card_drawn = Some c }
+  let remove_rec_pool = remove_card_recruit_pool st c in
+  let ps = return_player_state st (st.current_player) in
+  let new_ps = add_card c ps in
+  let changed_ps = change_player_state remove_rec_pool new_ps (st.current_player) in
+  { changed_ps with card_drawn = Some c }
 
 let add_card_recruit_pool st card =
   { st with recruit_pool = card :: st.recruit_pool}
@@ -178,11 +209,18 @@ let rec init_player_states n h accum =
   | 0 -> accum
   | _ -> begin
     match h with
-      | 0 -> let new_ps = (n, (init_player_state (n) (false))) in
+      | 0 -> let new_ps = (n, (init_player_state n false)) in
         init_player_states (n-1) 0 (new_ps :: accum)
       | _ -> let new_ps = (n, init_player_state n true) in
         init_player_states (n-1) (h-1) (new_ps :: accum)
     end
+
+(* [generate_0_to_n_lst n accum] returns an int list [0; ...; n] 
+ * requires: n is an int *)
+let rec generate_0_to_n_lst n accum =
+  match n with 
+  | 0 -> accum 
+  | _ -> generate_i_to_n_lst (n-1) (n :: accum)
 
 let init_state i h j =
   {
@@ -192,8 +230,8 @@ let init_state i h j =
     card_drawn = None;
     current_player = 1;
     (* current_player_id = "Player 1"; *)
-    recruit_pool = init_pile j;
-    available_picks = picks_from_index (generate_nums 3 24 []) (init_pile j);
+    recruit_pool = generate_0_to_n_lst 23 [];
+    available_picks = generate_nums 3 23 [];
     player_states = init_player_states i h [];
   }
 
