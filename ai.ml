@@ -12,9 +12,12 @@ let rec find_card card_lst highest_card f =
       else find_card t highest_card f
     )
 
-let make_sorted_assoc_lst s =
+let generate_enough_resources s =
   let current_player_state = List.assoc s.current_player s.player_states in
-  let enough_resources_lst = List.filter (fun x -> x.cost <= current_player_state.player_resource) s.available_picks in
+  let enough_resources_lst = List.filter (fun x -> x.cost <= current_player_state.player_resource) s.available_picks
+
+let make_sorted_assoc_lst s =
+  let enough_resources_lst = generate_enough_resources s in 
   let card_assoc_lst = List.map (fun x -> (x.power, x)) enough_resources_lst in
   List.sort compare card_assoc_lst
 
@@ -23,9 +26,6 @@ let easy_ai_next_move s =
     Some (make_sorted_assoc_lst s |> List.rev|> List.hd |> snd)
   with Failure _ -> None
 (* snd (List.hd (make_sorted_assoc_lst s)) *)
-
-let medium_ai_next_move s =
-  Some (make_sorted_assoc_lst s |> List.rev |> List.hd |> snd)
 
 let rec find_index elem lst lst_size cur_idx =
   match lst with
@@ -72,3 +72,15 @@ let rec run_sims lst st rank_diff_accum =
     let rank = find_rank new_st st.current_player in
     let diff = find_diff new_st st.current_player in
     run_sims t st ((rank, diff) :: rank_diff_accum)
+
+(* [rank_tuples] returns a ranked list of cardID ....... *)
+
+let rank_tuples lst = failwith "unimplemented"
+
+let medium_ai_next_move s =
+  let enough_resources_lst = generate_enough_resources s in 
+  let results = run_sims enough_resources_lst s [] in 
+  let s = rank_tuples results in
+  try
+    Some (make_sorted_assoc_lst s |> List.rev|> List.hd |> snd)
+  with Failure _ -> None
