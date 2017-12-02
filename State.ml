@@ -181,7 +181,11 @@ let card_f_state st f = f st
 (* let change s p_id c_id f = failwith "unimplemented" *)
 
 let draw_card st c =
-  { st with card_drawn = Some c }
+  let remove_rec_pool = remove_card_recruit_pool st c in
+  let ps = return_player_state st (st.current_player) in
+  let new_ps = add_card c ps in
+  let changed_ps = change_player_state remove_rec_pool new_ps (st.current_player) in
+  { changed_ps with card_drawn = Some c }
 
 let add_card_recruit_pool st card =
   { st with recruit_pool = card :: st.recruit_pool}
@@ -211,6 +215,13 @@ let rec init_player_states n h accum =
         init_player_states (n-1) (h-1) (new_ps :: accum)
     end
 
+(* [generate_0_to_n_lst n accum] returns an int list [0; ...; n] 
+ * requires: n is an int *)
+let rec generate_0_to_n_lst n accum =
+  match n with 
+  | 0 -> accum 
+  | _ -> generate_i_to_n_lst (n-1) (n :: accum)
+
 let init_state i h j =
   {
      (* description = "";
@@ -219,8 +230,8 @@ let init_state i h j =
     card_drawn = None;
     current_player = 1;
     (* current_player_id = "Player 1"; *)
-    recruit_pool = init_pile j;
-    available_picks = picks_from_index (generate_nums 3 24 []) (init_pile j);
+    recruit_pool = generate_0_to_n_lst 23 [];
+    available_picks = generate_nums 3 23 [];
     player_states = init_player_states i h [];
   }
 
