@@ -10,7 +10,6 @@ let rec find_card card_lst highest_card f =
       if f h.power highest_card.power
       then find_card t h f
       else find_card t highest_card f
-
     )
 
 let make_sorted_assoc_lst s =
@@ -28,14 +27,30 @@ let easy_ai_next_move s =
 let medium_ai_next_move s =
   Some (make_sorted_assoc_lst s |> List.rev |> List.hd |> snd)
 
+let rec find_index elem lst lst_size cur_idx =
+  match lst with
+  | [] -> lst_size - 1
+  | h :: t ->
+    if (fst h = fst elem) then cur_idx
+    else find_index elem t lst_size (cur_idx + 1)
 
 (* AKIRA: [find_rank st id] returns the rank of the current player of
-   player_id [id] *)
-let find_rank st id = failwith "unimplemented"
+   player_id [id]. [id] is an int.
+*)
+let find_rank st id =
+  let player_lst = List.map (fun (x, y) -> (y.player_score, x)) st.player_states in
+  let ranked_lst = List.rev (List.sort compare player_lst) in
+  let ranked_lst_rev = List.map (fun (x, y) -> (y, x)) ranked_lst in (* (player_id * score)*)
+  find_index (id, 0) ranked_lst_rev (List.length ranked_lst_rev) 1
 
 (* AKIRA: [find_diff st id] returns the difference between the score of the
    current player of player_id [id] and the player ranked below him *)
-let find_diff st id = failwith "unimplemented"
+let find_diff st id =
+  let player_lst = List.map (fun (x, y) -> (y.player_score, x)) st.player_states in (* (score * player_id)*)
+  let ranked_lst = List.rev (List.sort compare player_lst) in
+  let ranked_lst_rev = List.map (fun (x, y) -> (y, x)) ranked_lst in (* (player_id * score)*)
+  let id_idx = find_index (id, 0) ranked_lst_rev (List.length ranked_lst_rev) 1 in
+  try (List.assoc ranked_lst_rev id) - fst (List.nth player_lst (id_idx + 1)) with Failure _ -> 0
 
 (* [run_game_sim c st] returns a new state with card drawn as c *)
 let run_indiv_sim c st = c |> draw_card st
