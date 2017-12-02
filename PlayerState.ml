@@ -28,14 +28,14 @@ let add_card c s =
 let remove_card c s =
   {s with player_deck = List.filter (fun x -> x <> c) s.player_deck}
 
-let init_player_state i is_human =
+let init_player_state (i: int) (b: bool) =
   {
     player_id = "Player " ^ (string_of_int i);
     player_id_int = i;
     player_score = 0;
     player_deck = [];
     player_resource = 1;
-    player_is_human = is_human;
+    player_is_human = b;
   }
 
 let skip_turn s =
