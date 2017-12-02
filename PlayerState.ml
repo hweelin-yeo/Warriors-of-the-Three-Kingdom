@@ -11,7 +11,7 @@ type player_state =
   player_id: playerID; (* Does not change *)
   player_id_int: int; (* Does not change *)
   player_score: int;
-  player_deck: card list;
+  player_deck: int list;
   player_resource: int;
   player_is_human: bool;
 }
@@ -21,8 +21,10 @@ type player_state =
 let change_player_score i s =
   {s with player_score = max 0 (s.player_score + i)}
 
+    (*Makes a cardID object*)
+
     (*Removed the list.filter section for null string since changed type to int*)
-let add_card c s =
+let add_card (c : int) (s : player_state) =
   {s with player_deck = (c :: s.player_deck)}
 
 let remove_card c s =
