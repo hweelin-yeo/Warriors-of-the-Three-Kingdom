@@ -24,7 +24,7 @@ type card = {
   faction : string;
   power : int;
   flavor : string;
-  abilities : state -> player_state -> int -> state;
+  abilities : state -> int -> state;
   card_type : string;
 }
 
@@ -76,12 +76,12 @@ let vanilla (s : state) (cid : cardID) = s
 
 (*id_to_card takes a card id int and returns the card object option associated with it.
   The inputs are the card id and the card list that represents the card set*)
-let rec id_to_card (id : cardID) (cl : cardList) =
+let rec id_to_card (id : cardID) (cl : card list) =
   match cl with
   | [] -> None (*Should not happen*)
   | h :: t -> if (h.card_id = id) then Some h
     else
-      id_to_card t id
+      id_to_card id t
 
 (*map_id_list maps a list of card ids to their respective cards*)
 let rec map_id_list (idl : cardID list) (cl : card list) acc =
@@ -92,7 +92,7 @@ let rec map_id_list (idl : cardID list) (cl : card list) acc =
 
 (*compute_deck_score takes in a card_list that represents the deck and returns
   the total score of the deck*)
-let compute_deck_score (cl : card list) acc =
+let rec compute_deck_score (cl : card list) acc =
   match cl with
   | [] -> acc
   | h :: t -> compute_deck_score t (h.power + acc)
