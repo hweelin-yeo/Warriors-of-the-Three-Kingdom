@@ -3,18 +3,17 @@
 open PlayerState
 
 type playerID = string
-type cardID = string
-type cardIDint = int
+type cardID = int
 
 type state = {
   (* description: string;
      sec_description: string list; *)
   total_players: int;
-  card_drawn: cardIDint option;
+  card_drawn: cardID option;
   current_player: int;
   (* current_player_id: playerID; *)
-  recruit_pool: cardIDint list;
-  available_picks: cardIDint list;
+  recruit_pool: cardID list;
+  available_picks: cardID list;
   player_states: (int * player_state) list;
 }
 
@@ -70,8 +69,35 @@ let zhuge_liang_funct (s : state) (p : player_state) (c_id : int) =
     player_states = new_players_list;
   }*)
 
-let vanilla (s : state) (p : player_state) (c_id : int) = s
 
+(*Function for vanilla cards, simulates a blank abilities box thus
+the returned state is the same as the called state*)
+let vanilla (s : state) (cid : cardID) = s
+
+(*id_to_card takes a card id int and returns the card object option associated with it.
+  The inputs are the card id and the card list that represents the card set*)
+let rec id_to_card (id : cardID) (cl : cardList) =
+  match cl with
+  | [] -> None (*Should not happen*)
+  | h :: t -> if (h.card_id = id) then Some h
+    else
+      id_to_card t id
+
+(*map_id_list maps a list of card ids to their respective cards*)
+let rec map_id_list (idl : cardID list) (cl : card list) acc =
+  match idl with
+  | [] -> List.rev acc
+  | h :: t -> map_id_list t cl ((id_to_card h cl) :: acc)
+
+
+(*compute_deck_score takes in a card_list that represents the deck and returns
+  the total score of the deck*)
+let compute_deck_score (cl : card list) acc =
+  match cl with
+  | [] -> acc
+  | h :: t -> compute_deck_score t (h.power + acc)
+
+    (*List of card records that simulates every card available*)
 let cardList = [
   {
     card_name = "Shu Footsoldier";
