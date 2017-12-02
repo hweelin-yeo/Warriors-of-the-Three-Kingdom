@@ -14,8 +14,9 @@ type state = {
   current : string;
   recruit_pool : string list;
   available_picks : string list;
-  player_state : string list;
+  player_state : string list; (*dummy until player_state is implemented *)
 }
+
 
 let init_state = {
   desc = "hello";
@@ -25,53 +26,21 @@ let init_state = {
   available_picks = ["e";"f"];
   player_state = ["g";"h"]
 }
-(*********************************************************)
-(*     Real Functions                                    *)
-(*********************************************************)
 
-let rec game st =
+let start f =
+  try init_state
+  with exn -> failwith ("wat")
+
+let rec repl st =
   print_endline ("description of card");
   print_string "\n> ";
   match read_line () with
-    | line -> if line = "quit" then () else game st
-
-let init_game () =
-  print_endline "How many players? (Max 4 Players)"; print_string "\n> ";
-  match read_line () with
-    | line -> game init_state
-  (* How many humans?*)
-  (* How many AI?*)
-  (* Difficulty of AI*)
-  (* Create new init state based on these then game*)
-
-let rec menu () =
-  print_endline "Menu: Type in your choice fam";
-  print_string "\n> ";
-  let str = (match read_line () with line -> String.lowercase_ascii line) in
-
-  if str = "play" then init_game ()
-  else if str = "tutorial" then init_tutorial ()
-  else if str = "credits" then init_credits ()
-  else if str = "quit" then ()
-  else (
-       print_endline "I don't understand that command, try typing 'play',
-                    'tutorial', 'credits'"; menu ()
-      )
-
-and
-
-init_tutorial () =
-    print_endline "This is the tutorial"; menu ()
-
-and
-
-init_credits () =
-    print_endline "This is the credits"; menu ()
+    | line -> if line = "quit" then () else repl st
 
 
 let main () =
-  print_string "\nWelcome to Explosion of Explosions!.\n";
-  print_endline "Created by CS3110 team"; menu ()
+  print_string "\n\n Welcome to repl for game.\n";
+  repl start
 
 
 let () = main ()
