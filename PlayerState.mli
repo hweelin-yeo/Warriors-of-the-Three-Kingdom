@@ -35,7 +35,7 @@ val change_player_score: int -> player_state -> player_state
  *  - [c] is a card
  *  - [s] is a player_state
 *)
-val add_card: cardID -> player_state -> player_state
+val add_card: int -> player_state -> player_state
 
 (**
  * returns: [remove_card c s] removes card [c] from the player_deck in [s].

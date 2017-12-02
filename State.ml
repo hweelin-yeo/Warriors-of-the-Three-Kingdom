@@ -205,10 +205,10 @@ let rec return_pstate ps i =
 let rec return_player_state s i =
   return_pstate (s.player_states) i
 
-let draw_card st c =
+let draw_card st (c : int) =
   let remove_rec_pool = remove_card_recruit_pool st c in
   let ps = return_player_state st (st.current_player) in
-  let new_ps = add_card c ps in
+  let new_ps = (add_card c ps) in
   let changed_ps = change_player_state remove_rec_pool new_ps (st.current_player) in
   { changed_ps with card_drawn = Some c }
 
@@ -227,11 +227,11 @@ let rec init_player_states n h accum =
         init_player_states (n-1) (h-1) (new_ps :: accum)
     end
 
-(* [generate_0_to_n_lst n accum] returns an int list [0; ...; n] 
+(* [generate_0_to_n_lst n accum] returns an int list [0; ...; n]
  * requires: n is an int *)
 let rec generate_0_to_n_lst n accum =
-  match n with 
-  | 0 -> accum 
+  match n with
+  | 0 -> accum
   | _ -> generate_i_to_n_lst (n-1) (n :: accum)
 
 let init_state i h j =
