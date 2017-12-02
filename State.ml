@@ -100,6 +100,7 @@ Dragon, Zhuge Liang";
   }
 ]
 
+    (****************************************************************************************************)
 
 let rec contains e lst =
   match lst with
@@ -178,7 +179,7 @@ let rec init_player_states n h accum =
   | 0 -> accum
   | _ -> begin
     match h with
-      | 0 -> let new_ps = (n, (init_player_state (n) (false))) in
+      | 0 -> let new_ps = (n, (init_player_state n false)) in
         init_player_states (n-1) 0 (new_ps :: accum)
       | _ -> let new_ps = (n, init_player_state n true) in
         init_player_states (n-1) (h-1) (new_ps :: accum)
