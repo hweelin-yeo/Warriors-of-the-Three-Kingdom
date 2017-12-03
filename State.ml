@@ -148,10 +148,11 @@ let sima_yi_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (*Xiahou Dun Functions*)
+(*Need to finish, not completed yet*)
 
 let xiahou_dun_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
-  let opponentList = find_opponents s currentPlayerInt in
+  let opponentList = find_opponents s.player_states currentPlayerInt in
   s
 
 
