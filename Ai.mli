@@ -13,11 +13,11 @@ open PlayerState
  * will play in a turn given a state [s].
  * requires: [s] is a state.
 *)
-val easy_ai_next_move: state -> card option
+val easy_ai_next_move: state -> cardID option
 
 (**
  * returns: [medium_ai_next_move s] is the card that the medium difficulty AI
  * will play in a turn given a state [s].
  * requires: [s] is a state.
 *)
-val medium_ai_next_move: state -> card option
+val medium_ai_next_move: state -> cardID option
