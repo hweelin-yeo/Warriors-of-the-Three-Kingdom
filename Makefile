@@ -1,5 +1,5 @@
 test:
-	ocamlbuild -use-ocamlfind state_test.byte && ./state_test.byte
+	ocamlbuild -use-ocamlfind statetest.byte && ./statetest.byte
 
 play:
 	ocamlbuild -use-ocamlfind main.byte && ./main.byte
