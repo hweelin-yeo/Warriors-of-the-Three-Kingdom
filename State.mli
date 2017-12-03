@@ -10,7 +10,6 @@
 *)
 open Yojson
 open PlayerState
-open RecruitPile
 
 type state
 type playerID = string

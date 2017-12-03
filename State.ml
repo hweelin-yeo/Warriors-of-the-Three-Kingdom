@@ -89,6 +89,13 @@ let rec map_id_list (idl : cardID list) (cl : card list) acc =
   | [] -> List.rev acc
   | h :: t -> map_id_list t cl ((id_to_card h cl) :: acc)
 
+(*find_player, given the list of int player_state tuples, and a int player id,
+  return the corresponding player_state*)
+let rec find_player (psl : (int * player_state) list) (id : int) =
+  match psl with
+  | [] -> failwith "Player not found"
+  | h :: t -> if (fst h = id) then h else find_player t id
+
 
 (*compute_deck_score takes in a card_list that represents the deck and returns
   the total score of the deck*)
@@ -96,6 +103,13 @@ let rec compute_deck_score (cl : card list) acc =
   match cl with
   | [] -> acc
   | h :: t -> compute_deck_score t (h.power + acc)
+
+(*zhuge_liang_funct*)
+(*let zhuge_liang_funct (s : state) (cid : int) =
+  let currentPlayerInt = s.current_player in
+  let currentPlayer = find_player currentPlayerInt s.player_states in *)
+
+
 
     (*List of card records that simulates every card available*)
 let cardList = [
@@ -209,7 +223,7 @@ let rec return_player_state s i =
    whose player_id_int is 1, changed. *)
 
 let change_player_state s ps  =
-  let i = s.current_player in 
+  let i = s.current_player in
   let pstates = List.remove_assoc (i) (s.player_states) in
   let new_player_states = (i, ps) :: pstates in
   { s with player_states = new_player_states}
