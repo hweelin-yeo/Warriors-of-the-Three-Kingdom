@@ -43,9 +43,6 @@ let rec id_to_card (id : cardID) (cl : card list) =
     else
       id_to_card id t
 
-let id_to_card_lst st idl = 
-  map_id_list idl st.recruit_pool [] 
-
 (*map_id_list maps a list of card ids to their respective cards*)
 let rec map_id_list idl  (cl : card list) acc =
   match idl with
@@ -57,6 +54,9 @@ let rec map_card_list (cl : card list) acc =
   match cl with
   | [] -> List.rev acc
   | h :: t -> map_card_list t (h.card_id :: acc)
+
+let id_to_card_lst st idl = 
+  map_id_list idl st.recruit_pool [] 
 
 (*find_player, given the list of int player_state tuples, and a int player id,
   return the corresponding player_state*)
