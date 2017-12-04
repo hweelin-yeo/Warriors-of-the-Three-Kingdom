@@ -51,6 +51,9 @@ let rec map_card_list (cl : card list) acc =
   | [] -> List.rev acc
   | h :: t -> map_card_list t (h.card_id :: acc)
 
+let id_to_card_lst st idl = 
+  map_id_list idl st.recruit_pool [] 
+
 (*find_player, given the list of int player_state tuples, and a int player id,
   return the corresponding player_state*)
 let rec find_player (psl : (int * player_state) list) (id : int) =
@@ -739,7 +742,7 @@ let remove_card_recruit_pool st card =
 let rec return_pstate ps i =
   match ps with
   | [] -> failwith "No player with that id found"
-  | (i, h) :: t -> if h.player_id = i then h else return_pstate t i
+  | (n, h) :: t -> if n = i then h else return_pstate t i
 
 let rec return_player_state s i =
   return_pstate (s.player_states) i

@@ -26,6 +26,18 @@ type state = {
   player_states: (int * player_state) list;
 }
 
+type card = {
+  card_name : string;
+  card_id : int;
+  cost : int;
+  faction : string;
+  power : int;
+  flavor : string;
+  card_text : string;
+  abilities : state -> int -> card list-> state;
+  card_type : string;
+}
+
 
 
 (* [change_next_player st ] returns a new state for the next player *)
@@ -61,8 +73,20 @@ val remove_card_recruit_pool: state -> cardID -> state
 
 (* [return_player_state s id] returns a playerstate with id [id]. *)
 
-val return_player_state: state -> cardID -> player_state 
+val return_player_state: state -> cardID -> player_state
 
 (* [init_state i j] initialises the state. it takes in int i,
    the number of players, and a json file for the recruit pool*)
 val init_state: int -> int -> state
+
+(*id_to_card takes a card id int and returns the card object option associated with it.
+  The inputs are the card id and the card list that represents the card set*)
+<<<<<<< HEAD
+val id_to_card: cardID -> card list -> card
+
+=======
+val id_to_card: cardID -> card list -> card
+
+(*id_to_card_lst maps a list of card ids to their respective cards*)
+val id_to_card_lst: state -> cardID list -> card list
+>>>>>>> 4042b92f008281415b91f0214610e96962a97523

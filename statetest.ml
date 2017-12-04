@@ -19,6 +19,10 @@ let rec contains e lst =
   | [] -> false
   | h :: t -> if h = e then true else contains e t
 
+let rec print_list = function 
+ |[] -> ()
+ | e::l -> print_int e ; print_string " " ; print_list l
+
 let init_state_test =
   [
     "total_players" >:: (fun _ -> assert_equal 4 (init_state_1.total_players));
@@ -47,6 +51,7 @@ let pldeck_has_card st c =
   let player = st.current_player in
   let playerst = return_player_state st player in
   let playerdeck = playerst.player_deck in
+  let () = print_list playerdeck in 
   contains c playerdeck
 
 let pick_card_state =
