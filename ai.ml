@@ -42,7 +42,9 @@ let rec find_index elem lst lst_size cur_idx =
  * requires: s is a cardID list *)
 let filter_enough_resources s =
   let current_player_state = List.assoc s.current_player s.player_states in
-  List.filter (fun x -> x.cost <= current_player_state.player_resource) s.available_picks
+  let id_to_card' id = id_to_card id cardList in
+  let card_lst = List.map id_to_card' s.available_picks in
+  List.filter (fun x -> x.cost <= current_player_state.player_resource) card_lst
 
 (* [rank_lst_easy_ai s] creates a list of (power, cardID) tuples from
     s, a list of cardIDs.
