@@ -1,4 +1,4 @@
-open State
+(*open State
 open PlayerState
 
 (**
@@ -111,4 +111,4 @@ let medium_ai_next_move s =
   try
     Some (s |> filter_enough_resources |> (rank_lst_med_ai s [])
     |> med_sort_compare |> List.rev |> List.hd |> snd)
-  with Failure _ -> None
+  with Failure _ -> None*)
