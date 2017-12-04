@@ -30,6 +30,10 @@ type card = {
 }
 
 
+(*Function for vanilla cards, simulates a blank abilities box thus
+the returned state is the same as the called state*)
+let vanilla (s : state) (cid : cardID) (cl : card list) = s
+
 (*id_to_card takes a card id int and returns the card object option associated with it.
   The inputs are the card id and the card list that represents the card set*)
 let rec id_to_card (id : cardID) (cl : card list) =
@@ -65,7 +69,6 @@ let rec find_opponents (psl : (int * player_state) list) (id : int) acc =
   | h :: t -> if (fst h = id) then find_opponents t id acc else
       find_opponents t id (snd h :: acc)
 
-
 (*Compute_effects takes a player's state and computes bonus scores offered by
   anthem functions*)
 let rec compute_anthem_helper al ps acc =
@@ -92,17 +95,7 @@ let rec make_new_states (pl : player_state) (ps : (int * player_state) list) acc
   | h :: t -> if (pl.player_id = fst h)
     then make_new_states pl t ((pl.player_id, pl) :: acc) else
       make_new_states pl t (h :: acc)
-(*Function for vanilla cards, simulates a blank abilities box thus
-  the returned state is the same as the called state*)
-let vanilla (s : state) (cid : cardID) (cl : card list) =
-  let current_player_id = s.current_player in
-  let current_player = find_player s.player_states current_player_id in
-  let current_deck_id = current_player.player_deck in
-  let current_deck = map_id_list current_deck_id cl [] in
-  let new_score = compute_deck_score current_deck 0 + compute_anthem current_player in
-  let new_player_state = {current_player with player_score = new_score} in
-  let new_player_states = make_new_states new_player_state s.player_states [] in
-  {s with player_states = new_player_states}
+
 
 (*Zhuge liang helper*)
 let rec zhuge_liang_helper (pd : card list) acc =
@@ -342,61 +335,14 @@ let lu_da_funct (s : state) (cid : int) (cl : card list) =
   match coin_flip with
   | 0 -> let removed_deck = List.tl current_deck_ids in
     let new_deck = map_id_list removed_deck cl [] in
-    let new_deck_ids = map_card_list new_deck [] in
     let new_score_1 = compute_deck_score new_deck 0 in
-    let new_player_state = {currentPlayer with player_deck = new_deck_ids} in
+    let new_player_state = {currentPlayer with player_deck = new_deck} in
     let new_player_state_1 = {new_player_state with player_score = new_score_1} in
     let new_score = new_player_state_1.player_score + compute_anthem new_player_state_1 in
-    let final_player_state = {new_player_state_1 with player_score = new_score}; in
-    let new_player_states = make_new_states final_player_state s.player_states [] in
-    {s with player_states = new_player_states}
-  | 1 -> let current_deck = map_id_list current_deck_ids cl [] in
-    let new_score = compute_deck_score current_deck 0 + compute_anthem currentPlayer in
-    let new_player_state = {currentPlayer with player_score = new_score} in
-    let new_player_states = make_new_states new_player_state s.player_states [] in
-    {s with player_states = new_player_states}
+    {new_player_state_1 with player_score = new_score}
+  | 1 -> failwith "Unimplemented"
   | _ -> failwith "Random number doesnt generate > 1"
 
-(*Functions to implement Hundred-Faced Hassad*)
-let hassan_helper ids =
-  match ids with
-  | [] -> []
-  | h :: h1 :: t -> h :: h1 :: h1 :: t
-  | h :: t -> h :: t
-
-let hassan_funct (s : state) (cid : int) (cl : card list) =
-  let currentPlayerInt = s.current_player in
-  let currentPlayer = find_player s.player_states currentPlayerInt in
-  let current_deck_ids = currentPlayer.player_deck in
-  let new_deck_ids = hassan_helper current_deck_ids in
-  let new_deck = map_id_list new_deck_ids cl [] in
-  let new_deck_score = compute_deck_score new_deck 0 in
-  let new_player_1 = {currentPlayer with player_deck = new_deck_ids} in
-  let new_player_2 = {new_player_1 with player_score = new_deck_score} in
-  let new_score = new_deck_score + compute_anthem new_player_2 in
-  let new_player_final = {new_player_2 with player_score = new_score} in
-  let new_player_states = make_new_states new_player_final s.player_states [] in
-  {s with player_states = new_player_states}
-
-(*Atilla the conquerer function*)
-(*let rec atilla_helper (cl : card list) (dl : card list) (sl : string list) =
-  match sl with
-  | [] -> true
-  | h :: t -> begin match dl with
-      | [] -> false
-      | h1 :: t1 -> if (h1.faction = h) then
-          atilla_helper cl cl t else
-          atilla_helper t1
-
-failwith "Unimplemented"
-
-let atilla_funct (s: state) (cid : int) (cl : card list) =
-  let currentPlayerInt = s.current_player in
-  let currentPlayer = find_player s.player_states currentPlayerInt in
-  let current_deck_ids = currentPlayer.player_deck in
-  let current_deck = map_id_list current_deck_ids cl [] in
-  let condition_verified = atilla_helper current_deck current_deck ["Shu" ; "Wu" ; "Wei"] in
-  1*)
 
 (*The great david gries is implemented here*)
 let rec obliterate (opponentList : player_state list) acc cl =
@@ -612,7 +558,7 @@ Dragon, Zhuge Liang";
     faction = "Other";
     power = 2;
     flavor = "Snapcaster Mage, but better";
-    card_text = "When you draft Tiago Chan, use the ability of the top card of your deck";
+    card_text = "When you draft Tiago Chan, cast each spell in your deck again";
     abilities = vanilla; (*Will definitely be changed later*)
     card_type = "Soldier";
   };
@@ -625,30 +571,6 @@ Dragon, Zhuge Liang";
     power = 4;
     flavor = "He was very drunk. And he could fight";
     card_text = "When you draft Lu Zuishen of the Drunken Fist, flip a coin \n if that coin was tails discard Lu Zuishen";
-    abilities = lu_da_funct;
-    card_type = "Soldier";
-  };
-
-  {
-    card_name = "Hassan of the Hundred Faces";
-    card_id = 21;
-    cost = 3;
-    faction = "Other";
-    power = 0;
-    flavor = "It used it's own multiple personality disorder to become anyone \n and everyone";
-    card_text = "When you draft Hassan of the Hundred Faces, add a copy of the top \n card of your deck to your deck";
-    abilities = vanilla;
-    card_type = "Soldier";
-  };
-
-  {
-    card_name = "Atilla, the Conquerer";
-    card_id = 22;
-    cost = 4;
-    faction = "Other";
-    power = 4;
-    flavor = "His empire expanded from China to Europe, the single largest empire \n of the history of mankind";
-    card_text = "If your deck contains a card of Shu, Wu and Wei, add a 12 power \n token into your deck";
     abilities = vanilla;
     card_type = "Soldier";
   };
