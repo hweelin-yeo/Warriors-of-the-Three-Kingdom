@@ -75,7 +75,6 @@ and
 
 game st =
   print_endline ("Player " ^ string_of_int st.current_player ^"'s Turn:");
-  st.available_picks
   print_string "\n> ";
   match read_line () with
     | line -> game_commands (String.lowercase_ascii line) st
