@@ -1,0 +1,21 @@
+### Starting build.
+# Target: aiTest.ml.depends, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), extension:ml, file:aiTest.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules aiTest.ml > aiTest.ml.depends
+# Target: ai.ml.depends, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), extension:ml, file:ai.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules ai.ml > ai.ml.depends
+# Target: PlayerState.mli.depends, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), extension:mli, file:PlayerState.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules PlayerState.mli > PlayerState.mli.depends # cached
+# Target: PlayerState.cmi, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), byte, compile, extension:mli, file:PlayerState.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o PlayerState.cmi PlayerState.mli # cached
+# Target: State.mli.depends, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), extension:mli, file:State.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package oUnit -package yojson -package str -package ANSITerminal -modules State.mli > State.mli.depends # cached
+# Target: State.cmi, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), byte, compile, extension:mli, file:State.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o State.cmi State.mli # cached
+# Target: ai.cmo, tags: { package(ANSITerminal), package(oUnit), package(str), package(yojson), byte, compile, extension:cmo, extension:ml, file:ai.cmo, file:ai.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o ai.cmo ai.ml
++ ocamlfind ocamlc -c -package oUnit -package yojson -package str -package ANSITerminal -o ai.cmo ai.ml
+File "ai.ml", line 112, characters 59-60:
+Error: This expression has type State.state
+       but an expression was expected of type State.cardID = int
+Command exited with code 2.
+# Compilation unsuccessful.
