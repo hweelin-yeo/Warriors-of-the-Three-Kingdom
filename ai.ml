@@ -1,6 +1,5 @@
 open State
 open PlayerState
-open RecruitPile
 
 (**
  * returns: [find_card card_lst highest_card f] returns the highest or lowest
