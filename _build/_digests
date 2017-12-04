@@ -1,0 +1,8 @@
+"Rule: ocaml dependencies ml (%=statetest )": "\173\2090\247H\0167\159\128*G\b\222*\173x"
+"Rule: ocaml dependencies mli (%=PlayerState )": "\154~\248,z\2518\131\r4z9\167\241\240J"
+"Resource: /Users/akirashindo39/cs3110FinalProject/statetest.ml": "\132\216\146\167f\168\167\231\248\236W#\1649wu"
+"Rule: ocaml dependencies mli (%=State )": "\027\222\000\133\154`7\2298\016\168\016\193S+\206"
+"Resource: /Users/akirashindo39/cs3110FinalProject/State.mli": "\\!\198u\019\228\179\163\135\141Ll[9\206\177"
+"Rule: ocaml: mli -> cmi (%=State )": "r\162\207\226\167\006o;\127\140Hsq`V\241"
+"Resource: /Users/akirashindo39/cs3110FinalProject/PlayerState.mli": "#\2098,=\155W\227(\168\195\156\213\133\171["
+"Rule: ocaml: mli -> cmi (%=PlayerState )": "Qk,\002g\136\154C\1728M\22745,."
