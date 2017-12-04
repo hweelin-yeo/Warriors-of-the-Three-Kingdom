@@ -69,24 +69,12 @@ let rec find_opponents (psl : (int * player_state) list) (id : int) acc =
   | h :: t -> if (fst h = id) then find_opponents t id acc else
       find_opponents t id (snd h :: acc)
 
-(*Compute_effects takes a player's state and computes bonus scores offered by
-  anthem functions*)
-let rec compute_anthem_helper al ps acc =
-  match al with
-  | [] -> acc
-  | h :: t -> compute_anthem_helper t ps (h ps + acc)
-
-let compute_anthem (ps : player_state) =
-  let anthem_list = ps.player_functions in
-  compute_anthem_helper anthem_list ps 0
-
-
 
 (*compute_deck_score takes in a card_list that represents the deck and returns
   the total score of the deck*)
 let rec compute_deck_score (cl : card list) acc =
   match cl with
-  | [] -> + acc
+  | [] -> acc
   | h :: t -> compute_deck_score t (h.power + acc)
 
 let rec make_new_states (pl : player_state) (ps : (int * player_state) list) acc =
@@ -116,10 +104,8 @@ let zhuge_liang_funct (s : state) (cid : int) (cl : card list) =
   let new_deck_ids = map_card_list new_deck [] in
   let newPlayer1 = {currentPlayer with player_deck = new_deck_ids} in
   let newPlayer = {newPlayer1 with player_score = new_deck_score} in
-  let new_deck_score_1 = newPlayer.player_score + compute_anthem newPlayer in
-  let new_player_final = {newPlayer with player_score = new_deck_score_1} in
   (*Generate new state object*)
-  let new_player_states = make_new_states new_player_final s.player_states [] in
+  let new_player_states = make_new_states newPlayer s.player_states [] in
   {s with player_states = new_player_states}
 
 (*Shu Recruiter functions, pd = player deck, nc = num copies*)
@@ -138,31 +124,8 @@ let shu_recruiter_funct (s : state) (cid : int) (cl : card list) =
   let new_player_score = compute_deck_score new_deck 0 in
   let newPlayer1 = {currentPlayer with player_deck = new_deck_ids} in
   let newPlayer = {newPlayer1 with player_score = new_player_score} in
-  let new_deck_score_1 = newPlayer.player_score + compute_anthem newPlayer in
-  let new_player_final = {newPlayer with player_score = new_deck_score_1} in
-  let new_player_states = make_new_states new_player_final s.player_states [] in
-  {s with player_states = new_player_states}
-
-(*Functions to help implement enchantment spells*)
-let shu_anthem_effect (ps : player_state) =
-  let pd = ps.player_deck in
-  List.length pd
-
-(*Anthem of shu helper*)
-let shu_anthem_funct (s : state) (cid : int) (cl : card list) =
-  let currentPlayerInt = s.current_player in
-  let currentPlayer = find_player s.player_states currentPlayerInt in
-  let newFunctionList = shu_anthem_effect :: currentPlayer.player_functions in
-  let curr_deck_id = currentPlayer.player_deck in
-  let curr_deck = map_id_list curr_deck_id cl [] in
-  let deck_score = compute_deck_score curr_deck 0 in
-  let new_score = compute_anthem currentPlayer + deck_score in
-  let newPlayer1 = {currentPlayer with player_functions = newFunctionList} in
-  let newPlayer = {newPlayer1 with player_score = new_score} in
   let new_player_states = make_new_states newPlayer s.player_states [] in
   {s with player_states = new_player_states}
-
-
 
 (*Sima Yi functions*)
 let sima_yi_helper (ids : int list) =
@@ -181,9 +144,7 @@ let sima_yi_funct (s : state) (cid : int) (cl : card list) =
   let new_player_score = compute_deck_score new_deck 0 in
   let newPlayer1 = {currentPlayer with player_deck = new_deck_ids} in
   let newPlayer = {newPlayer1 with player_score = new_player_score} in
-  let new_deck_score_1 = newPlayer.player_score + compute_anthem newPlayer in
-  let new_player_final = {newPlayer with player_score = new_deck_score_1} in
-  let new_player_states = make_new_states new_player_final s.player_states [] in
+  let new_player_states = make_new_states newPlayer s.player_states [] in
   {s with player_states = new_player_states}
 
 (*Xiahou Dun Functions*)
@@ -216,9 +177,7 @@ let rec xiahou_dun_helper (opponentList : player_state list) acc cl =
     let newScore = compute_deck_score new_deck 0 in
     let newPlayer1 = {h with player_score = newScore} in
     let newPlayer = {newPlayer1 with player_deck = new_deck_id} in
-    let new_score_1 = newPlayer.player_score + compute_anthem newPlayer in
-    let new_player_final = {newPlayer with player_score = new_score_1} in
-    xiahou_dun_helper t (new_player_final :: acc) cl
+    xiahou_dun_helper t (newPlayer :: acc) cl
 
 
 
@@ -226,14 +185,9 @@ let xiahou_dun_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let original_player_list = s.player_states in
   let current_player_state = find_player s.player_states currentPlayerInt in
-  let current_deck_ids = current_player_state.player_deck in
-  let current_deck = map_id_list current_deck_ids cl [] in
-  let new_player_score_1 = compute_deck_score current_deck 0 in
-  let new_player_score_final = new_player_score_1 + compute_anthem current_player_state in
-  let new_player_state = {current_player_state with player_score = new_player_score_final} in
   let opponentList = find_opponents s.player_states currentPlayerInt [] in
   let new_opponent_list = xiahou_dun_helper opponentList [] cl in
-  let new_player_list = rebuild_player_list original_player_list new_player_state new_opponent_list [] in
+  let new_player_list = rebuild_player_list original_player_list current_player_state new_opponent_list [] in
   {s with player_states = new_player_list}
 
 (*Wei Recruit helpers*)
@@ -245,6 +199,7 @@ let wei_recruit_helper (cd : int list) acc =
 
 let wei_recruit_funct (s:state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
+  let original_player_list = s.player_states in
   let current_player_state = find_player s.player_states currentPlayerInt in
   let current_deck_ids = current_player_state.player_deck in
   let new_deck_ids = wei_recruit_helper current_deck_ids [] in
@@ -252,113 +207,17 @@ let wei_recruit_funct (s:state) (cid : int) (cl : card list) =
   let new_player_deck = map_id_list current_deck_ids cl [] in
   let new_deck_score = compute_deck_score new_player_deck 0 in
   let newPlayer = {newPlayer1 with player_score = new_deck_score} in
-  let new_deck_score_1 = newPlayer.player_score + compute_anthem newPlayer in
-  let new_player_final = {newPlayer with player_score = new_deck_score_1} in
-  let new_player_states = make_new_states new_player_final s.player_states [] in
-  {s with player_states = new_player_states}
-
-(*Dian Wei Helpers*)
-let dian_wei_funct (s : state) (cid : int) (cl : card list) =
-  let currentPlayerInt = s.current_player in
-  let original_player_list = s.player_states in
-  let current_player_state = find_player s.player_states currentPlayerInt in
-  let newPlayer = {current_player_state with player_resource =
-                                               current_player_state.player_resource - 1} in
-  let current_player = find_player s.player_states currentPlayerInt in
-  let current_deck_id = current_player.player_deck in
-  let current_deck = map_id_list current_deck_id cl [] in
-  let new_score = compute_deck_score current_deck 0 + compute_anthem newPlayer in
-  let newPlayer = {current_player with player_score = new_score} in
   let new_player_states = make_new_states newPlayer original_player_list [] in
   {s with player_states = new_player_states}
 
-(*Wei Polluter Effect*)
-let rec wei_polluter_helper opponentList acc =
-  match opponentList with
-  | [] -> List.rev acc
-  | h :: t ->
-    let new_opponent_state = {h with player_resource = h.player_resource - 1} in
-    wei_polluter_helper t (new_opponent_state :: acc)
 
 
-let wei_polluter_funct (s : state) (cid : int) (cl : card list) =
-  let currentPlayerInt = s.current_player in
-  let original_player_list = s.player_states in
-  let current_player_state = find_player s.player_states currentPlayerInt in
-  let current_deck_ids = current_player_state.player_deck in
-  let current_deck = map_id_list current_deck_ids cl [] in
-  let new_player_score_1 = compute_deck_score current_deck 0 in
-  let new_player_score_final = new_player_score_1 + compute_anthem current_player_state in
-  let new_player_state = {current_player_state with player_score = new_player_score_final} in
-  let opponentList = find_opponents s.player_states currentPlayerInt [] in
-  let new_opponent_list = wei_polluter_helper opponentList [] in
-  let new_player_list = rebuild_player_list original_player_list new_player_state new_opponent_list [] in
-  {s with player_states = new_player_list}
-
-(*Wu Scout helpers*)
-let wu_scout_funct (s : state) (cid : int) (cl : card list) =
-  let currentPlayerInt = s.current_player in
-  let original_player_list = s.player_states in
-  let current_player_state = find_player s.player_states currentPlayerInt in
-  let newPlayer = {current_player_state with player_resource =
-                                               current_player_state.player_resource + 1} in
-  let current_player = find_player s.player_states currentPlayerInt in
-  let current_deck_id = current_player.player_deck in
-  let current_deck = map_id_list current_deck_id cl [] in
-  let new_score = compute_deck_score current_deck 0 + compute_anthem newPlayer in
-  let newPlayer = {current_player with player_score = new_score} in
-  let new_player_states = make_new_states newPlayer original_player_list [] in
-  {s with player_states = new_player_states}
-
-(*Wu anthem helpers*)
-let wu_anthem_effect (ps : player_state) = ps.player_resource
-
-let wu_anthem_funct (s : state) (cid : int) (cl : card list) =
+(*Tiago Chan Function, Snapcaster Mage Senpai!!!! ^.^*)
+(*let tiago_chan_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
-  let newFunctionList = wu_anthem_effect :: currentPlayer.player_functions in
-  let curr_deck_id = currentPlayer.player_deck in
-  let curr_deck = map_id_list curr_deck_id cl [] in
-  let deck_score = compute_deck_score curr_deck 0 in
-  let new_score = compute_anthem currentPlayer + deck_score in
-  let newPlayer1 = {currentPlayer with player_functions = newFunctionList} in
-  let newPlayer = {newPlayer1 with player_score = new_score} in
-  let new_player_states = make_new_states newPlayer s.player_states [] in
-  {s with player_states = new_player_states}
-
-(*The great david gries is implemented here*)
-let rec obliterate (opponentList : player_state list) acc cl =
-  match opponentList with
-  | [] -> List.rev acc
-  | h :: t -> let rekt_player = {h with player_deck = []} in
-    let new_player_score = compute_deck_score [] 0 + compute_anthem rekt_player in
-    let totally_rekt_player = {rekt_player with player_score = new_player_score} in
-    obliterate t (totally_rekt_player :: acc) cl
-
-let david_gries_funct (s : state) (cid : int) (cl : card list) =
-  let currentPlayerInt = s.current_player in
-  let currentPlayer = find_player s.player_states currentPlayerInt in
-  let die_roll = Random.int 55 in
-  match die_roll with
-  | 0 -> let new_player = {currentPlayer with player_deck = []} in
-    let new_player_score = compute_deck_score [] 0 + compute_anthem new_player in
-    let rekt_player = {new_player with player_score = new_player_score} in
-    let new_player_states = make_new_states rekt_player s.player_states [] in
-    {s with player_states = new_player_states}
-  | 55 ->   let opponentList = find_opponents s.player_states currentPlayerInt [] in
-    let new_opponent_list = obliterate opponentList [] cl in
-    let current_deck_id = currentPlayer.player_deck in
-    let current_deck = map_id_list current_deck_id cl [] in
-    let new_score = compute_deck_score current_deck 0 + compute_anthem currentPlayer in
-    let new_player = {currentPlayer with player_score = new_score} in
-    let new_player_list = rebuild_player_list s.player_states new_player new_opponent_list [] in
-    {s with player_states = new_player_list}
-  | _ ->     let current_deck_id = currentPlayer.player_deck in
-      let current_deck = map_id_list current_deck_id cl [] in
-      let new_score = compute_deck_score current_deck 0 + compute_anthem currentPlayer in
-      let new_player = {currentPlayer with player_score = new_score} in
-      let new_player_states = make_new_states new_player s.player_states [] in
-      {s with player_states = new_player_states}
+  let current_deck_ids = currentPlayer.player_deck in
+  let current_deck = map_id_list current_deck_ids cl [] in *)
 
 
 
@@ -371,7 +230,7 @@ let cardList = [
     faction = "Shu";
     power = 1;
     flavor = "Liu Bei's soldiers were recruited from the farmhands of \n China";
-    card_text = "No Abilities";
+    card_text = "This card has no abilities";
     abilities = vanilla;
       card_type = "Soldier"
   };
@@ -399,18 +258,6 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Shu Recruiter, add a random number 0-4 of \n Shu Footsoldier tokens into your deck";
     abilities = shu_recruiter_funct;
     card_type = "Soldier"
-  };
-
-  {
-    card_name = "Anthem of Shu";
-    card_id = 5;
-    cost = 2;
-    faction = "Shu";
-    power = 0;
-    flavor = "United We Stand";
-    card_text = "Enchant Spell: Gain power equal to the number of units in your deck";
-    abilities = shu_anthem_funct;
-    card_type = "Spell";
   };
 
   {
@@ -462,32 +309,8 @@ Dragon, Zhuge Liang";
   };
 
   {
-    card_name = "Dian Wei, the Berserk";
-    card_id = 10;
-    cost = 2;
-    faction = "Wei";
-    power = 4;
-    flavor = "Wielding two men as axes, Dian Wei protected Cao Cao with his very \n life";
-    card_text = "When you draft Dian Wei, lose 1 resource";
-    abilities = dian_wei_funct;
-    card_type = "Soldier";
-  };
-
-  {
-    card_name = "Wei Polluter";
-    card_id = 11;
-    cost = 5;
-    faction = "Wei";
-    power = 2;
-    flavor = "Nothing was too low for Cao Cao to stoop to, including the slaughter \n of the innocent populace";
-    card_text = "When you draft Wei Polluter each other player loses 1 resource";
-    abilities = wei_polluter_funct;
-    card_type = "Soldier";
-  };
-
-  {
     card_name = "Wu Boatsman";
-    card_id = 12;
+    card_id = 13;
     cost = 2;
     faction = "Wu";
     power = 2;
@@ -498,32 +321,8 @@ Dragon, Zhuge Liang";
   };
 
   {
-    card_name = "Wu Scout";
-    card_id = 13;
-    cost = 1;
-    faction = "Wu";
-    power = 1;
-    flavor = "Wu scouts were experts of the forest, for the fought for their homeland";
-    card_text = "When you draft Wu Recruits, increase your maximum resources by 1";
-    abilities = wu_scout_funct;
-    card_type = "Soldier";
-  };
-
-  {
-    card_name = "Anthem of Wu";
-    card_id = 17;
-    faction = "Wu";
-    cost = 2;
-    power = 0;
-    flavor = "Their banners high, the fleet of Wu advanced on the Red Cliffs";
-    card_text = "Gain power equal to your resources";
-    abilities = wu_anthem_funct;
-    card_type = "Spell";
-  };
-
-  {
     card_name = "Lu Bu, Mad Demon";
-    card_id = 18;
+    card_id = 19;
     cost = 6;
     faction = "Other";
     power = 8;
@@ -535,7 +334,7 @@ Dragon, Zhuge Liang";
 
   {
     card_name = "Tiago Chan";
-    card_id = 19;
+    card_id = 20;
     cost = 5;
     faction = "Other";
     power = 2;
@@ -543,31 +342,6 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Tiago Chan, cast each spell in your deck again";
     abilities = vanilla; (*Will definitely be changed later*)
     card_type = "Soldier";
-  };
-
-  {
-    card_name = "Lu Zuishen of the Drunken Fist";
-    card_id = 20;
-    cost = 2;
-    faction = "Other";
-    power = 4;
-    flavor = "He was very drunk. And he could fight";
-    card_text = "When you draft Lu Zuishen of the Drunken Fist, flip a coin \n if that coin was tails discard Lu Zuishen";
-    abilities = vanilla;
-    card_type = "Soldier";
-  };
-
-  {
-    card_name = "David Gries";
-    card_id = 23;
-    cost = 6;
-    faction = "Other";
-    power = 1;
-    flavor = "I have 56 years of programming experience. You have, perhaps, 1";
-    card_text = "when you draft David Gries, roll a 56 sided dice. If the result \n
-is 56 then destroy all your opponents decks. \n if the result is 1, discard your own deck";
-    abilities = vanilla;
-    card_type = "Solider";
   }
 ]
 
