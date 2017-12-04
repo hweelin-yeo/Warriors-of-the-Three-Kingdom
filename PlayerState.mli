@@ -15,6 +15,7 @@ type player_state =
   player_id_int: int; (* Does not change *)
   player_score: int;
   player_deck: int list;
+  player_functions: (int list -> int list) list;
   player_resource: int;
   player_is_human: bool;
 }

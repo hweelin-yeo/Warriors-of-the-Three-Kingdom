@@ -149,12 +149,66 @@ let sima_yi_funct (s : state) (cid : int) (cl : card list) =
 
 (*Xiahou Dun Functions*)
 (*Need to finish, not completed yet*)
+let rec remove_top_element (pd : int list) =
+  match pd with
+  | [] -> []
+  | h :: t -> t
+
+(*opl = original_player_list cps = current_player_state, nol = new_opponent_list*)
+let rec rebuild_player_list (opl : (int * player_state) list) cps nol acc =
+  match opl with
+  | [] -> List.rev acc
+  | h :: t -> if (cps.player_id_int = fst h) then
+      rebuild_player_list t cps nol ((cps.player_id_int, cps) :: acc) else (*player the current player*)
+      begin match nol with
+        | [] -> failwith "failed to find player to insert"
+        | h1 :: t1 -> if (h1.player_id_int = fst h) then
+            rebuild_player_list t cps nol ((h1.player_id_int, h1) :: acc) else
+            rebuild_player_list opl cps t1 acc
+      end
+
+
+let rec xiahou_dun_helper (opponentList : player_state list) acc cl =
+  match opponentList with
+  | [] -> List.rev acc
+  | h :: t -> let opponentDeck = h.player_deck in
+    let new_deck_id = remove_top_element opponentDeck in
+    let new_deck = map_id_list new_deck_id cl [] in
+    let newScore = compute_deck_score new_deck 0 in
+    let newPlayer1 = {h with player_score = newScore} in
+    let newPlayer = {newPlayer1 with player_deck = new_deck_id} in
+    xiahou_dun_helper t (newPlayer :: acc) cl
+
+
 
 let xiahou_dun_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
-  let opponentList = find_opponents s.player_states currentPlayerInt in
-  s
+  let original_player_list = s.player_states in
+  let current_player_state = find_player s.player_states currentPlayerInt in
+  let opponentList = find_opponents s.player_states currentPlayerInt [] in
+  let new_opponent_list = xiahou_dun_helper opponentList [] cl in
+  let new_player_list = rebuild_player_list original_player_list current_player_state new_opponent_list [] in
+  {s with player_states = new_player_list}
 
+(*Wei Recruit helpers*)
+let wei_recruit_helper (cd : int list) acc =
+  match cd with
+  | [] -> []
+  | h1 :: h2 :: t -> h1 :: t (*Minium two element list to pop bottom list*)
+  | h :: [] -> [h] (*One element list, do nothing, enjoy the aggro*)
+
+let wei_recruit_funct (s:state) (cid : int) (cl : card list) =
+  let currentPlayerInt = s.current_player in
+  let original_player_list = s.player_states in
+  let current_player_state = find_player s.player_states currentPlayerInt in
+  let current_deck_ids = current_player_state.player_deck in
+  let new_deck_ids = wei_recruit_helper current_deck_ids [] in
+  let newPlayer1 = {current_player_state with player_deck = new_deck_ids} in
+  let new_player_deck = map_id_list current_deck_ids cl [] in
+  let new_deck_score = compute_deck_score new_player_deck 0 in
+  let newPlayer = {newPlayer1 with player_score = new_deck_score} in
+  let new_player_states = make_new_states newPlayer original_player_list [] in
+  {s with player_states = new_player_states}
 
 
 
@@ -171,7 +225,7 @@ let xiahou_dun_funct (s : state) (cid : int) (cl : card list) =
 let cardList = [
   {
     card_name = "Shu Footsoldier";
-    card_id = 1;
+    card_id = 0;
     cost = 1;
     faction = "Shu";
     power = 1;
@@ -183,7 +237,7 @@ let cardList = [
 
   {
     card_name = "Zhuge Liang, Sleeping Dragon";
-    card_id = 2;
+    card_id = 1;
     cost = 4;
     faction = "Shu";
     power = 2;
@@ -196,7 +250,7 @@ Dragon, Zhuge Liang";
 
   {
     card_name = "Shu Recruiter";
-    card_id = 3;
+    card_id = 2;
     cost = 3;
     faction = "Shu";
     power = 1;
@@ -208,7 +262,7 @@ Dragon, Zhuge Liang";
 
   {
     card_name = "Sima Yi, Traitor to Wei";
-    card_id = 7;
+    card_id = 6;
     cost = 4;
     faction = "Wei";
     power = 10;
@@ -220,7 +274,7 @@ Dragon, Zhuge Liang";
 
   {
     card_name = "Wei Elite Infantry";
-    card_id = 8;
+    card_id = 7;
     cost = 3;
     faction = "Wei";
     power = 3;
@@ -232,19 +286,31 @@ Dragon, Zhuge Liang";
 
   {
     card_name = "Xiahou Dun, The One-Eyed";
-    card_id = 9;
+    card_id = 8;
     cost = 4;
     faction = "Wei";
     power = 2;
     flavor = "He used to have two eyes. Until he ate one";
     card_text = "When you draft Xiahou Dun, discard the top card from each \n opponent's deck";
+    abilities = xiahou_dun_funct;
+    card_type = "Soldier";
+  };
+
+  {
+    card_name = "Wei Recruit";
+    card_id = 9;
+    cost = 1;
+    faction = "Wei";
+    power = 3;
+    flavor = "He had enthusiasm. And a murderous streak";
+    card_text = "When you draft Wei Recruit, discard the top card of your deck";
     abilities = vanilla;
     card_type = "Soldier";
   };
 
   {
     card_name = "Wu Boatsman";
-    card_id = 14;
+    card_id = 13;
     cost = 2;
     faction = "Wu";
     power = 2;
@@ -256,7 +322,7 @@ Dragon, Zhuge Liang";
 
   {
     card_name = "Lu Bu, Mad Demon";
-    card_id = 20;
+    card_id = 19;
     cost = 6;
     faction = "Other";
     power = 8;
@@ -268,7 +334,7 @@ Dragon, Zhuge Liang";
 
   {
     card_name = "Tiago Chan";
-    card_id = 21;
+    card_id = 20;
     cost = 5;
     faction = "Other";
     power = 2;

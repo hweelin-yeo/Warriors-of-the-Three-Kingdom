@@ -12,6 +12,7 @@ type player_state =
   player_id_int: int; (* Does not change *)
   player_score: int;
   player_deck: int list;
+  player_functions : (int list -> int list) list;
   player_resource: int;
   player_is_human: bool;
 }
@@ -35,6 +36,7 @@ let init_player_state (i: int) (b: bool) =
     player_id = "Player " ^ (string_of_int i);
     player_id_int = i;
     player_score = 0;
+    player_functions = [];
     player_deck = [];
     player_resource = 1;
     player_is_human = b;
