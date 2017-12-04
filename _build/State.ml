@@ -326,11 +326,7 @@ let wu_anthem_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states newPlayer s.player_states [] in
   {s with player_states = new_player_states}
 
-(*Helper function to implement Lu Zuishen*)
-(*let lu_da_funct (s : state) (cid : int) (cl : card list) = 
-  let currentPlayerInt = s.current_player in
-  let currentPlayer = find_player s.player_states currentPlayerInt in
-  let coin_flip = Random.int 1 in *)
+
 
 (*The great david gries is implemented here*)
 let rec obliterate (opponentList : player_state list) acc cl =
@@ -344,7 +340,7 @@ let rec obliterate (opponentList : player_state list) acc cl =
 let david_gries_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
-  let die_roll = Random.int 56 in
+  let die_roll = Random.int 55 in
   match die_roll with
   | 0 -> let new_player = {currentPlayer with player_deck = []} in
     let new_player_score = compute_deck_score [] 0 + compute_anthem new_player in
@@ -402,7 +398,7 @@ Dragon, Zhuge Liang";
     faction = "Shu";
     power = 1;
     flavor = "The Shu army came on like a swarm of ants, \n each man who was slain was replaced with two brothers";
-    card_text = "When you draft Shu Recruiter, add a random number 0-3 of \n Shu Footsoldier tokens into your deck";
+    card_text = "When you draft Shu Recruiter, add a random number 0-4 of \n Shu Footsoldier tokens into your deck";
     abilities = shu_recruiter_funct;
     card_type = "Soldier"
   };
