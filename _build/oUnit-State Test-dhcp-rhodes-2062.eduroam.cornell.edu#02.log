@@ -1,0 +1,45 @@
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:1:card_drawn.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:1:card_drawn is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:1:card_drawn.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:3:recruit_pool.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:3:recruit_pool is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:3:recruit_pool.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:5:player_states.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:5:player_states is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:5:player_states.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:7:total_players.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:7:total_players is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:7:total_players.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:9:current_player.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:9:current_player is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:9:current_player.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:11:available_picks.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:11:available_picks is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:11:available_picks.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:13:total_players.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:13:total_players is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:13:total_players.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:15:current_player.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:15:current_player is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:15:current_player.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:17:available_picks.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:17:available_picks is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:17:available_picks.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:19:card_drawn.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:19:card_drawn is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:19:card_drawn.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:21:recruit_pool.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:21:recruit_pool is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:21:recruit_pool.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:24:total_players.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:24:total_players is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:24:total_players.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:25:card_drawn.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:25:card_drawn is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:25:card_drawn.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:27:recruit_pool.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:27:recruit_pool is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:27:recruit_pool.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Start test State Test:29:player_states.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: Test State Test:29:player_states is successful.
+2017-12-04T21:34:17+00:00 dhcp-rhodes-2062.eduroam.cornell.edu#02 I: End test State Test:29:player_states.
