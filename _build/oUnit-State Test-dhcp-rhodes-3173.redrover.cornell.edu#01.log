@@ -1,0 +1,45 @@
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:0:total_players.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:0:total_players is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:0:total_players.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:2:current_player.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:2:current_player is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:2:current_player.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:5:player_states.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:5:player_states is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:5:player_states.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:6:num_ai.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:6:num_ai is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:6:num_ai.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:8:card_drawn.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:8:card_drawn is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:8:card_drawn.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:11:available_picks.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:11:available_picks is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:11:available_picks.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:12:player_state_change.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:12:player_state_change is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:12:player_state_change.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:14:card_drawn.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:14:card_drawn is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:14:card_drawn.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:17:available_picks.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:17:available_picks is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:17:available_picks.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:18:total_players.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:18:total_players is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:18:total_players.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:20:current_player.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:20:current_player is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:20:current_player.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:22:available_picks.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:22:available_picks is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:22:available_picks.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:24:total_players.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:24:total_players is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:24:total_players.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:26:current_player.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:26:current_player is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:26:current_player.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Start test State Test:28:available_picks.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: Test State Test:28:available_picks is successful.
+2017-12-04T22:36:22+00:00 dhcp-rhodes-3173.redrover.cornell.edu#01 I: End test State Test:28:available_picks.
