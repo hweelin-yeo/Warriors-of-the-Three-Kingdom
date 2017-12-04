@@ -75,7 +75,8 @@ and
 
 game st =
   print_endline ("Player " ^ string_of_int st.current_player ^"'s Turn:");
-  st.available_picks
+  match (id_to_card_lst st st.available_picks) with
+    | h::t -> print_string h.card_name;
   print_string "\n> ";
   match read_line () with
     | line -> game_commands (String.lowercase_ascii line) st
