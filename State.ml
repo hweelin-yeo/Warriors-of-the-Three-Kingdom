@@ -795,7 +795,7 @@ Dragon, Zhuge Liang";
     power = 2;
     flavor = "Snapcaster Mage, but better";
     card_text = "When you draft Tiago Chan, use the ability of the top card of your deck";
-    abilities = tiago_chan_funct; 
+    abilities = tiago_chan_funct;
     card_type = "Soldier";
   };
 
