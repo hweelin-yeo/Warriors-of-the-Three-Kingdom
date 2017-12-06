@@ -8,7 +8,7 @@
    - available_picks: 3 cards from recruit pool that current player can pick
    - player_states: list of player_states, which will be elaborated later
 *)
-open Yojson
+
 open PlayerState
 
 (* type playerID = int *)
