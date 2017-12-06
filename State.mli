@@ -81,12 +81,8 @@ val init_state: int -> int -> state
 
 (*id_to_card takes a card id int and returns the card object option associated with it.
   The inputs are the card id and the card list that represents the card set*)
-<<<<<<< HEAD
-val id_to_card: cardID -> card list -> card
 
-=======
 val id_to_card: cardID -> card list -> card
 
 (*id_to_card_lst maps a list of card ids to their respective cards*)
 val id_to_card_lst: state -> cardID list -> card list
->>>>>>> 4042b92f008281415b91f0214610e96962a97523
