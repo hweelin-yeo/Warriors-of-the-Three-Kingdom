@@ -36,19 +36,27 @@ let rec find_index elem lst lst_size cur_idx =
    if (fst h = fst elem) then cur_idx
    else find_index elem t lst_size (cur_idx + 1)
 
-(* [filter_enough_resources s] returns a list of cards that the current
+(* [filter_enough_resources s] returns a list of card ID's that the current
  *  player can actually draw (due to restriction of player resource).
  * requires: s is a cardID list *)
 let filter_enough_resources s =
   let current_player_state = List.assoc s.current_player s.player_states in
   let card_lst = id_to_card_lst s s.available_picks in
-  List.filter (fun x -> x.cost <= current_player_state.player_resource) card_lst
+  let card' = List.filter
+      (fun x -> x.cost <= current_player_state.player_resource) card_lst in
+  List.map (fun x -> x.card_id) card'
+
+(* [pick_rand_cardID cardID_lst] returns a random cardID in [cardID_lst].
+ * requires: s is a cardID list *)
+let pick_rand_cardID cardID_lst =
+  let length = List.length cardID_lst in
+  List.nth cardID_lst (Random.int length)
 
 (* [rank_lst_easy_ai s] creates a list of (power, cardID) tuples from
     s, a list of cardIDs.
  * requires: s is a cardID list *)
-let rank_lst_easy_ai s =
-  List.map (fun x -> (x.power, x)) s
+let rank_lst_easy_ai st cardlst =
+  List.map (fun x -> (List.hd (id_to_card_lst st [x])).power, x) cardlst
 
 (* [find_rank st id] returns the rank of the current player of
    player_id [id]. [id] is an int. *)
@@ -101,13 +109,16 @@ let med_sort_compare lst =
 
 let easy_ai_next_move s =
   try
-    Some (s |> filter_enough_resources |> rank_lst_easy_ai
-          |> List.sort compare |> List.rev |> List.hd |> snd)
-      (* Some (s |> filter_enough_resources |> rank_lst_easy_ai s
-            |> List.sort compare |> List.rev |> List.hd |> snd) *)
+    Some (s |> filter_enough_resources |> pick_rand_cardID)
   with Failure _ -> None
 
 let medium_ai_next_move s =
+  try
+    Some (s |> filter_enough_resources |> rank_lst_easy_ai s
+          |> List.sort compare |> List.rev |> List.hd |> snd)
+  with Failure _ -> None
+
+let hard_ai_next_move s =
   try
     Some (s |> filter_enough_resources |> (rank_lst_med_ai s [])
     |> med_sort_compare |> List.rev |> List.hd |> snd)
