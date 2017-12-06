@@ -73,7 +73,7 @@ val remove_card_recruit_pool: state -> cardID -> state
 
 (* [return_player_state s id] returns a playerstate with id [id]. *)
 
-val return_player_state: state -> cardID -> player_state
+val return_player_state: state -> int -> player_state
 
 (* [init_state i j] initialises the state. it takes in int i,
    the number of players, and a json file for the recruit pool*)
@@ -86,3 +86,6 @@ val id_to_card: cardID -> card list -> card
 
 (*id_to_card_lst maps a list of card ids to their respective cards*)
 val id_to_card_lst: state -> cardID list -> card list
+
+(*find_card takes a card id and maps to a card*)
+val find_card : int -> card

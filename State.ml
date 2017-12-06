@@ -935,12 +935,26 @@ let change_player_state s ps  =
   let new_player_states = (i, ps) :: pstates in
   { s with player_states = new_player_states}
 
+let cardID_to_card id =
+  id_to_card id cardList
+
 let draw_card (c: cardID) (st: state) =
-  let remove_rec_pool = remove_card_recruit_pool st c in
-  let ps = return_player_state st (st.current_player) in
+  let remove_rec_pool_st = remove_card_recruit_pool st c in
+  let current_player = find_player st.player_states st.current_player in
+  let current_player_deck = (find_player st.player_states st.current_player).player_deck in
+  let new_player_deck = c :: current_player_deck in
+  let new_player_card_drawn = {current_player with player_deck = new_player_deck} in
+  let new_player_states = make_new_states new_player_card_drawn remove_rec_pool_st.player_states [] in
+  let new_substate_1 = {remove_rec_pool_st with player_states = new_player_states} in
+  let card_drawn = id_to_card c cardList in
+  let card_function = card_drawn.abilities in
+  let new_substate_2 = card_function new_substate_1 c cardList in
+  {new_substate_2 with card_drawn = Some c}
+
+  (*let ps = return_player_state st (st.current_player) in
   let new_ps = (add_card c ps) in
   let changed_ps = change_player_state remove_rec_pool new_ps in
-  { changed_ps with card_drawn = Some c }
+    { changed_ps with card_drawn = Some c }*)
 
 (* [init_player_states n h accum] returns a list of playerstates,
    where n is the number of playerstates, h is the number of human
@@ -972,13 +986,16 @@ let init_state i h =
     card_drawn = None;
     current_player = 1;
     (* current_player_id = "Player 1"; *)
-    recruit_pool = generate_0_to_n_lst 23 [];
-    available_picks = generate_nums 3 23 [];
+    recruit_pool = generate_0_to_n_lst 24 [];
+    available_picks = generate_nums 3 24 [];
     player_states = init_player_states i h [];
   }
 
 let id_to_card_lst st idl =
   map_id_list idl cardList []
+
+let find_card id =
+  id_to_card id cardList 
 
 
 (* let change_description st str =
