@@ -6,6 +6,7 @@
 
 
 open State
+open PlayerState
 
 (*********************************************************)
 (*     Real Functions                                    *)
@@ -23,6 +24,7 @@ let rec conv_int str =
                       match read_line () with
                         | line ->conv_int line
                       )
+
 let rec init_game () =
   print_endline "How many players? (Max 4 Players)"; print_string "\n> ";
   let players =  match read_line () with line -> conv_int line in
@@ -67,17 +69,93 @@ game_commands str st =
                                           (String.lowercase_ascii line) = "no"
                                           then game st
                                           else (print_endline "please answer y \
-                                          or n"; game_commands "quit" st))
+                                                               or n"; game_commands "quit" st))
+
+  else if str = "describe 1" then (
+    let current_cards = id_to_card_lst st st.available_picks in
+    match current_cards with
+    | h1 :: h2 :: h3 :: t -> print_endline h1.flavor;
+      print_endline h1.card_text;
+      print_endline "";
+      game st;
+    | h1 :: h2 :: t -> print_endline h1.flavor;
+      print_endline h1.card_text;
+      print_endline "";
+      game st;
+    | h :: t -> print_endline h.flavor;
+      print_endline h.card_text;
+      print_endline "";
+      game st;
+    | _ -> game st)
+
+  else if str = "describe 2" then (
+    let current_cards = id_to_card_lst st st.available_picks in
+    match current_cards with
+    | h1 :: h2 :: h3 :: t -> print_endline h2.flavor;
+      print_endline h2.card_text;
+      print_endline "";
+      game st;
+    | h1 :: h2 :: t -> print_endline h2.flavor;
+      print_endline h2.card_text;
+      print_endline "";
+      game st;
+    | h :: t ->
+      game st;
+    | _ -> game st)
+
+  else if str = "describe 3" then (
+    let current_cards = id_to_card_lst st st.available_picks in
+    match current_cards with
+    | h1 :: h2 :: h3 :: t -> print_endline h3.flavor;
+      print_endline h3.card_text;
+      print_endline "";
+      game st;
+    | h1 :: h2 :: t ->
+      game st;
+    | h :: t ->
+      game st;
+    | _ -> game st)
+
+  else if str = "take 1" then (print_endline "You picked option 1";
+                               match st.available_picks with
+                               | h1 :: h2 :: h3 :: t ->
+                                 let card_name = (find_card h1).card_name in
+                                 print_string "You picked ";
+                                 print_endline card_name;
+                                 let substate_1 = draw_card h1 st in
+                                 let current_player_state = return_player_state substate_1 substate_1.current_player in
+                                 print_string "New player score = ";
+                                 print_endline (string_of_int current_player_state.player_score);
+                                 print_endline "";
+                                 (*Implement transition turn function*)
+                                 game substate_1
+                               | _ ->
+
+                               game st)
+  else if str = "take 2" then (print_endline "You picked option 2"; game st)
+  else if str = "take 3" then (print_endline "You picked option 3"; game st)
 
   else game st
+
 
 and
 
 game st =
   print_endline ("Player " ^ string_of_int st.current_player ^"'s Turn:");
   match (id_to_card_lst st st.available_picks) with
-    | h::t -> print_string h.card_name;
-  print_string "\n> ";
+  | h1 :: h2 :: h3::t -> print_string h1.card_name;
+    print_string "\n";
+    print_string h2.card_name;
+    print_string "\n";
+    print_string h3.card_name;
+    print_string "\n> ";
+    let input_string = read_line () in
+    game_commands input_string st;
+  | h1 :: h2 :: t -> print_string h1.card_name;
+    print_string "\n";
+    print_string h2.card_name;
+  | h :: t -> print_string h.card_name;
+  | [] -> print_string "No Picks";
   match read_line () with
     | line -> game_commands (String.lowercase_ascii line) st
 
@@ -94,18 +172,25 @@ menu () =
   else if str = "quit" then ()
   else (
        print_endline "I don't understand that command, try typing 'play',
-                    'tutorial', 'credits'"; menu ()
+                    'tutorial', 'credits'";
+       menu ()
       )
 
 and
 
 init_tutorial () =
-    print_endline "This is the tutorial"; menu ()
+  print_endline "This is the tutorial";
+  menu ()
 
 and
 
 init_credits () =
-    print_endline "This is the credits"; menu ()
+  print_endline "This is the credits";
+  print_endline "AI Design: Akira Shindo";
+  print_endline "Card Design: Kevin Gao";
+  print_endline "Repl Design: Yang Lu";
+  print_endline "Special Thanks to: Hweelin Yeo";
+  menu ()
 
 
 let main () =
