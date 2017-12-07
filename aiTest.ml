@@ -159,7 +159,7 @@ let tests =
     "hard_5" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
         (None) (hard_ai_next_move sample_state_none));
     "hard_6" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
-        (Some 1) (hard_ai_next_move sample_state_9));
+        (Some 3) (hard_ai_next_move sample_state_9));
     "hard_7_xhd" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
         (Some 8) (hard_ai_next_move sample_state_1'));
     "hard_8_lt3" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
