@@ -856,12 +856,24 @@ let rec contains e lst =
   | [] -> false
   | h :: t -> if h = e then true else contains e t
 
-let rec generate_nums num bound accum =
-  if (List.length accum < num) then
-    let new_num = Random.int bound in
-    if (contains new_num accum) then generate_nums num bound accum
-    else generate_nums num bound (new_num :: accum)
-  else accum
+(* [generate_nums num bound lst accum] returns a list, l1, with [num] numbers 
+ * less than bound. Each element in l1 should be a member of lst. If lst has
+ * 3 or fewer elements, it returns lst.
+ * requires: [num] is an int, [bound] is an int, [lst] is an int list, 
+            [accum] is an int list.  *)
+
+let rec generate_nums num bound lst accum =
+  if List.length lst <= 3 then lst 
+  else 
+    if (List.length accum < num) then
+        let new_num = Random.int bound in
+        if (contains new_num accum) then 
+          generate_nums num bound lst accum
+        else 
+          if contains new_num lst then 
+            generate_nums num bound lst (new_num :: accum)
+          else generate_nums num bound lst accum
+    else accum
 
 (* [cpicks_from_index num_lst card_lst] returns a list of elements in
     card_lst whose positions correspond to the numbers in the num_lst *)
@@ -875,8 +887,9 @@ let rec picks_from_index num_lst card_lst =
    to the next set of randomised available picks *)
 
 let refresh_available_picks st =
-  let n = List.length (st.recruit_pool) in
-  picks_from_index (generate_nums 3 n []) (st.recruit_pool)
+  let rp = st.recruit_pool in 
+  let n = List.length rp in
+  picks_from_index (generate_nums 3 n rp []) (rp)
 
 
 let return_next_player st prev =
@@ -971,12 +984,12 @@ let rec init_player_states n h accum =
         init_player_states (n-1) (h-1) (new_ps :: accum)
     end
 
-(* [generate_0_to_n_lst n accum] returns an int list [0; ...; n]
- * requires: n is an int *)
-let rec generate_0_to_n_lst n accum =
-  match n with
-  | -1 -> accum
-  | _ -> generate_0_to_n_lst (n-1) (n :: accum)
+(* [i_to_j i j accum] returns an int list [i; ...; j-1]
+ * requires: i < j *)
+
+let rec i_to_j i j accum =
+  if i = j then accum
+  else i_to_j i (j-1) (j-1 :: accum)  
 
 let init_state i h =
   {
@@ -986,7 +999,11 @@ let init_state i h =
     card_drawn = None;
     current_player = 1;
     (* current_player_id = "Player 1"; *)
+<<<<<<< HEAD
     recruit_pool = generate_0_to_n_lst 23 [];
+=======
+    recruit_pool = i_to_j 0 24 [];
+>>>>>>> bf1a63bde07fb86133f7a4b0faf4ed1f6ad5b888
     available_picks = generate_nums 3 24 [];
     player_states = init_player_states i h [];
   }

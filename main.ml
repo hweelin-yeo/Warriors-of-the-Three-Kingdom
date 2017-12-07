@@ -7,6 +7,7 @@
 
 open State
 open PlayerState
+open Ai
 
 (*********************************************************)
 (*     Real Functions                                    *)
@@ -212,6 +213,7 @@ game_commands str st =
 
 and
 
+<<<<<<< HEAD
   game st =
   (*Print the ids of the current picks*)
   (*let testValue = List.map (fun x -> print_string (string_of_int x ^ " ")) st.available_picks in*)
@@ -232,6 +234,50 @@ and
   | [] -> print_string "No Picks";
   match read_line () with
   | line -> game_commands (String.trim((String.lowercase_ascii line))) st
+=======
+game st =
+  print_endline ("Player " ^ string_of_int st.current_player ^ "'s Turn:");
+  if ((List.assoc st.current_player st.player_states).player_is_human) then (
+    match (id_to_card_lst st st.available_picks) with
+    | h1 :: h2 :: h3::t -> print_string h1.card_name;
+      print_string "\n";
+      print_string h2.card_name;
+      print_string "\n";
+      print_string h3.card_name;
+      print_string "\n> ";
+      let input_string = read_line () in
+      game_commands input_string st;
+    | h1 :: h2 :: t -> print_string h1.card_name;
+      print_string "\n";
+      print_string h2.card_name;
+    | h :: t -> print_string h.card_name;
+    | [] -> print_string "No Picks";
+    match read_line () with
+    | line -> game_commands (String.lowercase_ascii line) st)
+  else (
+    print_endline ("Player " ^ string_of_int st.current_player ^ "is a
+                  computer set at medium difficulty.");
+    match (id_to_card_lst st st.available_picks) with
+    | h1 :: h2 :: h3::t -> print_string h1.card_name;
+      print_string "\n";
+      print_string h2.card_name;
+      print_string "\n";
+      print_string h3.card_name;
+      print_string "\n> ";
+      let input_string = read_line () in
+      game_commands input_string st;
+    | h1 :: h2 :: t -> print_string h1.card_name;
+      print_string "\n";
+      print_string h2.card_name;
+    | h :: t -> print_string h.card_name;
+    | [] -> print_string "No Picks";
+    (* change this easy, medium, and hard depending on the setting of the AI *)
+    match medium_ai_next_move st with
+    | Some x -> print_string ("The computer chose card " ^ string_of_int x);
+      game_commands ("take" ^ string_of_int x) st
+    | None -> print_string "The computer decided to skip."
+  )
+>>>>>>> bf1a63bde07fb86133f7a4b0faf4ed1f6ad5b888
 
 and
 

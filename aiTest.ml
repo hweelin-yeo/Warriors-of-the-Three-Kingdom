@@ -7,7 +7,7 @@ open PlayerState
 type playerID = string
 type cardID = int
 
-type player_state =
+(* type player_state =
   {
     player_id: playerID; (* Does not change *)
     player_id_int: int; (* Does not change *)
@@ -27,34 +27,32 @@ type state = {
   recruit_pool: cardID list;
   available_picks: cardID list;
   player_states: (int * player_state) list;
-}
+} *)
 
 let player_1_state = {
-  player_id = "Player 1";
-  player_id_int = 1;
+  player_id = 1;
   player_score = 0;
   player_deck = [];
   player_resource = 100;
   player_is_human = false;
+  player_functions = [fun st -> st.player_id]
+  (* player_functions : (player_state -> int) list; *)
 }
 
 let player_2_state = {
   player_1_state with
-  player_id = "Player 2";
-  player_id_int = 2;
+  player_id = 2;
   player_is_human = true;
 }
 
 let player_3_state = {
   player_2_state with
-  player_id = "Player 3";
-  player_id_int = 3;
+  player_id = 3;
 }
 
 let player_4_state = {
   player_2_state with
-  player_id = "Player 4";
-  player_id_int = 4;
+  player_id = 4;
 }
 
 let sample_state_1 = {
@@ -81,7 +79,27 @@ let sample_state_3 = {
 
 let sample_state_4 = {
   sample_state_1 with
-  available_picks = [9; 13; 19]
+  available_picks = [9; 10; 11]
+}
+
+let sample_state_5 = {
+  sample_state_1 with
+  available_picks = [12; 13; 14]
+}
+
+let sample_state_6 = {
+  sample_state_1 with
+  available_picks = [15; 16; 17]
+}
+
+let sample_state_7 = {
+  sample_state_1 with
+  available_picks = [18; 19; 20]
+}
+
+let sample_state_8 = {
+  sample_state_1 with
+  available_picks = [21; 22; 23]
 }
 
 let sample_state_none = {
@@ -92,21 +110,36 @@ let sample_state_none = {
 
 let tests =
   [
-    "find_index_1" >:: (fun _ -> assert_equal 0 (find_index (1, 2) [(1, 2); (3, 4); (5, 6)] 3 0));
-    "find_index_2" >:: (fun _ -> assert_equal 1 (find_index (3, 4) [(1, 2); (3, 4); (5, 6)] 3 0));
-    "find_index_3" >:: (fun _ -> assert_equal 2 (find_index (5, 6) [(1, 2); (3, 4); (5, 6)] 3 0));
+    "find_index_1" >:: (fun _ -> assert_equal ~printer: string_of_int 0 (find_index (1, 2) [(1, 2); (3, 4); (5, 6)] 3 0));
+    "find_index_2" >:: (fun _ -> assert_equal ~printer: string_of_int 1 (find_index (3, 4) [(1, 2); (3, 4); (5, 6)] 3 0));
+    "find_index_3" >:: (fun _ -> assert_equal ~printer: string_of_int 2 (find_index (5, 6) [(1, 2); (3, 4); (5, 6)] 3 0));
 
     "easy_1" >:: (fun _ -> assert_equal (Some 1) (easy_ai_next_move sample_state_1));
-    (* "easy_2" >:: (fun _ -> assert_equal (Some 3) (easy_ai_next_move sample_state_2)); *)
+    "easy_2" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
+    (Some 4) (easy_ai_next_move sample_state_2));
     "easy_3" >:: (fun _ -> assert_equal (Some 6) (easy_ai_next_move sample_state_3));
-    "easy_4" >:: (fun _ -> assert_equal (Some 19) (easy_ai_next_move sample_state_4));
-    "easy_5" >:: (fun _ -> assert_equal (None) (easy_ai_next_move sample_state_none));
+    "easy_4" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
+    (Some 10) (easy_ai_next_move sample_state_4));
+    "easy_5" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
+    (Some 14) (easy_ai_next_move sample_state_5));
+    "easy_6" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
+    (Some 16) (easy_ai_next_move sample_state_6));
+    "easy_7" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
+    (Some 18) (easy_ai_next_move sample_state_7));
+    "easy_8" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
+    (Some 22) (easy_ai_next_move sample_state_8));
+    "easy_none" >:: (fun _ -> assert_equal (None) (easy_ai_next_move sample_state_none));
 
-    "medium_1" >:: (fun _ -> assert_equal (Some 1) (medium_ai_next_move sample_state_1));
-    (* "medium_2" >:: (fun _ -> assert_equal (Some 3) (medium_ai_next_move sample_state_2)); *)
-    "medium_3" >:: (fun _ -> assert_equal (Some 6) (medium_ai_next_move sample_state_3));
-    "medium_4" >:: (fun _ -> assert_equal (Some 19) (medium_ai_next_move sample_state_4));
-    "medium_5" >:: (fun _ -> assert_equal (None) (medium_ai_next_move sample_state_none));
+    "medium_1" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
+        (Some 1) (medium_ai_next_move sample_state_1));
+    "medium_2" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
+        (Some 3) (medium_ai_next_move sample_state_2));
+    "medium_3" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
+        (Some 6) (medium_ai_next_move sample_state_3));
+    "medium_4" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
+        (Some 19) (medium_ai_next_move sample_state_4));
+    "medium_5" >:: (fun _ -> assert_equal ~printer: (fun x -> match x with |Some x -> string_of_int x |None -> "None")
+        (None) (medium_ai_next_move sample_state_none));
   ]
 
 let suite =
