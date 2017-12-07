@@ -971,12 +971,12 @@ let rec init_player_states n h accum =
         init_player_states (n-1) (h-1) (new_ps :: accum)
     end
 
-(* [generate_0_to_n_lst n accum] returns an int list [0; ...; n]
- * requires: n is an int *)
-let rec generate_0_to_n_lst n accum =
-  match n with
-  | -1 -> accum
-  | _ -> generate_0_to_n_lst (n-1) (n :: accum)
+(* [i_to_j i j accum] returns an int list [i; ...; j-1]
+ * requires: i < j *)
+
+let rec i_to_j i j accum =
+  if i = j then accum
+  else i_to_j i (j-1) (j-1 :: accum)  
 
 let init_state i h =
   {
@@ -986,7 +986,7 @@ let init_state i h =
     card_drawn = None;
     current_player = 1;
     (* current_player_id = "Player 1"; *)
-    recruit_pool = generate_0_to_n_lst 24 [];
+    recruit_pool = i_to_j 0 24 [];
     available_picks = generate_nums 3 24 [];
     player_states = init_player_states i h [];
   }
