@@ -460,7 +460,7 @@ let lu_da_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayer = find_player s.player_states currentPlayerInt in
   let current_deck_ids = currentPlayer.player_deck in
   let coin_flip = Random.int 2 in
-  match coin_flip with
+  match coin_flip with 
   | 0 -> let removed_deck = List.tl current_deck_ids in
     let new_deck = map_id_list removed_deck cl [] in
     let new_deck_ids = map_card_list new_deck [] in
