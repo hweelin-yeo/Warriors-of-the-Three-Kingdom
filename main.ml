@@ -134,6 +134,7 @@ and
       print_endline ("cost: " ^ (string_of_int h.cost));
       print_endline ("power: " ^ (string_of_int h.power));
       print_endline "";
+      print_endline (h.ascii_art);
       game st;
     | _ -> game st)
 
@@ -146,6 +147,7 @@ and
       print_endline ("abilities: " ^ h2.card_text);
       print_endline ("cost: " ^ (string_of_int h2.cost));
       print_endline ("power:" ^ (string_of_int h2.power));
+      print_endline (h2.ascii_art);
       print_endline "";
       game st;
     | h :: t ->
@@ -161,8 +163,9 @@ and
       print_endline "";
       print_endline ("flavor: " ^ h3.flavor);
       print_endline ("abilities: " ^ h3.card_text);
-      print_endline ("cost: " ^ (string_of_int h1.cost));
-      print_endline ("power:" ^ (string_of_int h1.power));
+      print_endline ("cost: " ^ (string_of_int h3.cost));
+      print_endline ("power:" ^ (string_of_int h3.power));
+      print_endline (h3.ascii_art);
       print_endline "";
       game st;
     | h1 :: h2 :: t ->
