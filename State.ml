@@ -27,11 +27,12 @@ type card = {
   card_text : string;
   abilities : state -> int -> card list-> state;
   card_type : string;
+  ascii_art: string;
 }
 
 (**************************************************************************************)
 (****************************** Observer Functions ************************************
-******************* Find cards, players, opponents and compute scores******************)
+ ******************* Find cards, players, opponents and compute scores *****************)
 (**************************************************************************************)
 
 
@@ -40,7 +41,7 @@ type card = {
  * that represents the card set
  * requires: [id] is a cardID
              [cl] is a card list
- *)
+*)
 
 let rec id_to_card (id : cardID) (cl : card list) =
   match cl with
@@ -52,7 +53,7 @@ let rec id_to_card (id : cardID) (cl : card list) =
  * requires: [idl] is a list of cardID
              [cl] is a list of cards
              [acc] is a list of cards
- *)
+*)
 
 let rec map_id_list idl  (cl : card list) acc =
   match idl with
@@ -63,7 +64,7 @@ let rec map_id_list idl  (cl : card list) acc =
  *  corresponding cardIDs
  * requires: [cl] is a list of cards
              [acc] is a list of cardIDs
- *)
+*)
 
 let rec map_card_list (cl : card list) acc =
   match cl with
@@ -74,7 +75,7 @@ let rec map_card_list (cl : card list) acc =
  * the list of int player_state tuples, and a int player id,
  * requires: [psl] is a list of (int * player states)
              [id] is an int
- *)
+*)
 
 let rec find_player (psl : (int * player_state) list) (id : int) =
   match psl with
@@ -104,13 +105,13 @@ let compute_anthem (ps : player_state) =
   compute_anthem_helper anthem_list ps 0
 
 (* [compute_deck_score cl acc] takes in a card_list that represents
-  the deck and returns the total score of the deck *)
+   the deck and returns the total score of the deck *)
 let rec compute_deck_score (cl : card list) acc =
   match cl with
   | [] -> + acc
   | h :: t -> compute_deck_score t (h.power + acc)
 
-let rec make_new_states (pl : player_state) (ps:(int*player_state) list) acc  =
+let rec make_new_states (pl : player_state) (ps : (int * player_state) list) acc =
   match ps with
   | [] -> List.rev acc
   | h :: t -> if (pl.player_id = fst h)
@@ -120,31 +121,24 @@ let rec make_new_states (pl : player_state) (ps:(int*player_state) list) acc  =
 
 (**************************************************************************************)
 (****************************** Card Functions ****************************************
-************************ Vanilla and Customised functions of cards ********************)
+ ************************ Vanilla and Customised functions of cards ********************)
 (**************************************************************************************)
 
 
 (* Function for vanilla cards, simulates a blank abilities box thus
-  the returned state is the same as the called state *)
-(*Precondition: s is a valid state of the came, cid is a card id, and cl is the
-  master list of cards*)
-(*Postcondition: returns the state with the player's score incremented by the
-added card's power with no abilities applied*)
+   the returned state is the same as the called state *)
+
 let vanilla (s : state) (cid : cardID) (cl : card list) =
   let current_player_id = s.current_player in
   let current_player = find_player s.player_states current_player_id in
   let current_deck_id = current_player.player_deck in
   let current_deck = map_id_list current_deck_id cl [] in
-  let new_score =
-    compute_deck_score current_deck 0 + compute_anthem current_player in
+  let new_score = compute_deck_score current_deck 0 + compute_anthem current_player in
   let new_player_state = {current_player with player_score = new_score} in
   let new_player_states = make_new_states new_player_state s.player_states [] in
   {s with player_states = new_player_states}
 
 (* Zhuge liang helper *)
-(*Precondition: pd is a card list representing the player's deck, and acc is a
-  acculminator*)
-(*Postcondition: returns list pd with all cards with faction "Shu" copied*)
 let rec zhuge_liang_helper (pd : card list) acc =
   match pd with
   | [] -> List.rev acc
@@ -153,10 +147,6 @@ let rec zhuge_liang_helper (pd : card list) acc =
       zhuge_liang_helper t (h :: acc)
 
 (* Zhuge_liang_funct *)
-(*Precondition: s is a valid game state, cid is a card id, and cl is the master
-  list of cards*)
-(*Postcondition: returns a state with the target player's deck that has
-  all Shu unit cards replicated*)
 let zhuge_liang_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -174,25 +164,17 @@ let zhuge_liang_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (* Shu Recruiter functions, pd = player deck, nc = num copies *)
-(*Precondition: pd is the int list of the card ids of a player's deck, nc is
-  the number of copies to be made, acc is a acculminator*)
-(*Postcondition: returns pd with nc 1's appended to the front*)
 let rec shu_recruiter_helper (pd : int list) (nc : int) acc =
   match nc with
   | 0 -> acc
   | x -> shu_recruiter_helper pd (nc - 1) (1 :: acc)
 
-(*Precondition: s is a valid state, cid is a card id, and cl is the master card
-  list*)
-(*Postcondition: returns a state with the shu_recruiter function applied
-  to the current state*)
 let shu_recruiter_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
   let current_deck_ids = currentPlayer.player_deck in
   let num_units_created = Random.int 4 in
-  let new_deck_ids =
-    shu_recruiter_helper current_deck_ids num_units_created current_deck_ids in
+  let new_deck_ids = shu_recruiter_helper current_deck_ids num_units_created current_deck_ids in
   let new_deck = map_id_list new_deck_ids cl [] in
   let new_player_score = compute_deck_score new_deck 0 in
   let newPlayer1 = {currentPlayer with player_deck = new_deck_ids} in
@@ -203,10 +185,6 @@ let shu_recruiter_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (* Shu Sergant function *)
-(*Precondition: s is a valid state, cid is a valid card id, cl is the master
-  card list*)
-(*Postcondition: returns a new state with a Shu Footsolider appended to the start
-of the list for the active player*)
 let shu_sergant_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -220,17 +198,11 @@ let shu_sergant_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (* Functions to help implement enchantment spells *)
-(*Precondition: ps is a valid player state*)
-(*Postcondition: returns the length of the player's deck*)
 let shu_anthem_effect (ps : player_state) =
   let pd = ps.player_deck in
   List.length pd
 
 (* Anthem of shu helper *)
-(*Precondition: s is a valid game state, cid is a card id, and cl is the master
-  card list*)
-(*Postcondition: returns a new state with the Shu anthem effect attatched to
-the active player*)
 let shu_anthem_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -245,26 +217,18 @@ let shu_anthem_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (* Liu Bei Function *)
-(*Precondition: cd is the player's deck ids, acc is a acculminator*)
-(*Postcondition: returns true if there are at least 3 instances of 1 in cd else
-  returns false*)
 let rec liu_bei_helper cd acc =
   match cd with
   | [] -> if (acc > 2) then true else false
   | h :: t -> if (h = 1) then liu_bei_helper t (acc + 1) else
       liu_bei_helper t acc
 
-(*Precondition: s is a valid state, cid is a valid card id, and card list is the
-  master set list*)
-(*Postcondition: if the current player's deck has more than 3 Shu Footsoliders,
-apply the shu anthem effect*)
 let liu_bei_funct (s : state) (cid : int) (cl : card list) =
   let current_player_id = s.current_player in
   let current_player = find_player s.player_states current_player_id in
   let current_deck_id = current_player.player_deck in
   let current_deck = map_id_list current_deck_id cl [] in
-  let new_score =
-    compute_deck_score current_deck 0 + compute_anthem current_player in
+  let new_score = compute_deck_score current_deck 0 + compute_anthem current_player in
   let new_player_state = {current_player with player_score = new_score} in
   let new_player_states = make_new_states new_player_state s.player_states [] in
   let liu_bei_condition = liu_bei_helper current_deck_id 0 in
@@ -273,8 +237,6 @@ let liu_bei_funct (s : state) (cid : int) (cl : card list) =
   | false -> {s with player_states = new_player_states}
 
 (* Sima Yi functions *)
-(*Precondition: ids is the card id list of the current player*)
-(*Postcondition: removes the top 3 elements of ids*)
 let sima_yi_helper (ids : int list) =
   (*h1 = 7, id of Sima Yi*)
   match ids with
@@ -282,10 +244,6 @@ let sima_yi_helper (ids : int list) =
   | h1 :: h2 :: h3 :: h4 :: t -> 7 :: t
   | h :: t -> [7] (*All other cases with less than 3 units get eliminated*)
 
-(*Precondition: s is a valid state, cid is a valid card id, and cl is the master
-  card_list*)
-(*Postcondition: removes the top 3 elements of the deck of the active player and
-returns the associated state*)
 let sima_yi_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -301,28 +259,30 @@ let sima_yi_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (* Xiahou Dun Functions*)
-(*Precondition: pd is the player's deck*)
-(*Postcondition: removes the top element of the player's deck*)
+(* Need to finish, not completed yet*)
 let rec remove_top_element (pd : int list) =
   match pd with
   | [] -> []
   | h :: t -> t
 
 (* opl = original_player_list cps = current_player_state, nol = new_opponent_list
-onol = original new opponent list*)
-(*Precondition: opl is the original player list, cps is the current player state,
-  nol is the new opponent list, and acc is a acculminator*)
-(*Creates a new player list that contains the current player state with modified
-  opponents in nol*)
+   onol = original new opponent list*)
+(*NTS: Need to fix*)
 let rec rebuild_player_list (opl : (int * player_state) list) cps nol acc =
   let state_list = List.map (fun x -> (x.player_id, x)) nol in
   let current_player_unit = (cps.player_id, cps) in
   current_player_unit :: state_list
+(*match opl with
+  | [] -> List.rev acc
+  | h :: t -> if (cps.player_id = fst h) then
+    rebuild_player_list t cps nol ((cps.player_id, cps) :: acc) else (*player the current player*)
+    begin match nol with
+      | [] -> failwith "failed to find player to insert"
+      | h1 :: t1 -> if (h1.player_id = fst h) then
+          rebuild_player_list t cps nol ((h1.player_id, h1) :: acc) else
+          rebuild_player_list opl cps t1 acc
+    end*)
 
-(*Precondition: opponentList is the list of all opponents, acc is a acculminator,
-  and cl is the master card list*)
-(*Postcondition: returns a new state with all opponents decks with the top
-cards removed*)
 let rec xiahou_dun_helper (opponentList : player_state list) acc cl =
   match opponentList with
   | [] -> List.rev acc
@@ -336,10 +296,7 @@ let rec xiahou_dun_helper (opponentList : player_state list) acc cl =
     let new_player_final = {newPlayer with player_score = new_score_1} in
     xiahou_dun_helper t (new_player_final :: acc) cl
 
-(*Precondition: s is a vaid state, cid is a valid card, cl is the master card
-  list *)
-(*Postcondition: returns a new state with the new card and all opponents with the
-top cards of their decks removed*)
+
 let xiahou_dun_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let original_player_list = s.player_states in
@@ -347,29 +304,20 @@ let xiahou_dun_funct (s : state) (cid : int) (cl : card list) =
   let current_deck_ids = current_player_state.player_deck in
   let current_deck = map_id_list current_deck_ids cl [] in
   let new_player_score_1 = compute_deck_score current_deck 0 in
-  let new_player_score_final =
-    new_player_score_1 + compute_anthem current_player_state in
-  let new_player_state =
-    {current_player_state with player_score = new_player_score_final} in
+  let new_player_score_final = new_player_score_1 + compute_anthem current_player_state in
+  let new_player_state = {current_player_state with player_score = new_player_score_final} in
   let opponentList = find_opponents s.player_states currentPlayerInt [] in
   let new_opponent_list = xiahou_dun_helper opponentList [] cl in
-  let new_player_list =
-rebuild_player_list original_player_list new_player_state new_opponent_list [] in
+  let new_player_list = rebuild_player_list original_player_list new_player_state new_opponent_list [] in
   {s with player_states = new_player_list}
 
 (* Wei Recruit helpers *)
-(*Precondition: cd is a card deck list, acc is a acculminator*)
-(*Postcondition: removes the top card of the player's deck*)
 let wei_recruit_helper (cd : int list) acc =
   match cd with
   | [] -> []
   | h1 :: h2 :: t -> h1 :: t (*Minium two element list to pop bottom list*)
   | h :: [] -> [h] (*One element list, do nothing, enjoy the aggro*)
 
-(*Precondition: s is a valid state, cid is a valid int, and cl is the master
-  card list*)
-(*Postcondition: returns a new state with the top card of the active player's
-  deck removed*)
 let wei_recruit_funct (s:state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let current_player_state = find_player s.player_states currentPlayerInt in
@@ -385,16 +333,12 @@ let wei_recruit_funct (s:state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (* Dian Wei Helpers *)
-(*Precondition: s is a valid state, cid is a valid int, and cl is the master
-  card list*)
-(*Postcondition: returns a new state with the active player's resource depleted
-  by 1 *)
 let dian_wei_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let original_player_list = s.player_states in
   let current_player_state = find_player s.player_states currentPlayerInt in
   let newPlayer = {current_player_state with player_resource =
-                                    current_player_state.player_resource - 1} in
+                                               current_player_state.player_resource - 1} in
   let current_player = find_player s.player_states currentPlayerInt in
   let current_deck_id = current_player.player_deck in
   let current_deck = map_id_list current_deck_id cl [] in
@@ -404,9 +348,6 @@ let dian_wei_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (* Wei Polluter Effect *)
-(*Precondition: opponentList is a list of all opponent states*)
-(*Postcondition: returns a list of opponents with their resources depleted
-  by 1*)
 let rec wei_polluter_helper opponentList acc =
   match opponentList with
   | [] -> List.rev acc
@@ -414,10 +355,6 @@ let rec wei_polluter_helper opponentList acc =
     let new_opponent_state = {h with player_resource = h.player_resource - 1} in
     wei_polluter_helper t (new_opponent_state :: acc)
 
-(*Precondition: s is a valid state, cid is a valid int, and cl is the master
-  card list*)
-(*Postcondition: returns a new state where all opponent resources have been
-  depleted by 1*)
 let wei_polluter_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let original_player_list = s.player_states in
@@ -433,10 +370,6 @@ let wei_polluter_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_list}
 
 (* Wu Scout helpers *)
-(*Precondition: is is a valid state, cid is the card's id, and cl is the master
-  card list*)
-(*Postcondition: returns a new state with the active player's resource increased
-by 1*)
 let wu_scout_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let original_player_list = s.player_states in
@@ -451,17 +384,13 @@ let wu_scout_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states newPlayer original_player_list [] in
   {s with player_states = new_player_states}
 
-(*Precondition: s is a valid state, cid is the card's id, cl is the
-  master card list*)
-(*Postcondition: returns a new state with the current player's resource
-  increased by 0, 1 or 2 randomly assigned*)
 let lu_meng_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let original_player_list = s.player_states in
   let current_player_state = find_player s.player_states currentPlayerInt in
   let resource_total = Random.int 3 in
   let newPlayer = {current_player_state with player_resource =
-                    current_player_state.player_resource + resource_total} in
+                                               current_player_state.player_resource + resource_total} in
   let current_player = find_player s.player_states currentPlayerInt in
   let current_deck_id = current_player.player_deck in
   let current_deck = map_id_list current_deck_id cl [] in
@@ -471,17 +400,11 @@ let lu_meng_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (* Lady Sun functions *)
-(*Precondition : cl is a card list of card ids*)
-(*Postcondition: returns true if id 4 (liu bei) is found else return false*)
 let rec lady_sun_helper cl =
   match cl with
   | [] -> false
   | h :: t -> if h = 4 then true else lady_sun_helper t
 
-(*Precondition: s is the current state, cid is the card's id, and cl is the
-  master card list*)
-(*Postcondition: if Liu Bei is in the active player's card list, then add 3
-shu recruits to the player's deck, otherwise is vanilla*)
 let lady_sun_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let original_player_list = s.player_states in
@@ -503,10 +426,6 @@ let lady_sun_funct (s : state) (cid : int) (cl : card list) =
     {s with player_states = new_player_states}
 (* Todo still need to finish *)
 
-(*Precondition: s is a valid state, cid is the card's id, and cl is the master
-  card list*)
-(*Postcondition: returns a new state with the active player's resource bar set
-  to 4*)
 let lu_su_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let original_player_list = s.player_states in
@@ -521,14 +440,8 @@ let lu_su_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (* Wu anthem helpers *)
-(*Precondition: ps is the player'rs state*)
-(*Postcondition: returns the player resource of the player in the player_state*)
 let wu_anthem_effect (ps : player_state) = ps.player_resource
 
-(*Precondition: s is a valid state, cid is the card's id, and cl is the master
-  card list*)
-(*Postcondition: returns a new state with the Wu anthem effect appended to the
-active player's state*)
 let wu_anthem_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -543,10 +456,6 @@ let wu_anthem_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (* Helper function to implement Lu Zuishen *)
-(*Precondition: s is a valid state, cid is the card's id, and cl is the master
-  card list*)
-(*Postcondition: if the RNG pulls a 0 then remove Lu Zuishen from the active
-  player's deck, else add it in*)
 let lu_da_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -558,36 +467,25 @@ let lu_da_funct (s : state) (cid : int) (cl : card list) =
     let new_deck_ids = map_card_list new_deck [] in
     let new_score_1 = compute_deck_score new_deck 0 in
     let new_player_state = {currentPlayer with player_deck = new_deck_ids} in
-    let new_player_state_1 =
-      {new_player_state with player_score = new_score_1} in
-    let new_score = new_player_state_1.player_score
-                    + compute_anthem new_player_state_1 in
-    let final_player_state =
-      {new_player_state_1 with player_score = new_score} in
-    let new_player_states =
-      make_new_states final_player_state s.player_states [] in
+    let new_player_state_1 = {new_player_state with player_score = new_score_1} in
+    let new_score = new_player_state_1.player_score + compute_anthem new_player_state_1 in
+    let final_player_state = {new_player_state_1 with player_score = new_score}; in
+    let new_player_states = make_new_states final_player_state s.player_states [] in
     {s with player_states = new_player_states}
   | 1 -> let current_deck = map_id_list current_deck_ids cl [] in
-    let new_score =
-      compute_deck_score current_deck 0 + compute_anthem currentPlayer in
+    let new_score = compute_deck_score current_deck 0 + compute_anthem currentPlayer in
     let new_player_state = {currentPlayer with player_score = new_score} in
-    let new_player_states =
-      make_new_states new_player_state s.player_states [] in
+    let new_player_states = make_new_states new_player_state s.player_states [] in
     {s with player_states = new_player_states}
   | _ -> failwith "Random number doesnt generate > 1"
 
-(* Functions to implement Hundred-Faced Hassan *)
-(*Precondition: ids is the id representation of the active player's deck list*)
-(*Postcondition: returns the list with the top element replicated*)
+(* Functions to implement Hundred-Faced Hassad *)
 let hassan_helper ids =
   match ids with
   | [] -> []
   | h :: h1 :: t -> h :: h1 :: h1 :: t
   | h :: t -> h :: t
 
-(*Precondition: s is a valid state, cid is a card, and cl is the card list*)
-(*Postcondition: returns the active player's deck with the top element replicated
-*)
 let hassan_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -603,10 +501,6 @@ let hassan_funct (s : state) (cid : int) (cl : card list) =
   {s with player_states = new_player_states}
 
 (* Atilla the conquerer function, dl = deck list, odl = original deck list *)
-(*Precondition: dl is a card list, odl is the original deck, and sl is the
-  string list to check against*)
-(*Postcondition: returns true if a wu, shu and wei card have been found in the
-  player's deck, else returns false*)
 let rec atilla_helper (dl : card list) (odl : card list) (sl : string list) =
   match sl with
   | [] -> true
@@ -617,11 +511,7 @@ let rec atilla_helper (dl : card list) (odl : card list) (sl : string list) =
           atilla_helper t1 odl sl
     end
 
-(*Precondition: s is a valid state, cid is a valid int, cl is
-  the master card list*)
-(*Postocndition: returns a new state, vanilla if the active
-  player does not have a wu, shu and wei card in their deck
-  but if those conditions are met, appends Lu Bu into the deck*)
+
 let atilla_funct (s: state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -643,17 +533,12 @@ let atilla_funct (s: state) (cid : int) (cl : card list) =
     {s with player_states = new_player_states}
 
 (* Tiago Chan functions here *)
-(*Preconditon: current_deckk_ids is the list of the active player's deck ids*)
-(*Postcondition: returns the top card of the deck if applicable*)
 let tiago_chan_helper current_deck_ids =
   match current_deck_ids with
   | [] -> None
   | h1 :: h2 :: t -> Some h2
   | h :: t -> None
 
-(*Precondition: s is a valid state, cid is a int, and cl is a master card list*)
-(*Postcondition: returns the state with the top card's function
-applied again to the player's deck list*)
 let rec tiago_chan_funct (s : state) (cid : int) (cl : card list) =
   let current_player_int = s.current_player in
   let current_player = find_player s.player_states current_player_int in
@@ -665,9 +550,6 @@ let rec tiago_chan_funct (s : state) (cid : int) (cl : card list) =
     target_card.abilities s cid cl
 
 (* The great david gries is implemented here *)
-(*Precondition: opponentList is a list of opponnet player states, acc is a
-  acculminator, cl is the master card list*)
-(*Postcondition: turns all opposing deck lists into nil*)
 let rec obliterate (opponentList : player_state list) acc cl =
   match opponentList with
   | [] -> List.rev acc
@@ -675,12 +557,6 @@ let rec obliterate (opponentList : player_state list) acc cl =
     let new_player_score = compute_deck_score [] 0 + compute_anthem rekt_player in
     let totally_rekt_player = {rekt_player with player_score = new_player_score} in
     obliterate t (totally_rekt_player :: acc) cl
-
-(*Precondition: s is a valid state, cid is a valid int, cl is a valid
-  master card list*)
-(*Postcondition: if the rng rolls a 56, returns a state where all opponents
-  decks have been annihilated (set to []), else if the roll is one, annihilates
-  the deck of the active player, else is vanilla*)
 
 let david_gries_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
@@ -701,16 +577,16 @@ let david_gries_funct (s : state) (cid : int) (cl : card list) =
     let new_player_list = rebuild_player_list s.player_states new_player new_opponent_list [] in
     {s with player_states = new_player_list}
   | _ ->     let current_deck_id = currentPlayer.player_deck in
-      let current_deck = map_id_list current_deck_id cl [] in
-      let new_score = compute_deck_score current_deck 0 + compute_anthem currentPlayer in
-      let new_player = {currentPlayer with player_score = new_score} in
-      let new_player_states = make_new_states new_player s.player_states [] in
-      {s with player_states = new_player_states}
+    let current_deck = map_id_list current_deck_id cl [] in
+    let new_score = compute_deck_score current_deck 0 + compute_anthem currentPlayer in
+    let new_player = {currentPlayer with player_score = new_score} in
+    let new_player_states = make_new_states new_player s.player_states [] in
+    {s with player_states = new_player_states}
 
 
 (**************************************************************************************)
 (****************************** Card List***** ****************************************
-***************************************************************************************)
+ ***************************************************************************************)
 (**************************************************************************************)
 
 
@@ -724,7 +600,29 @@ let cardList = [
     flavor = "Liu Bei's soldiers were recruited from the farmhands of \n China";
     card_text = "No Abilities";
     abilities = vanilla;
-      card_type = "Soldier"
+    card_type = "Soldier";
+    ascii_art = "\n\n
+       .---.
+      /_____\
+                 ( '.' )
+       \\_-_/_
+    .-'`'V'//-.
+   / ,   |// , \
+                 / /|Ll //Ll|\\ \
+                 / / |__//   | \\_\
+                 \\ \\/---|[]==| / /
+  \\/\\__/ |   \\/\\/
+   |/_   | Ll_\\|
+     |`^`|   |
+     |   |   |
+     |   |   |
+     |   |   |
+     |   |   |
+     L___l___J
+      |_ | _|
+     (___|___)
+      ^^^ ^^^
+    "
   };
 
   {
@@ -737,7 +635,30 @@ let cardList = [
 Dragon, Zhuge Liang";
     card_text = "When you draft Zhuge Liang, Sleeping Dragon, for each \n Shu card in your deck, copy that card and add it to your deck";
     abilities = zhuge_liang_funct;
-      card_type = "Soldier"
+    card_type = "Soldier";
+    ascii_art = "\n\n
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$Y/'$$$$P'a$$$$$$$$$$$$$$$$
+$$$$$$$$$'',` /,/,mT$$$$ d$$$$$$$$$$$$$$$$
+$$$$$l',` , '/d$$$$P^$a `^a`W$$$$$$$$$$$$$
+$$l', ` ,   |d$$$P^$'   _  _ ==~a$$$$$$$$$
+$l.`  .     \\'i$^4'   _eP$$$$$$$$$$$$$$$$
+l '  .         /   ,  $$$$' `$~$$$$$$$$$$$
+; ' ,              l /^' .,$oa$$$$$$$$$$$$
+b ' ,        .     (_ ,1$$$$$$'$$$$$$$$$$$
+$ , ,      .;       _$$$$$$$P $a$$$$$$$$$$
+$, ,`    .$Ly        lM''^ ,  ,$$$$$$$'$$$
+$$, ,`   d$Liy      /'   edb $$$$$$$'$$$$$
+$$$$,,'. $$$Li     (    d$$$$$$$$$$'$$$$$$
+$$$$$$,' v$$$Li4.   `  `Q$$$$$$$P',$$$$$$$
+$$$$$$$$,$$$$$$$L44., . .     ,,;d$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+    "
   };
 
   {
@@ -749,7 +670,25 @@ Dragon, Zhuge Liang";
     flavor = "The Shu army came on like a swarm of ants, \n each man who was slain was replaced with two brothers";
     card_text = "When you draft Shu Recruiter, add a random number 0-3 of \n Shu Footsoldier tokens into your deck";
     abilities = shu_recruiter_funct;
-    card_type = "Soldier"
+    card_type = "Soldier";
+    ascii_art = " \n\n
+         _                       _
+    | |                     | |
+    | |                     | |
+    | |         .-.         | |
+    | |      __:___:__      | |
+    | |        )= =(        | |
+    | |        \\ - /        | |
+    | |  __     |~|     __  | |
+    | >=CCC==,=='-'==,==JJJ=< |
+    | |  \\/  _      _  \\/   | |
+    | |   \\_/ |    / \\_|    | |
+    | |     _/ '--'\\        | |
+    | |    ||__/|__/        | |
+    |_|    '-' '-'   snd    |_|
+
+
+    "
   };
 
   {
@@ -762,6 +701,36 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Shu Sergant, add a 1 power Shu Footsolider token \n to your deck ";
     abilities = shu_sergant_funct;
     card_type = "Soldier";
+    ascii_art = "\n\n
+
+                ,dM
+                dMMP
+              dMMM'
+              \\MM/
+              dMMm.
+              dMMP'_\\---.
+             _| _  p ;88;`.
+          ,db; p >  ;8P|  `.
+         (``T8b,__,'dP |   |
+          |   `Y8b..dP  ;_  |
+          |    |`T88P_ /  `\\;
+          :_.-~|d8P'`Y/    /
+           \\_   TP    ;   7`\
+                 ,,__        >   `._  /'  /   `\\_
+`._ ''''''~~~~------|`\\;' ;     ,'
+   ''''~~~-----~~~'\\__[|;' _.-'  `\
+                 ;--..._     .-'-._     ;
+         /      /`~~''   ,'`\\_ ,/
+         ;_    /'        /    ,/
+        | `~-l         ;    /
+         `\\    ;       /\\.._|
+          \\    \\      \\     \
+                 /`---';      `----'
+         (     /            fsc
+          `---'
+
+
+    "
   };
 
   {
@@ -774,6 +743,34 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Liu Bei, if you have more than 3 Shu Footsoliders \n in your deck, gain an anthem of Shu";
     abilities = liu_bei_funct;
     card_type = "Soldier";
+    ascii_art = "\n\n
+
+
+                        @99o..
+                        `99   o
+                         99.aad9.
+                  'bad9999999999P
+                         99
+                       od99o.
+                      99 99 9o        .o
+                      `9999999     ,// `a
+                    .ooP`99P'   .o%    ,@9.
+                 .''       .oaadObooooa9999
+             . ~  .oad999999999999999999P'
+            'soo999999999999999P'
+                 ,.oaa99aooo.
+               .  ,o9999999999.   o@@o
+               o o99'        `99   @@@
+               `99'       ,oda9'   '
+                         0   a999o.
+                         `.ao' `999,
+                                `999;
+                                 999
+                   o            ,99'
+                    `9a,       ,9F
+                      '*bo. ,g9'
+
+    "
   };
 
   {
@@ -786,6 +783,28 @@ Dragon, Zhuge Liang";
     card_text = "Enchant Spell: Gain power equal to the number of units in your deck";
     abilities = shu_anthem_funct;
     card_type = "Spell";
+    ascii_art = "\n\n
+                   .
+               |
+          .   ]#[   .
+           \\_______/
+        .    ]###[    .
+         \\___________/
+      .     ]#####[     .
+       \\_______________/
+    .      ]#######[      .
+     \\___________________/
+  .       ]#########[       .
+   \\_______________________/
+.        ]###########[        .
+ \\______]###.-----.###[______/
+  |__|__|___|     |___|__|__|
+  |__|__|___|_____|___|__|__|
+  ##########/_____\\##########
+           |_______|
+          /_________\
+
+    "
   };
 
   {
@@ -797,7 +816,29 @@ Dragon, Zhuge Liang";
     flavor = "Not the Lius, not the Suns, nor the Caos would conquer China, \n for the ursurper Sima clan would conquer all";
     card_text = "When you draft Sima Yi Traitor to Wei discard the top 3 cards of your deck";
     abilities = sima_yi_funct;
-    card_type = "Soldier"
+    card_type = "Soldier";
+    ascii_art = "\n\n
+
+     ...                            ...
+       ``:::.....;'''''''';.,,,,;;;''
+           ````{.          .}''''
+              {{            }}
+             {================}
+             +================+
+             '{  #m..  ..m#  }''
+              {   <*>`'<*>  .}
+              :{     '`    .}
+               :{ `. uu .'.}
+                :{        }'
+                 {: }^^{ ;}
+                  {. ~~ ,}
+                   :wwww:
+             Uba    \\vv/
+
+
+
+
+    "
   };
 
   {
@@ -810,6 +851,30 @@ Dragon, Zhuge Liang";
     card_text = "No Abilities";
     abilities = vanilla;
     card_type = "Soldier";
+    ascii_art = "\n\n
+      .---.             .---.
+     /_____\\           /_____\\
+     ( '.' )           ( '.' )
+      \\_-_/_            \\_-_/_
+   .-'`'V'//-.       .-'`'V'//-.
+  / ,   |// , \\     / ,   |// , \\
+ / /|Ll //Ll|\\ \\   / /|Ll //Ll\\ \\
+/ / |__//   | \\_\\ / / |__//   | \\_\\
+\\ \\/---|[]==| / / \\ \\/---|[]==| / /
+ \\/\\__/ |   \\/\\/   \\/\\__/ |   \\/\\/
+  |/_   | Ll_\\|     |/_   | Ll_\\|
+    |`. |^` |         |`^'|'^`|
+    |   |   |         |   |   |
+    |   |   |         |   |   |
+    |   |   |         |   |   |
+    |   |   |         |   |   |
+    L___l___J         L___l___J
+     |_ | _|           |_ | _|
+jgs (___|___)         (___|___)
+     ^^^ ^^^           ^^^ ^^^
+
+
+    "
   };
 
   {
@@ -822,6 +887,31 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Xiahou Dun, discard the top card from each \n opponent's deck";
     abilities = xiahou_dun_funct;
     card_type = "Soldier";
+    ascii_art = "\n\n
+
+
+                                             `-.
+                                              .`
+                                        _.-` .`
+                                 __.---` _.-`
+                      _...--.-`   _.--`
+                  _.-`.-`.-`  _.-`
+               .-` .`  .`   .`
+    .         /   /   /    /                    .
+    \\`-.._    |  |    \\    `.              _..-`/
+   .'-.._ ``--.._\\     `. -- `.      _..-``  _..-`.
+   `_    _       `-. .`        `. .-`      _    _`
+     `.``           .            \\          ``.`
+      `-.-'    _   .              :   _   `-.-`
+        `..-..'    ;       .` `.  '    `..-..`
+            /      .      : .-. : :        \
+                 `._     \\     ;( O ) /      _.`
+     LGB       `-._.'`.    .`-'.' `._.-'
+                       `-....-`
+
+
+
+    "
   };
 
   {
@@ -834,6 +924,34 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Wei Recruit, discard the top card of your deck";
     abilities = vanilla;
     card_type = "Soldier";
+    ascii_art = "\n\n
+
+
+                  (\\    /)
+                  |_)//(_|
+                  |4\\_/4)(
+                 '( (_  -)D
+                   ) _)  /\\,__
+                 _,\\_._,/ /   `)
+    \\.,_,,      ( _   ~ .   ,   \
+                 \\   (\\      \\(   \\/  _)(    )
+      \\   \\      )). _______>-. `*
+       \\  /\\    _'( /   /\\  '\\  _)
+        \\( ,\\.-'  '/    \\/    \\/
+         '  \\><)_'.)|/\\/\\/\\/\\/\\|
+              \\) ,( |\\/\\/\\/\\/\\/|
+              ' ((  \\    /\\    /
+               ((((  \\___\\/___/)
+                ((,) /   ((()   )
+                 '..-,  (()(''   /
+      pils/b'ger  _//.   ((() .''
+          _____ //,/'' ___ ((( ', ___
+                           ((  )
+                            / /
+                          _/,/'
+                        /,/,
+
+    "
   };
 
   {
@@ -846,6 +964,23 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Dian Wei, lose 1 resource";
     abilities = dian_wei_funct;
     card_type = "Soldier";
+    ascii_art = "\n\n
+                  _             _
+             //             \\
+            /'               `\
+                 /,'     ..-..     `.\
+                 /,'   .''     ``.   `.\
+                 /,'   :   .---.   :   `.\
+                 I I   :  .'\\   /`.  :   I I
+        I b__:   . .`~'. .   :__d I
+        I p~~:   . `._.' .   :~~q I
+        I I   :   ./   \\.   :   I I
+         \\`.   :   `---'   :   ,'/
+          \\`.   `..     ..'   ,'/
+           \\`.     ``~''     ,'/
+            \\`               '/    - mfj
+             \\             //
+              ~             ~'"
   };
 
   {
@@ -858,6 +993,20 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Wei Polluter each other player loses 1 resource";
     abilities = wei_polluter_funct;
     card_type = "Soldier";
+    ascii_art = "\n\n
+
+     (\\-'````'-/)
+     //^\\    /^\\
+    ;/ ~_\\  /_~ \\;
+    |  / \\// \\  |
+   (,  \\0/  \\0/  ,)
+    |   /    \\   |
+    | (_\\.__./_) |
+     \\ \\v-..-v/ /
+jgs   \\ `====' /
+       `\\\\///'
+        '\\//'
+          \\/"
   };
 
   {
@@ -870,6 +1019,17 @@ Dragon, Zhuge Liang";
     card_text = "No Abilities";
     abilities = vanilla;
     card_type = "Solider";
+    ascii_art = "\n\n
+              |    |    |
+             )_)  )_)  )_)
+            )___))___))___)\\
+           )____)____)_____)\\
+         _____|____|____|____\\\\__
+---------\\                   /---------
+  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^
+    ^^^^      ^^^^     ^^^    ^^
+         ^^^^      ^^^
+    "
   };
 
   {
@@ -882,6 +1042,28 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Wu Recruits, increase your maximum resources by 1";
     abilities = wu_scout_funct;
     card_type = "Soldier";
+    ascii_art = "\n\n
+
+||                          ||
+||                          ||
+||                          ||
+||                          ||
+||                          ||
+||           ____           ||
+||         .''''''.         ||
+||        /   __   \\        ||
+||\\__..-':   /\\/\\   :'-..__/||
+||=__ =|='  |-()-|  '=|= __=||
+||/  ''-.:   \\/\\/   :.-''  \\||
+||        \\   ''   /        ||
+||         `.____.'         ||
+||                          ||
+||                          ||
+||                          ||
+||                          ||
+||                          ||
+||           tre            ||
+    "
   };
 
   {
@@ -894,6 +1076,33 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Lu Meng, gain 0, 1 or 2 resource, chosen at random";
     abilities = lu_meng_funct;
     card_type = "Soldier";
+    ascii_art = "\n\n
+          _                       _
+         | |                     | |
+         | |                     | |
+         | |                     | |
+         | |                     | |
+         | |      _ .---. _      | |
+         | |     r.'\\   /'.Y    | |    - Zeus Simeoni
+         | b__---|| .'^'. ||---__d |
+         | p''---|| '._.' ||---''q |
+         | |     \\ ./   \\. /   | |
+         | |      \\ '-,-' /     | |
+         | |       `\\___/`      | |
+         | |        (  \\)       | |
+         |_|         \\_/        |_|
+                     / \
+                 |\\|
+                     /\\
+                    |\\ \\|
+                    /\\ \
+                 |\\ \\ |
+                    \\ \\/
+                     \\/
+                      V
+
+
+    "
   };
 
   {
@@ -906,6 +1115,30 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Lady Sun, if you have Liu Bei, gain a 3 Shu   \n Footsolider tokens";
     abilities = lady_sun_funct;
     card_type = "Solider";
+    ascii_art = "\n\n
+    |.----------------------.|
+ ||                      ||
+ ||       ______         ||
+ ||     .;;;;;;;;.       ||
+ ||    /;;;;;;;;;;;\\     ||
+ ||   /;/`    `-;;;;; . .||
+ ||   |;|__  __  \\;;;|   ||
+ ||.-.|;| e`/e`  |;;;|   ||
+ ||   |;|  |     |;;;|'--||
+ ||   |;|  '-    |;;;|   ||
+ ||   |;;\\ --'  /|;;;|   ||
+ ||   |;;;;;---'\\|;;;|   ||
+ ||   |;;;;|     |;;;|   ||
+ ||   |;;.-'     |;;;|   ||
+ ||'--|/`        |;;;|--.||
+ ||;;;;    .     ;;;;.\\;;||
+ ||;;;;;-.;_    /.-;;;;;;||
+ ||;;;;;;;;;;;;;;;;;;;;;;||
+ ||jgs;;;;;;;;;;;;;;;;;;;||
+ '------------------------'
+
+
+    "
   };
 
   {
@@ -918,6 +1151,14 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Lu Su, set your current resources to 4";
     abilities = lu_su_funct;
     card_type = "Soldier";
+    ascii_art = "\n\n
+      _________________.---.______
+ (_(______________(_o o_(____()
+              .___.'. .'.___.
+              \\ o    Y    o /
+               \\ \\__   __/ /
+                '.__'-'__.'
+                "
   };
 
   {
@@ -930,6 +1171,26 @@ Dragon, Zhuge Liang";
     card_text = "Gain power equal to your resources";
     abilities = wu_anthem_funct;
     card_type = "Spell";
+    ascii_art = "\n\n
+   __
+  <__>
+   ||____________________________
+   ||######################JGS###|
+   ||############################|
+   ||############################|
+   ||############################|
+   ||############################|
+   ||::::::::::::::::::::::::::::|
+   ||::::::::::::::::::::::::::::|
+   ||::::::::::::::::::::::::::::|
+   ||::::::::::::::::::::::::::::|
+   ||::::::::::::::::::::::::::::|
+   ||~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   ||
+   ||
+   ||
+   ||
+    "
   };
 
   {
@@ -942,6 +1203,25 @@ Dragon, Zhuge Liang";
     card_text = "No Abiitities";
     abilities = vanilla;
     card_type = "Soldier";
+    ascii_art = "\n\n
+
+
+                              /       /
+                           .'<_.-._.'<
+                          /           \\      .^.
+        ._               |  -+- -+-    |    (_|_)
+     r- |\\                \\   /       /      //
+   /\\ \\  :                \\  -=-    /       \\
+    `. \\.'           ___.__`..;._.-'---...  //
+      ``\\      __.--''        `;'     __   `-.
+        /\\.--''      __.,              ''-.  '.
+        ;=r    __.---''   | `__    __'   / .'  .'
+        '=/\\''           \\             .'  .'
+            \\             |  __ __    /   |
+             \\            |  -- --   //`'`'
+              \\           |  -- --  ' | //
+               \\          |    .      |//
+    "
   };
 
   {
@@ -954,6 +1234,31 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Tiago Chan, use the ability of the top card of your deck";
     abilities = tiago_chan_funct;
     card_type = "Soldier";
+    ascii_art = "
+                         \\'/
+                    -= * =-
+                .-'-. / #,_
+               / /\\_ \\  `#|\
+              / /')'\\ \\  /#/
+             (  \\ = /  )/\\/#
+              )  ) (  (/  \
+             (_.;`'`;._)  |
+            / (  \\|/  )  |
+           /  /\\-'^'-/\\   |
+          |  \\| )=@=(  \\_/
+          |  \\/     \
+          | /\\ \\      ;
+          \\(// /'     |
+             \\/       |
+              |     / /
+              | ___/\\_\
+              |/ / \\ \\|
+             / | | | | \
+             \\_|/   \\|_/
+         jgs  / \\`-'/ \
+              `-'   '-`
+
+    "
   };
 
   {
@@ -966,6 +1271,20 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Lu Zuishen of the Drunken Fist, flip a coin \n if that coin was tails discard Lu Zuishen";
     abilities = lu_da_funct;
     card_type = "Soldier";
+    ascii_art = "\n\n
+
+  .----.-----.-----.-----.
+ /      \\     \\     \\     \
+                 |  \\/    |     |   __L_____L__
+|   |    |     |  (           \
+                 |    \\___/    /    \\______/    |
+|        \\___/\\___/\\___/       |
+ \\      \\     /               /
+  |                        __/
+   \\_                   __/
+    |        |         |
+    |                  |
+    |                  |"
   };
 
   {
@@ -978,6 +1297,29 @@ Dragon, Zhuge Liang";
     card_text = "When you draft Hassan of the Hundred Faces, add a copy of the top \n card of your deck to your deck";
     abilities = hassan_funct;
     card_type = "Soldier";
+    ascii_art = "\n\n
+
+
+                  *   '''`````'''
+              *
+          *
+        *           ..i'             q.
+       *         .poj;                \\*.
+       .         oKPO                   THk
+     .k        {HHk`                    THH,
+      dH,       ;YJH.                     YHHk
+    {HHk       :lHHk                     jHHH}
+      THHk      `NJHH,                   .HHHl'
+      THHk,     lHHHHk                 jHHHHP
+        THHHi:,  `GHHHHH,.            .'HHHHH
+        `THHHHHHi\\WHHHHHkoo....ooooojHHHHHHF
+          `*THHHH`THHHHHHHHHHHHHHHHHHHHHHHHl
+           `*THHHYHHHHHHHHHHHHHHHHHHHHHHHI
+                 `*THHYHHHHHHHHHHHHHHHHHHHHHH}
+                  `*THHHHHHHHHHHHHHHHHHHHHH}
+                      `THHHHHHHHHHHHHHHHHHHP
+                        `THHHHHHHHHHHHHHHHHH|  Snafu
+    "
   };
 
   {
@@ -990,6 +1332,32 @@ Dragon, Zhuge Liang";
     card_text = "If your deck contains a card of Shu, Wu and Wei, add a 12 power \n token into your deck";
     abilities = atilla_funct;
     card_type = "Soldier";
+    ascii_art = "\n\n
+
+                             .
+                            / \
+                 _\\ /_
+                 .     .  (,'v`.)  .     .
+                 \\)   ( )  ,' `.  ( )   (/
+                  \\`. / `-'     `-' \\ ,'/
+                   : '    _______    ' :
+                   |  _,-'  ,-.  `-._  |
+                   |,' ( )__`-'__( ) `.|
+                   (|,-,'-._   _.-`.-.|)
+                   /  /<( o)> <( o)>\\  \
+                 :  :     | |     :  :
+                   |  |     ; :     |  |
+                   |  |    (.-.)    |  |
+                   |  |  ,' ___ `.  |  |
+                   ;  |)/ ,'---'. \\(|  :
+               _,-/   |/\\(       )/\\|   \\-._
+         _..--'.-(    |   `-'''-'   |    )-.`--.._
+                  `.  ;`._________,':  ,'
+                 ,' `/               \'`.
+                      `------.------'          SSt
+                             '
+
+"
   };
 
   {
@@ -1003,17 +1371,34 @@ Dragon, Zhuge Liang";
 is 56 then destroy all your opponents decks. \n if the result is 1, discard your own deck";
     abilities = david_gries_funct;
     card_type = "Solider";
+    ascii_art = "\n\n
+
+              _.-'''''-._
+             / .--.....-.\
+                 / /          \\
+            ||           ||
+            ||  .--.  .--|/
+            /`    .  \\ . |
+            \\_       _)  |
+             |    ,____, ;
+             | \\   `--' /
+          _./\\  '.____.'
+       _.:::| `\\      |\\:._
+     .::::::::`\\ '.   / /::::.
+    /jgs::::::::|/::\\/:\\|:::::\\
+
+    "
   }
 ]
 
 (**************************************************************************************)
 (****************************** State Functions ****************************************
-************************ RNG for cards, Update States,  ....... ********************)
+ ************************ RNG for cards, Update States,  ....... ********************)
 (**************************************************************************************)
 
 (* [contains e lst] returns true if e is an element of lst, false otherwise
  * requires: [e] is type 'a -> [lst] is a 'a list
- *)
+*)
 
 let rec contains e lst =
   match lst with
@@ -1030,19 +1415,19 @@ let rec contains e lst =
 let rec generate_nums num bound lst accum =
   if List.length lst <= 3 then lst
   else
-    if (List.length accum < num) then
-        let new_num = Random.int bound in
-        if (contains new_num accum) then
-          generate_nums num bound lst accum
-        else
-          if contains new_num lst then
-            generate_nums num bound lst (new_num :: accum)
-          else generate_nums num bound lst accum
-    else accum
+  if (List.length accum < num) then
+    let new_num = Random.int bound in
+    if (contains new_num accum) then
+      generate_nums num bound lst accum
+    else
+    if contains new_num lst then
+      generate_nums num bound lst (new_num :: accum)
+    else generate_nums num bound lst accum
+  else accum
 
 (* [refresh_available_picks s] returns a card list that corresponds
    to the next set of randomised available picks *)
-(*requires : st is a valid state*)
+
 let refresh_available_picks st =
   let rp = st.recruit_pool in
   let n = List.length rp in
@@ -1133,10 +1518,10 @@ let draw_card (c: cardID) (st: state) =
   let new_substate_2 = card_function new_substate_1 c cardList in
   {new_substate_2 with card_drawn = Some c}
 
-  (*let ps = return_player_state st (st.current_player) in
+(*let ps = return_player_state st (st.current_player) in
   let new_ps = (add_card c ps) in
   let changed_ps = change_player_state remove_rec_pool new_ps in
-    { changed_ps with card_drawn = Some c }*)
+  { changed_ps with card_drawn = Some c }*)
 
 (* [init_player_states n h accum] returns a list of playerstates,
    where n is the number of playerstates, h is the number of human
@@ -1146,7 +1531,7 @@ let rec init_player_states n h accum =
   match n with
   | 0 -> accum
   | _ -> begin
-    match h with
+      match h with
       | 0 -> let new_ps = (n, (init_player_state n false)) in
         init_player_states (n-1) 0 (new_ps :: accum)
       | _ -> let new_ps = (n, init_player_state n true) in
@@ -1165,8 +1550,8 @@ let rec i_to_j i j accum =
 
 let init_state i h =
   {
-     (* description = "";
-        sec_description = "" :: []; *)
+    (* description = "";
+       sec_description = "" :: []; *)
     total_players = i;
     card_drawn = None;
     current_player = 1;
@@ -1196,7 +1581,7 @@ let increase_resource st =
   {st with player_states = new_player_states}
 
 (* let change_description st str =
-  { st with description = str }
+   { st with description = str }
 
-let change_sec_description st str =
-  { st with sec_description = str } *)
+   let change_sec_description st str =
+   { st with sec_description = str } *)

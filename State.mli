@@ -11,12 +11,16 @@
 
 open PlayerState
 
+(* type playerID = int *)
 type cardID = int
 
 type state = {
+  (* description: string;
+     sec_description: string list; *)
   total_players: int;
   card_drawn: cardID option;
   current_player: int;
+  (* current_player_id: playerID; *)
   recruit_pool: cardID list;
   available_picks: cardID list;
   player_states: (int * player_state) list;
@@ -32,6 +36,7 @@ type card = {
   card_text : string;
   abilities : state -> int -> card list-> state;
   card_type : string;
+  ascii_art: string;
 }
 
 
@@ -44,6 +49,16 @@ val change_next_player: state -> state
  * Use case: skip function
  * requires: p <= state.total_players *)
 val change_to_player: state -> int -> state
+
+
+(*--------------- KIV -------------------------*)
+(* [change_description st s] returns a new state with
+   description s *)
+(* val change_description: state -> string -> state *)
+(* [change_sec_description st s] returns a new state with
+   secondary description s *)
+(* val change_sec_description: state -> string list-> state *)
+(*--------------- KIV -------------------------*)
 
 
 
@@ -75,11 +90,8 @@ val init_state: int -> int -> state
 (*id_to_card_lst maps a list of card ids to their respective cards*)
 val id_to_card_lst: state -> cardID list -> card list
 
-(*find_card id takes a card id and maps to the corresponding card with
-card_id = i *)
+(*find_card takes a card id and maps to a card*)
 val lookup_card : int -> card
 
-(*increase_resource s takes state s, increases the max resources of that
-  player by 1, and returns the new state with the modified player still
-  as the active player *)
+(*Skip turn is used when to skip turn*)
 val increase_resource : state -> state
