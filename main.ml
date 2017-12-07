@@ -9,11 +9,6 @@ open State
 open PlayerState
 open Ai
 
-(*********************************************************)
-(*     Real Functions                                    *)
-(*********************************************************)
-
-
 let rec conv_int str =
   let l_str = String.lowercase_ascii str in
   if l_str = "1" || l_str = "one" then 1
@@ -521,7 +516,36 @@ Main Menu
                       menu () ))
 and
 
-init_tutorial () = ()
+init_tutorial () =
+  ANSITerminal.(print_string [red] "
+    In the final years of the Eastern Han Dynesty ....
+
+
+
+
+
+    You are the commander of an army! Build your army and lead your clan to \
+    victory! The first command you should be familiar with is 'help.' Go on! \
+    Type it and see what happens:\n");
+
+    let rec help_tut () =
+      match read_line () with
+        | line -> if String.trim (String.lowercase_ascii line) <> "help"
+                  then (ANSITerminal.(print_string [red] "That's not right, \
+                        type in 'help'! Try again\n"); help_tut () )
+                  else (ANSITerminal.(print_string [red]
+                                      "this is the help menu. You can use play \
+                                       with these commands. you can also type \
+                                       'quit' to quit to the game, 'menu' to \
+                                       quit the game and return to the menu. \
+                                       'score' to check the score, and 'deck' \
+                                       to view your deck.\n"))
+    in help_tut ();
+    print_string "\n\n";
+    ANSITerminal.(print_string [red] "Congrats! You did it! That's right. You \
+          learned two things here. First that's exactly how you communicate \
+          with the
+      ")
 
 
 
@@ -558,7 +582,7 @@ ANSITerminal.(print_string [white; on_red]
   match read_line () with _ -> menu ()
 
 let main () =
-  ANSITerminal.(resize 100 50; erase Screen; resize 115 50);
+  ANSITerminal.(resize 150 50; erase Screen; resize 115 50);
   ANSITerminal.(print_string [red] "
                                                                                     ,dM
                                                                                     dMMP
