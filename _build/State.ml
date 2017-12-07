@@ -1012,7 +1012,7 @@ let init_state i h =
     current_player = 1;
     (* current_player_id = "Player 1"; *)
     recruit_pool = i_to_j 0 24 [];
-    available_picks = generate_nums 3 24 (i_to_j 0 24 []) [];
+    available_picks = generate_nums 3 24 [];
     player_states = init_player_states i h [];
   }
 
