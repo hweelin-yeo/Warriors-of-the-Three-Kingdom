@@ -113,48 +113,27 @@ and
                              match read_line () with line -> if
                                (String.lowercase_ascii line) = "y" ||
                                (String.lowercase_ascii line) = "yes"
-                               then menu () else if
+                               then ()
+                               else if
                                  (String.lowercase_ascii line) = "n" ||
                                  (String.lowercase_ascii line) = "no"
                                then game st
                                else (print_endline "please answer y \
                                                     or n"; game_commands "quit" st))
+      (*
 
-
-  else if str = "quit" then (print_endline "are you sure you want to quit? You \
+  else if str = "quit" then print_endline "are you sure you want to quit? You \
                                             will lose all your progress and return \
                                             to the menu [Y/N]";
-                             match read_line () with line -> (if
-                                                               (String.lowercase_ascii line) = "y" ||
-                                                               (String.lowercase_ascii line) = "yes"
-                                                              then (ANSITerminal.(set_autoreset true); menu () )
-
-                                                              else if (String.lowercase_ascii
-                                                                         line) = "n" ||
-                                                                      (String.lowercase_ascii line) = "no"
-                                                              then game st
-                                                              else (print_endline "please answer y \
-                                                                                   or n"; game_commands "quit" st)) )
+                                            match read_line () with line -> ( if (String.lowercase_ascii line) = "y" ||(String.lowercase_ascii line) = "yes"
+                                                                then (ANSITerminal.(set_autoreset true); menu ())
+                                                            else if (String.lowercase_ascii line) = "n" || (String.lowercase_ascii line) = "no"
+                                                              then  game st
+                                                              else print_endline "please answer y or n"; game_commands "quit" st ) *)
 
   else if str = "describe 1" then (
     let current_cards = id_to_card_lst st st.available_picks in
     match current_cards with
-    | h1 :: h2 :: h3 :: t ->
-      print_endline "";
-      print_endline ("flavor: " ^ h1.flavor);
-      print_endline ("abilities: " ^ h1.card_text);
-      print_endline ("cost: " ^ (string_of_int h1.cost));
-      print_endline ("power: " ^ (string_of_int h1.power));
-      print_endline "";
-      game st;
-    | h1 :: h2 :: t ->
-      print_endline "";
-      print_endline ("flavor: " ^ h1.flavor);
-      print_endline ("abilities: " ^ h1.card_text);
-      print_endline ("cost: " ^ (string_of_int h1.cost));
-      print_endline ("power: " ^ (string_of_int h1.power));
-      print_endline "";
-      game st;
     | h :: t ->
       print_endline "";
       print_endline ("flavor: " ^ h.flavor);
@@ -168,14 +147,6 @@ and
   else if str = "describe 2" then (
     let current_cards = id_to_card_lst st st.available_picks in
     match current_cards with
-    | h1 :: h2 :: h3 :: t ->
-      print_endline "";
-      print_endline ("flavor: " ^ h2.flavor);
-      print_endline ("abilities: " ^ h2.card_text);
-      print_endline ("cost: " ^ (string_of_int h2.cost));
-      print_endline ("power: " ^ (string_of_int h2.power));
-      print_endline "";
-      game st;
     | h1 :: h2 :: t ->
       print_endline "";
       print_endline ("flavor: " ^ h2.flavor);
