@@ -1,0 +1,185 @@
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Runner: processes
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Chooser: simple
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration suite_name = "AI test suite"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration cache_filename = "/Users/yeohweelin/cs3110FinalProject/_build/oUnit-$(suite_name).cache"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration display = "true"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration results_style_1_X = "false"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration verbose = "false"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration health_check_interval = "1."
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration testdata_dir = "none"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration chooser = "simple"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration output_html_dir = "none"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration processes_kill_period = "5."
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration runner = "processes"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration shards = "2"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration processes_grace_period = "5."
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration log_encoding = "utf-8"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration output_junit_file = "none"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Configuration output_file = "/Users/yeohweelin/cs3110FinalProject/_build/oUnit-$(suite_name)-$(shard_id).log"
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Using 2 workers maximum.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Starting worker number dhcp-rhodes-1235.redrover.cornell.edu#01.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Worker dhcp-rhodes-1235.redrover.cornell.edu#01 started.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Starting worker number dhcp-rhodes-1235.redrover.cornell.edu#02.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Worker dhcp-rhodes-1235.redrover.cornell.edu#02 started.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:1:find_index_2, AI test suite:0:find_index_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Start test AI test suite:0:find_index_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:1:find_index_2, AI test suite:0:find_index_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Test AI test suite:0:find_index_1 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:1:find_index_2, AI test suite:0:find_index_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: End test AI test suite:0:find_index_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:1:find_index_2, AI test suite:0:find_index_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:2:find_index_3, AI test suite:1:find_index_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Start test AI test suite:2:find_index_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:2:find_index_3, AI test suite:1:find_index_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Start test AI test suite:1:find_index_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:2:find_index_3, AI test suite:1:find_index_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Test AI test suite:2:find_index_3 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:2:find_index_3, AI test suite:1:find_index_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Test AI test suite:1:find_index_2 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: End test AI test suite:2:find_index_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:2:find_index_3, AI test suite:1:find_index_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: End test AI test suite:1:find_index_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:3:medium_1, AI test suite:1:find_index_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:4:medium_2, AI test suite:3:medium_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Start test AI test suite:4:medium_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:4:medium_2, AI test suite:3:medium_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Start test AI test suite:3:medium_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Test AI test suite:4:medium_2 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:4:medium_2, AI test suite:3:medium_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Test AI test suite:3:medium_1 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: End test AI test suite:4:medium_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:4:medium_2, AI test suite:3:medium_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: End test AI test suite:3:medium_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:5:medium_3, AI test suite:3:medium_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:6:medium_4, AI test suite:5:medium_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Start test AI test suite:5:medium_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Start test AI test suite:6:medium_4.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:6:medium_4, AI test suite:5:medium_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Test AI test suite:5:medium_3 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Test AI test suite:6:medium_4 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:6:medium_4, AI test suite:5:medium_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: End test AI test suite:5:medium_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: End test AI test suite:6:medium_4.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:6:medium_4, AI test suite:5:medium_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:8:medium_6, AI test suite:7:medium_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Start test AI test suite:8:medium_6.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:8:medium_6, AI test suite:7:medium_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Start test AI test suite:7:medium_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:8:medium_6, AI test suite:7:medium_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Test AI test suite:7:medium_5 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Test AI test suite:8:medium_6 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:8:medium_6, AI test suite:7:medium_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: End test AI test suite:7:medium_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: End test AI test suite:8:medium_6.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:8:medium_6, AI test suite:7:medium_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:10:medium_8, AI test suite:9:medium_7.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Start test AI test suite:9:medium_7.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:10:medium_8, AI test suite:9:medium_7.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Start test AI test suite:10:medium_8.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:10:medium_8, AI test suite:9:medium_7.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Test AI test suite:9:medium_7 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:10:medium_8, AI test suite:9:medium_7.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: End test AI test suite:9:medium_7.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Test AI test suite:10:medium_8 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:10:medium_8, AI test suite:9:medium_7.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: End test AI test suite:10:medium_8.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:11:medium_9, AI test suite:10:medium_8.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Start test AI test suite:11:medium_9.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:12:hard_1, AI test suite:11:medium_9.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Start test AI test suite:12:hard_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:12:hard_1, AI test suite:11:medium_9.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Test AI test suite:11:medium_9 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:12:hard_1, AI test suite:11:medium_9.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: End test AI test suite:11:medium_9.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:12:hard_1, AI test suite:11:medium_9.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:13:hard_2, AI test suite:12:hard_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Start test AI test suite:13:hard_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:13:hard_2, AI test suite:12:hard_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Test AI test suite:12:hard_1 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Test AI test suite:13:hard_2 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:13:hard_2, AI test suite:12:hard_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: End test AI test suite:12:hard_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: End test AI test suite:13:hard_2.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:13:hard_2, AI test suite:12:hard_1.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:15:hard_4, AI test suite:14:hard_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Start test AI test suite:14:hard_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Start test AI test suite:15:hard_4.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:15:hard_4, AI test suite:14:hard_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Test AI test suite:15:hard_4 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:15:hard_4, AI test suite:14:hard_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Test AI test suite:14:hard_3 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: End test AI test suite:15:hard_4.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:15:hard_4, AI test suite:14:hard_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: End test AI test suite:14:hard_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:16:hard_5, AI test suite:14:hard_3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:17:hard_6, AI test suite:16:hard_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Start test AI test suite:16:hard_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Start test AI test suite:17:hard_6.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:17:hard_6, AI test suite:16:hard_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Test AI test suite:16:hard_5 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:17:hard_6, AI test suite:16:hard_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: End test AI test suite:16:hard_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:17:hard_6, AI test suite:16:hard_5.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Test AI test suite:17:hard_6 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:18:hard_7_xhd, AI test suite:17:hard_6.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: End test AI test suite:17:hard_6.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:18:hard_7_xhd, AI test suite:17:hard_6.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Start test AI test suite:18:hard_7_xhd.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:19:hard_8_lt3, AI test suite:18:hard_7_xhd.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Start test AI test suite:19:hard_8_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:19:hard_8_lt3, AI test suite:18:hard_7_xhd.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: Test AI test suite:18:hard_7_xhd is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Test AI test suite:19:hard_8_lt3 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:19:hard_8_lt3, AI test suite:18:hard_7_xhd.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#01 I: End test AI test suite:18:hard_7_xhd.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: End test AI test suite:19:hard_8_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 2 tests running: AI test suite:19:hard_8_lt3, AI test suite:18:hard_7_xhd.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Still 1 tests running : AI test suite:20:hard_9_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 1 tests running: AI test suite:20:hard_9_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Start test AI test suite:20:hard_9_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Still 1 tests running : AI test suite:20:hard_9_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 1 tests running: AI test suite:20:hard_9_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: Test AI test suite:20:hard_9_lt3 is successful.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Still 1 tests running : AI test suite:20:hard_9_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 1 tests running: AI test suite:20:hard_9_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#02 I: End test AI test suite:20:hard_9_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Still 1 tests running : AI test suite:20:hard_9_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 1 tests running: AI test suite:20:hard_9_lt3.
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 0 tests running: .
+2017-12-07T06:27:51+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Worker dhcp-rhodes-1235.redrover.cornell.edu#01 has ended.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: 0 tests running: .
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Worker dhcp-rhodes-1235.redrover.cornell.edu#02 has ended.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Used 2 worker during test execution.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Run 11 tests with shard dhcp-rhodes-1235.redrover.cornell.edu#02.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Run 10 tests with shard dhcp-rhodes-1235.redrover.cornell.edu#01.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: ==============
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Summary:
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:20:hard_9_lt3 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:19:hard_8_lt3 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:18:hard_7_xhd is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:17:hard_6 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:16:hard_5 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:14:hard_3 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:15:hard_4 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:13:hard_2 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:12:hard_1 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:11:medium_9 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:10:medium_8 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:9:medium_7 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:8:medium_6 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:7:medium_5 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:6:medium_4 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:5:medium_3 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:3:medium_1 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:4:medium_2 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:1:find_index_2 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:2:find_index_3 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Test AI test suite:0:find_index_1 is successful.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Ran: 21 tests in: 0.15 seconds.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Cases: 21.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Tried: 21.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Errors: 0.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Failures: 0.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Skip: 0.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Todo: 0.
+2017-12-07T06:27:52+00:00 dhcp-rhodes-1235.redrover.cornell.edu#00 I: Timeout: 0.
