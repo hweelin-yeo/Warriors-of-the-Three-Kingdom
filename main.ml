@@ -72,7 +72,7 @@ let rec end_game st =
 ▐░█▄▄▄▄▄▄▄█░▐░▌       ▐░▐░▌       ▐░▐░█▄▄▄▄▄▄▄▄▄      ▐░█▄▄▄▄▄▄▄█░▌      ▐░▐░▌      ▐░█▄▄▄▄▄▄▄▄▄▐░▌      ▐░▌ ▄
 ▐░░░░░░░░░░░▐░▌       ▐░▐░▌       ▐░▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌       ▐░▌       ▐░░░░░░░░░░░▐░▌       ▐░▐░▌
  ▀▀▀▀▀▀▀▀▀▀▀ ▀         ▀ ▀         ▀ ▀▀▀▀▀▀▀▀▀▀▀       ▀▀▀▀▀▀▀▀▀▀▀         ▀         ▀▀▀▀▀▀▀▀▀▀▀ ▀         ▀
-  ";
+";
   let winner_tuple = find_greatest (st.player_states) (0, 0) in
   print_endline ("Winner is : Player " ^ (string_of_int (fst winner_tuple)));
   print_endline ("Score is : " ^ (string_of_int (snd winner_tuple)));
@@ -100,14 +100,17 @@ and
 and
 
   game_commands str st =
-  if str = "help" then (print_endline "this is the help menu. You can use play \
-                                       with these commands. you can also type \
-                                       'quit' to quit to the game, 'menu' to \
-                                       quit the game and return to the menu. \
-                                       'score' to check the score, and 'deck' \
-                                       to view your deck.\n" ; game st )
+  if str = "help" then (print_endline "\nThis is the help menu. You can use play \
+                                       by typing \"take 1\" to take option 1, \"take 2\" \
+                                       to take option 2 \"take 3\" to take \
+                                       option 3, \"skip\" to skip. You can find out more \
+                                       about the cards by typing describe followed by the \
+                                       card number (ie describe 1). You can look at other player's decks \
+                                       by typing decsribe followed by the player name to see their decks \
+                                       (ie describe player 1). You can also type just describe to see the \
+                                       state of the game. Type quit to return to the menu.\n" ; game st )
 
-  else if str = "quit" || str = "menu" then (print_endline "are you sure you want to go to the \
+  else if str = "quit" || str = "menu" then (print_endline "Are You sure You want to go to the \
                                             menu? You will lose all your progre\
                                             ss [Y/N]";
                              match read_line () with line -> if
@@ -173,41 +176,41 @@ and
       game st;
     | _ -> game st)
 
-  else if str = "describe state" then (
-    print_endline "";
-    print_endline ("number of players : " ^
+  else if str = "describe state" || str = "describe" || str = "describe game" then (
+    print_endline "\nState of the Game\n_______________________________________\n";
+    print_endline ("Number of Players : " ^
                    (string_of_int (List.length (st.player_states))));
-    print_endline ("cards remaining : " ^
+    print_endline ("Cards Remaining : " ^
                    (string_of_int (List.length (st.recruit_pool))));
-    print_endline ("player_scores: ");
+    print_endline ("Player_Scores: ");
     print_player_and_score st.player_states;
     print_endline "";
     game st
   )
 
   else if str = "describe player 1" then (
-    print_endline "";
+    print_endline "\nPlayer 1\n_______________________________________\n";
     let player_1_state = return_player_state st 1 in
-    print_endline ("Player 1 score: " ^ (string_of_int player_1_state.player_score));
+    print_endline ("Player 1 Score: " ^ (string_of_int player_1_state.player_score));
     let player_1_deck = player_1_state.player_deck in
     let player_1_cards = id_to_card_lst st player_1_deck in
-    print_endline "Player 1 cards: ";
+    print_endline "Player 1 Cards: ";
     if (List.length player_1_cards = 0)
-    then print_endline "no cards"
+    then print_endline "No Cards"
     else
       print_card_list player_1_cards;
     print_endline "";
 
   )
   else if str = "describe player 2" then (
-    print_endline "";
+    print_endline "\nPlayer 2\n_______________________________________\n";
     let player_2_state = return_player_state st 2 in
     print_endline ("Player 2 score: " ^ (string_of_int player_2_state.player_score));
     let player_2_deck = player_2_state.player_deck in
     let player_2_cards = id_to_card_lst st player_2_deck in
     print_endline "Player 2 cards: ";
     if (List.length player_2_cards = 0)
-    then print_endline "no cards"
+    then print_endline "No Cards"
     else
       print_card_list player_2_cards;
     print_endline "";
@@ -215,14 +218,14 @@ and
   )
   else if str = "describe player 3" then (
     if(st.total_players > 2) then(
-      print_endline "";
+      print_endline "\nPlayer 3\n_______________________________________\n";
       let player_3_state = return_player_state st 3 in
       print_endline ("Player 3 score: " ^ (string_of_int player_3_state.player_score));
       let player_3_deck = player_3_state.player_deck in
       let player_3_cards = id_to_card_lst st player_3_deck in
       print_endline "Player 3 cards: ";
       if (List.length player_3_cards = 0)
-      then print_endline "no cards"
+      then print_endline "No Cards"
       else
         print_card_list player_3_cards;
       print_endline "";
@@ -236,14 +239,14 @@ and
 
   else if str = "describe player 4" then (
     if(st.total_players > 3) then(
-      print_endline "";
+      print_endline "\nPlayer 1\n_______________________________________\n";
       let player_4_state = return_player_state st 4 in
       print_endline ("Player 4 score: " ^ (string_of_int player_4_state.player_score));
       let player_4_deck = player_4_state.player_deck in
       let player_4_cards = id_to_card_lst st player_4_deck in
       print_endline "Player 4 cards: ";
       if (List.length player_4_cards = 0)
-      then print_endline "no cards"
+      then print_endline "No Cards"
       else
         print_card_list player_4_cards;
       print_endline "";
@@ -255,7 +258,7 @@ and
     game st
   )
 
-  else if str = "take 1" then (print_endline "Player picked option 1";
+  else if str = "take 1" then (print_endline "\nPlayer picked Option 1";
                                match st.available_picks with
                                | h1 :: t ->
                                  let inc_state = increase_resource st in
@@ -271,7 +274,7 @@ and
                                    else
                                  let substate_1 = draw_card h1 inc_state in
                                  let current_player_state = return_player_state substate_1 substate_1.current_player in
-                                 print_string "New player score = ";
+                                 print_string "New Player Score = ";
                                  print_endline (string_of_int current_player_state.player_score);
                                  (*Implement transition turn function*)
                                  let next_state = change_next_player substate_1 in
@@ -279,7 +282,7 @@ and
                                | _ -> print_endline "Option not available";
                                  game st (*Other methods not implemented yet*))
 
-  else if str = "take 2" then (print_endline "Player picked option 2";
+  else if str = "take 2" then (print_endline "\nPlayer picked Option 2";
                                match st.available_picks with
                                | h1 :: h2 :: t ->
                                  let inc_state = increase_resource st in
@@ -295,7 +298,7 @@ and
                                  else
                                    let substate_1 = draw_card h2 inc_state in
                                    let current_player_state = return_player_state substate_1 substate_1.current_player in
-                                   print_string "New player score = ";
+                                   print_string "New Player Score = ";
                                    print_endline (string_of_int current_player_state.player_score);
                                    (*Implement transition turn function*)
                                    let next_state = change_next_player substate_1 in
@@ -303,7 +306,7 @@ and
                                | _ -> print_endline "Option not available";
                                  game st (*Other methods not implemented yet*))
 
-  else if str = "take 3" then (print_endline "Player picked option 2";
+  else if str = "take 3" then (print_endline "\nPlayer picked Option 2";
                                match st.available_picks with
                                | h1 :: h2 :: h3 :: t ->
                                  let inc_state = increase_resource st in
@@ -344,15 +347,17 @@ and
   (*let testValue = List.map (fun x -> print_string (string_of_int x ^ " ")) st.available_picks in*)
   if ((List.assoc st.current_player st.player_states).player_is_human = true) then (
     let current_player_state = (List.assoc st.current_player st.player_states) in
-    print_endline ("Current player resources: " ^ (string_of_int current_player_state.player_resource));
     let cards_remaining = List.length st.recruit_pool in
-    print_endline ("Cards left in recruit pool: " ^ (string_of_int cards_remaining));
     print_endline (
-      "\n\nPlayer " ^ string_of_int st.current_player ^"'s Turn:
-******************************************************************************************************************
+      "\nPlayer " ^ string_of_int st.current_player ^"'s Turn:" ^
+"                                              Score: " ^ string_of_int current_player_state.player_score ^
+                                                  "     Resources: " ^ (string_of_int current_player_state.player_resource)
+                                                                            ^ "     Cards Remaining: " ^ (string_of_int cards_remaining) ^
+ "
+***************************************************************************************************************
     ");
     match (id_to_card_lst st st.available_picks) with
-    | h1 :: h2 :: h3 :: t -> print_string ("\n[1] " ^ h1.card_name);
+    | h1 :: h2 :: h3 :: t -> print_string ("[1] " ^ h1.card_name);
       print_string "\n\n";
       print_string ("[2] " ^ h2.card_name);
       print_string "\n\n";
@@ -503,7 +508,7 @@ and
     Only the future will tell, in Heroes of the Three Kingdoms.
 
 
-    You are the commander of an army! Build your army and lead your clan to \
+    You are the a warlord! Build your army and lead your clan to \
     victory! The first command you should be familiar with is 'help.' Go on! \
     Type it and see what happens:\n");
 
@@ -513,12 +518,15 @@ and
       then (ANSITerminal.(print_string [red] "That's not right, \
                                               type in 'help'! Try again\n"); help_tut () )
       else (ANSITerminal.(print_string [red]
-                            "this is the help menu. You can use play \
-                             with these commands. you can also type \
-                             'quit' to quit to the game, 'menu' to \
-                             quit the game and return to the menu. \
-                             'score' to check the score, and 'deck' \
-                             to view your deck.\n"))
+                            "\nThis is the help menu. You can use play \
+                                       by typing \"take 1\" to take option 1, \"take 2\" \
+                                       to take option 2 \"take 3\" to take \
+                                       option 3, \"skip\" to skip. You can find out more \
+                                       about the cards by typing describe followed by the \
+                                       card number (ie describe 1). You can look at other player's decks \
+                                       by typing decsribe followed by the player name to see their decks \
+                                       (ie describe player 1). You can also type just describe to see the \
+                                       state of the game. Type quit to return to the menu.\n"))
   in help_tut ();
   print_string "\n\n";
   ANSITerminal.(print_string [red] "Congrats! You did it! That's right. You \
@@ -532,6 +540,26 @@ and
           Now that you have a list of all the possible commands, let's look at \
                                     what the game looks like.
       ")
+
+  ANSITerminal.(print_string [red]
+                  "Press Enter to Continue                                                                        ");
+
+  print_string "\n";
+  match read_line () with _ -> menu ()
+
+  ANSITerminal.(print_string [red] "\n
+     Player 1's Turn:                                              Score: 1     Resources: 2     Cards Remaining: 22
+***************************************************************************************************************
+
+[1] Shu Recruiter
+
+[2] Lu Zuishen of the Drunken Fist
+
+[3] Xiahou Dun, The One-Eyed
+
+
+So from our help command, we need can
+    "
 
 
 
