@@ -125,11 +125,13 @@ and
 
   else if str = "take 1" then (print_endline "You picked option 1";
                                match st.available_picks with
-                               | h1 :: t ->
+                               | h1 :: h2 :: h3 :: t ->
                                  let inc_state = increase_resource st in
                                  let card_name = (lookup_card h1).card_name in
                                  print_string "You picked ";
                                  print_endline card_name;
+                                 print_endline ("card_id picked is " ^ (string_of_int h1));
+                                 print_endline ("all available cards are " ^ (string_of_int h1) ^ " " ^ (string_of_int h2) ^ " " ^ (string_of_int h3)); 
                                  let orig_player_state = return_player_state inc_state inc_state.current_player in
                                  let orig_player_resource = orig_player_state.player_resource in
                                  let selected_card = lookup_card h1 in
