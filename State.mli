@@ -75,14 +75,16 @@ val remove_card_recruit_pool: state -> cardID -> state
 
 val return_player_state: state -> int -> player_state
 
-(* [init_state i j] initialises the state. it takes in int i,
-   the number of players, and a json file for the recruit pool*)
+(* [init_state i h] initialises the state. it takes in [i],
+   the number of players, and [h], the number of human players *)
 val init_state: int -> int -> state
 
-(*id_to_card takes a card id int and returns the card object option associated with it.
-  The inputs are the card id and the card list that represents the card set*)
+(* [id_to_card id cl] takes a card id int and returns the card object option
+ * associated with it. The inputs are the card id and the card list
+ * that represents the card set
+ * requires: [id] is a cardID, [cl] is a card list *)
 
-val id_to_card: cardID -> card list -> card
+(* val id_to_card: cardID -> card list -> card *)
 
 (*id_to_card_lst maps a list of card ids to their respective cards*)
 val id_to_card_lst: state -> cardID list -> card list
