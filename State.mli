@@ -88,7 +88,7 @@ val id_to_card: cardID -> card list -> card
 val id_to_card_lst: state -> cardID list -> card list
 
 (*find_card takes a card id and maps to a card*)
-val find_card : int -> card
+val lookup_card : int -> card
 
 (*Skip turn is used when to skip turn*)
-val skip_turn_st : state -> state
+val increase_resource : state -> state

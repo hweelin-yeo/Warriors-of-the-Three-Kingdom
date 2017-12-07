@@ -35,13 +35,13 @@ type card = {
 (**************************************************************************************)
 
 
-(* [id_to_card id cl] takes a card id int and returns the card object option 
- * associated with it. The inputs are the card id and the card list 
+(* [id_to_card id cl] takes a card id int and returns the card object option
+ * associated with it. The inputs are the card id and the card list
  * that represents the card set *)
 
 let rec id_to_card (id : cardID) (cl : card list) =
   match cl with
-  | [] -> failwith "invalid cardID: should not happen" 
+  | [] -> failwith "invalid cardID: should not happen"
   | h :: t -> if (h.card_id = id) then h
     else id_to_card id t
 
@@ -869,21 +869,21 @@ let rec contains e lst =
   | [] -> false
   | h :: t -> if h = e then true else contains e t
 
-(* [generate_nums num bound lst accum] returns a list, l1, with [num] numbers 
+(* [generate_nums num bound lst accum] returns a list, l1, with [num] numbers
  * less than bound. Each element in l1 should be a member of lst. If lst has
  * 3 or fewer elements, it returns lst.
- * requires: [num] is an int, [bound] is an int, [lst] is an int list, 
+ * requires: [num] is an int, [bound] is an int, [lst] is an int list,
             [accum] is an int list.  *)
 
 let rec generate_nums num bound lst accum =
-  if List.length lst <= 3 then lst 
-  else 
+  if List.length lst <= 3 then lst
+  else
     if (List.length accum < num) then
         let new_num = Random.int bound in
-        if (contains new_num accum) then 
+        if (contains new_num accum) then
           generate_nums num bound lst accum
-        else 
-          if contains new_num lst then 
+        else
+          if contains new_num lst then
             generate_nums num bound lst (new_num :: accum)
           else generate_nums num bound lst accum
     else accum
@@ -900,7 +900,7 @@ let rec picks_from_index num_lst card_lst =
    to the next set of randomised available picks *)
 
 let refresh_available_picks st =
-  let rp = st.recruit_pool in 
+  let rp = st.recruit_pool in
   let n = List.length rp in
   picks_from_index (generate_nums 3 n rp []) (rp)
 
@@ -991,9 +991,9 @@ let rec init_player_states n h accum =
   | 0 -> accum
   | _ -> begin
     match h with
-      | 0 -> let new_ps = (n, (init_player_state n true)) in
+      | 0 -> let new_ps = (n, (init_player_state n false)) in
         init_player_states (n-1) 0 (new_ps :: accum)
-      | _ -> let new_ps = (n, init_player_state n false) in
+      | _ -> let new_ps = (n, init_player_state n true) in
         init_player_states (n-1) (h-1) (new_ps :: accum)
     end
 
@@ -1002,8 +1002,9 @@ let rec init_player_states n h accum =
 
 let rec i_to_j i j accum =
   if i = j then accum
-  else i_to_j i (j-1) (j-1 :: accum)  
+  else i_to_j i (j-1) (j-1 :: accum)
 
+(*i is the number of players, h is the number of humans*)
 let init_state i h =
   {
      (* description = "";
@@ -1020,10 +1021,10 @@ let init_state i h =
 let id_to_card_lst st idl =
   map_id_list idl cardList []
 
-let find_card id =
+let lookup_card id =
   id_to_card id cardList
 
-let skip_turn_st st =
+let increase_resource st =
   let current_player = find_player st.player_states st.current_player in
   let current_resource = current_player.player_resource in
   let new_resource = current_resource + 1 in
