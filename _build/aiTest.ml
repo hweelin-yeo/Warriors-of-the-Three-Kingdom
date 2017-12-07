@@ -4,22 +4,22 @@ open Ai
 open State
 open PlayerState
 
-type playerID = int
+type playerID = string
 type cardID = int
 
-type player_state =
+(* type player_state =
   {
     player_id: playerID; (* Does not change *)
+    player_id_int: int; (* Does not change *)
     player_score: int;
     player_deck: int list;
     player_resource: int;
     player_is_human: bool;
-    player_functions : (player_state -> int) list;
   }
 
 type state = {
-  (* description: string;
-     sec_description: string list; *)
+  description: string;
+     sec_description: string list;
   total_players: int;
   card_drawn: cardID option;
   current_player: int;
@@ -27,7 +27,7 @@ type state = {
   recruit_pool: cardID list;
   available_picks: cardID list;
   player_states: (int * player_state) list;
-}
+} *)
 
 let player_1_state = {
   player_id = 1;
@@ -36,6 +36,7 @@ let player_1_state = {
   player_resource = 100;
   player_is_human = false;
   player_functions = [fun st -> st.player_id]
+  (* player_functions : (player_state -> int) list; *)
 }
 
 let player_2_state = {
@@ -58,6 +59,7 @@ let sample_state_1 = {
   total_players = 4;
   card_drawn = None;
   current_player = 1;
+  (* current_player_id: playerID; *)
   recruit_pool = [0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16;
                  17; 18; 19; 20; 21; 22; 23];
   available_picks = [0; 1; 2];
