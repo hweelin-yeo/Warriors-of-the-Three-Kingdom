@@ -193,59 +193,13 @@ and
 
   )
   else if str = "describe player 2" then (
-    print_endline "";
-    let player_2_state = return_player_state st 2 in
-    print_endline ("Player 2 score: " ^ (string_of_int player_2_state.player_score));
-    let player_2_deck = player_2_state.player_deck in
-    let player_2_cards = id_to_card_lst st player_2_deck in
-    print_endline "Player 2 cards: ";
-    if (List.length player_2_cards = 0)
-    then print_endline "no cards"
-    else
-      print_card_list player_2_cards;
-    print_endline "";
-
+    print_endline "Imma describe player 2";
   )
   else if str = "describe player 3" then (
-    if(st.total_players > 2) then(
-      print_endline "";
-      let player_3_state = return_player_state st 3 in
-      print_endline ("Player 3 score: " ^ (string_of_int player_3_state.player_score));
-      let player_3_deck = player_3_state.player_deck in
-      let player_3_cards = id_to_card_lst st player_3_deck in
-      print_endline "Player 3 cards: ";
-      if (List.length player_3_cards = 0)
-      then print_endline "no cards"
-      else
-        print_card_list player_3_cards;
-      print_endline "";
-    )
-      else
-    print_endline "";
-      print_endline "Player is not valid";
-      print_endline "";
-    game st
-)
-
+    print_endline "Imma describe player 3";
+  )
   else if str = "describe player 4" then (
-    if(st.total_players > 3) then(
-      print_endline "";
-      let player_4_state = return_player_state st 4 in
-      print_endline ("Player 4 score: " ^ (string_of_int player_4_state.player_score));
-      let player_4_deck = player_4_state.player_deck in
-      let player_4_cards = id_to_card_lst st player_4_deck in
-      print_endline "Player 4 cards: ";
-      if (List.length player_4_cards = 0)
-      then print_endline "no cards"
-      else
-        print_card_list player_4_cards;
-      print_endline "";
-    )
-      else
-    print_endline "";
-      print_endline "Player is not valid";
-      print_endline "";
-    game st
+    print_endline "Imma describe player 4";
   )
 
   else if str = "take 1" then (print_endline "Player picked option 1";
