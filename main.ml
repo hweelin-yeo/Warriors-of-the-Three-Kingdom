@@ -278,40 +278,111 @@ and
 
 and
 
-  menu () =
-  print_endline "Menu: Type in your choice fam";
-  print_string "\n> ";
-  let str = (match read_line () with line -> String.lowercase_ascii line) in
 
+menu () =
+  ANSITerminal.(print_string [red] "
+Main Menu
+**************************************************************************************************************
+  - Play
+  - Tutorial
+  - Credits
+  - Quit \n
+"); ANSITerminal.(print_string [white; on_red]
+"Type the Comnmand and Press Enter                                                                            ");
+  print_string "\n";
+
+  let str = (match read_line () with line -> String.lowercase_ascii line) in
   if str = "play" then init_game ()
   else if str = "tutorial" then init_tutorial ()
   else if str = "credits" then init_credits ()
-  else if str = "quit" then ()
+  else if str = "quit" then (
+        ANSITerminal.(print_string [red]
+"\nAre you sure you want to quit? [Y/N] ");
+        let str = (match read_line () with line -> String.lowercase_ascii line) in
+        if str = "yes" || str = "y" then (ANSITerminal.(print_string [red] "See you soon!\n\n"); () )
+        else (print_string "\n\n"; menu () ) )
   else (
-    print_endline "I don't understand that command, try typing 'play',
-                    'tutorial', 'credits'";
-    menu ()
-  )
+       ANSITerminal.(print_string [red] "\nCommnad not understandable. Try \
+                      typing 'Play', 'Tutorial', 'Credits', or 'Quit.'\n\n";
+                      menu () ))
+and
+
+init_tutorial () = ()
+
+
 
 and
 
-  init_tutorial () =
-  print_endline "This is the tutorial";
-  menu ()
+init_credits () =
+  ANSITerminal.(erase Screen);
+  ANSITerminal.(print_string [red] "
+   ____              _ _ _
+  / ___|_ __ ___  __| (_) |_ ___
+ | |   | '__/ _ \\/ _` | | __/ __|
+ | |___| | |  __/ (_| | | |_\\__ \\
+  \\____|_|  \\___|\\__,_|_|\\__|___/
 
-and
 
-  init_credits () =
-  print_endline "This is the credits";
-  print_endline "AI Design: Akira Shindo";
-  print_endline "Card Design: Kevin Gao";
-  print_endline "Repl Design: Yang Lu";
-  print_endline "Special Thanks to: Hweelin Yeo";
-  menu ()
+Artificial Intelligence Design          Akira Shindo
 
+Card Design                             Kevin Gao
+
+Game Design                             Hwee Lin Yeo
+
+UX/UI REPL Design                       Yang Lu
+
+
+ASCII WordArt generated from http://patorjk.com/software/taag/
+ASCII Art from http://ascii.co.uk/art/
+
+Based on 'Romance of the Three Kingdom' by Luo Guanzhong
+
+Game Idea by Kevin Gao\n\n");
+ANSITerminal.(print_string [white; on_red]
+"Press Enter to Return to the Main Menu                                                                        ");
+  print_string "\n";
+  match read_line () with _ -> menu ()
 
 let main () =
-  print_string "\nWelcome to Explosion of Explosions!.\n";
-  print_endline "Created by CS3110 team"; menu ()
+  ANSITerminal.(resize 100 50; erase Screen; resize 115 50);
+  ANSITerminal.(print_string [red] "
+                                                                                    ,dM
+                                                                                    dMMP
+                                                                                   dMMM'
+                                                                                   \\MM/
+                                                                                  dMMm.
+██╗    ██╗ █████╗ ██████╗ ██████╗ ██╗ ██████╗ ██████╗ ███████╗                   dMMP'_\\---.
+██║    ██║██╔══██╗██╔══██╗██╔══██╗██║██╔═══██╗██╔══██╗██╔════╝                  _| _  p ;88;`.
+██║ █╗ ██║███████║██████╔╝██████╔╝██║██║   ██║██████╔╝███████╗                ,db; p >  ;8P|  `.
+██║███╗██║██╔══██║██╔══██╗██╔══██╗██║██║   ██║██╔══██╗╚════██║               (``T8b,__,'dP |   |
+╚███╔███╔╝██║  ██║██║  ██║██║  ██║██║╚██████╔╝██║  ██║███████║               |   `Y8b..dP  ;_  |
+ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝               |    |`T88P_ /  `\\;
+                                                                             :_.-~|d8P'`Y/    /
+ ██████╗ ███████╗    ████████╗██╗  ██╗███████╗                                \\_   TP    ;   7`\\
+██╔═══██╗██╔════╝    ╚══██╔══╝██║  ██║██╔════╝                      ,,__        >   `._  /'  /   `\\_
+██║   ██║█████╗         ██║   ███████║█████╗                        `._ ````~~~~------|`\\;' ;     ,'
+██║   ██║██╔══╝         ██║   ██╔══██║██╔══╝                           ```~~~-----~~~'\\__[|;' _.-'  `\\
+╚██████╔╝██║            ██║   ██║  ██║███████╗                                 ;--..._     .-'-._     ;
+ ╚═════╝ ╚═╝            ╚═╝   ╚═╝  ╚═╝╚══════╝                                /      /`~~`'   ,'`\\_ ,/
+                                                                             ;_    /'        /    ,/
+████████╗██╗  ██╗██████╗ ███████╗███████╗    ██╗  ██╗██╗███╗   ██╗ ██████╗ ██████╗  ██████╗ ███╗   ███╗███████╗
+╚══██╔══╝██║  ██║██╔══██╗██╔════╝██╔════╝    ██║ ██╔╝██║████╗  ██║██╔════╝ ██╔══██╗██╔═══██╗████╗ ████║██╔════╝
+   ██║   ███████║██████╔╝█████╗  █████╗      █████╔╝ ██║██╔██╗ ██║██║  ███╗██║  ██║██║   ██║██╔████╔██║███████╗
+   ██║   ██╔══██║██╔══██╗██╔══╝  ██╔══╝      ██╔═██╗ ██║██║╚██╗██║██║   ██║██║  ██║██║   ██║██║╚██╔╝██║╚════██║
+   ██║   ██║  ██║██║  ██║███████╗███████╗    ██║  ██╗██║██║ ╚████║╚██████╔╝██████╔╝╚██████╔╝██║ ╚═╝ ██║███████║
+   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝    ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚══════╝
+");
+  ANSITerminal.(print_string [red] "
+***************************************************************************************************************
+                                                    Created by
+                                    Akira Shindo, Kevin Gao, Yang Lu, Hwee Lin Yeo
+                                                      © 2017
+***************************************************************************************************************
+\n");
+  ANSITerminal.(print_string [white; on_red]
+"Press Enter to Begin                                                                                          ");
+
+  print_string "\n";
+  match read_line () with _ -> menu ()
 
 let () = main ()
