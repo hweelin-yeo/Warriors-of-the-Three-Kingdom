@@ -107,17 +107,26 @@ let hard_sort_compare lst =
   let lst' = List.map (fun ((r,d), id) -> ((1/r, d), id)) lst in
   List.sort compare lst'
 
+(*Precondition: s is a valid list of inputs*)
+(*Postcondition: returns a random unit from the list of inputs*)
 let easy_ai_next_move s =
   try
     Some (s |> filter_enough_resources |> pick_rand_cardID)
   with Failure _ -> None
 
+(*Precondition: s is a valid list of inputs*)
+(*Postcondition: returns the move given a set of states such that
+  the ai will try to put itself in first palce, then try to minimize the
+  difference between first place and itself*)
 let medium_ai_next_move s =
   try
     Some (s |> filter_enough_resources |> rank_lst_med_ai s
           |> List.sort compare |> List.rev |> List.hd |> snd)
   with Failure _ -> None
 
+(*Precondition: s is a list of possible moves *)
+(*Postcondition: picks a move from the list of valid moves that will maximize the
+  player's score with a priority towards moving the player to first place*)
 let hard_ai_next_move s =
   try
     Some (s |> filter_enough_resources |> (rank_lst_hard_ai s [])

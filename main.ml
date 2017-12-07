@@ -114,6 +114,7 @@ and
                                (String.lowercase_ascii line) = "y" ||
                                (String.lowercase_ascii line) = "yes"
                                then (ANSITerminal.(set_autoreset true); menu () )
+
                                else if
                                  (String.lowercase_ascii line) = "n" ||
                                  (String.lowercase_ascii line) = "no"
