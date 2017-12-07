@@ -114,7 +114,6 @@ and
                                (String.lowercase_ascii line) = "y" ||
                                (String.lowercase_ascii line) = "yes"
                                then exit 0 
-                                 ()
                                else if
                                  (String.lowercase_ascii line) = "n" ||
                                  (String.lowercase_ascii line) = "no"
