@@ -89,8 +89,11 @@ val init_state: int -> int -> state
 (*id_to_card_lst maps a list of card ids to their respective cards*)
 val id_to_card_lst: state -> cardID list -> card list
 
-(*find_card takes a card id and maps to a card*)
+(*find_card id takes a card id and maps to the corresponding card with
+card_id = i *)
 val lookup_card : int -> card
 
-(*Skip turn is used when to skip turn*)
+(*increase_resource s takes state s, increases the max resources of that
+  player by 1, and returns the new state with the modified player still
+  as the active player *)
 val increase_resource : state -> state

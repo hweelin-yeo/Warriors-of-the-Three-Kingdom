@@ -20,6 +20,9 @@ let rec conv_int str =
         match read_line () with
         | line ->conv_int line
        )
+(*Prints the id list given a id list*)
+(*precondition: idl is a int id list*)
+(*postcondition: eval to unit and print out each id in idl*)
 let rec print_id_list idl =
   match idl with
   | [] -> ();
@@ -27,6 +30,7 @@ let rec print_id_list idl =
     print_string " ";
     print_id_list t
 
+      (**)
 let rec print_player_and_score ps =
   match ps with
   | [] -> ()
