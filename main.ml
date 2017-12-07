@@ -113,7 +113,8 @@ and
                              match read_line () with line -> if
                                (String.lowercase_ascii line) = "y" ||
                                (String.lowercase_ascii line) = "yes"
-                               then ()
+                               then exit 0 
+                                 ()
                                else if
                                  (String.lowercase_ascii line) = "n" ||
                                  (String.lowercase_ascii line) = "no"
