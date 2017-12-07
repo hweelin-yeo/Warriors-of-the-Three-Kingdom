@@ -1,6 +1,5 @@
 open OUnit2
 open State
-open RecruitPile
 
 
 let init_state_1 = init_state 4 1 (* file *)

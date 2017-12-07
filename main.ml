@@ -281,8 +281,6 @@ and
                                  let card_name = (lookup_card h1).card_name in
                                  print_string "Player picked ";
                                  print_endline card_name;
-                                 (*print_endline ("card_id picked is " ^ (string_of_int h1));
-                                   print_endline ("all available cards are " ^ (string_of_int h1) ^ " " ^ (string_of_int h2) ^ " " ^ (string_of_int h3)); *)
                                  let orig_player_state = return_player_state inc_state inc_state.current_player in
                                  let orig_player_resource = orig_player_state.player_resource in
                                  let selected_card = lookup_card h1 in
