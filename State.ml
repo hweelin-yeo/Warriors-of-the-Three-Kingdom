@@ -35,23 +35,23 @@ type card = {
 (**************************************************************************************)
 
 
-(* [id_to_card id cl] takes a card id int and returns the card object option 
- * associated with it. The inputs are the card id and the card list 
- * that represents the card set 
+(* [id_to_card id cl] takes a card id int and returns the card object option
+ * associated with it. The inputs are the card id and the card list
+ * that represents the card set
  * requires: [id] is a cardID
-             [cl] is a card list 
+             [cl] is a card list
  *)
 
 let rec id_to_card (id : cardID) (cl : card list) =
   match cl with
-  | [] -> failwith "invalid cardID: should not happen" 
+  | [] -> failwith "invalid cardID: should not happen"
   | h :: t -> if (h.card_id = id) then h
     else id_to_card id t
 
 (* [map_id_list idl cl acc] maps a list of card ids to their respective cards
- * requires: [idl] is a list of cardID 
+ * requires: [idl] is a list of cardID
              [cl] is a list of cards
-             [acc] is a list of cards 
+             [acc] is a list of cards
  *)
 
 let rec map_id_list idl  (cl : card list) acc =
@@ -59,8 +59,8 @@ let rec map_id_list idl  (cl : card list) acc =
   | [] -> List.rev acc
   | h :: t -> map_id_list t cl ((id_to_card h cl) :: acc)
 
-(* [map_card_list cl acc] maps a list of cards into a list of its 
- *  corresponding cardIDs 
+(* [map_card_list cl acc] maps a list of cards into a list of its
+ *  corresponding cardIDs
  * requires: [cl] is a list of cards
              [acc] is a list of cardIDs
  *)
@@ -70,7 +70,7 @@ let rec map_card_list (cl : card list) acc =
   | [] -> List.rev acc
   | h :: t -> map_card_list t (h.card_id :: acc)
 
-(* [find_player psl id] returns the corresponding player_state given 
+(* [find_player psl id] returns the corresponding player_state given
  * the list of int player_state tuples, and a int player id,
  * requires: [psl] is a list of (int * player states)
              [id] is an int
@@ -81,9 +81,9 @@ let rec find_player (psl : (int * player_state) list) (id : int) =
   | [] -> failwith "Player not found"
   | h :: t -> if (fst h = id) then snd h else find_player t id
 
-(* [find_opponents psl id acc] finds the states of all opponent s 
+(* [find_opponents psl id acc] finds the states of all opponent s
  * requires: [psl] is a list of (int * player_state)
-             [id] is an int 
+             [id] is an int
              [accum] is a list of player_state *)
 
 let rec find_opponents (psl : (int * player_state) list) (id : int) acc =
@@ -92,7 +92,7 @@ let rec find_opponents (psl : (int * player_state) list) (id : int) acc =
   | h :: t -> if (fst h = id) then find_opponents t id acc else
       find_opponents t id (snd h :: acc)
 
-(* [compute_effects al ps acc] takes a player's state and computes 
+(* [compute_effects al ps acc] takes a player's state and computes
    bonus scores offered by anthem functions *)
 let rec compute_anthem_helper al ps acc =
   match al with
@@ -103,7 +103,7 @@ let compute_anthem (ps : player_state) =
   let anthem_list = ps.player_functions in
   compute_anthem_helper anthem_list ps 0
 
-(* [compute_deck_score cl acc] takes in a card_list that represents 
+(* [compute_deck_score cl acc] takes in a card_list that represents
   the deck and returns the total score of the deck *)
 let rec compute_deck_score (cl : card list) acc =
   match cl with
@@ -887,7 +887,7 @@ is 56 then destroy all your opponents decks. \n if the result is 1, discard your
 (**************************************************************************************)
 
 (* [contains e lst] returns true if e is an element of lst, false otherwise
- * requires: [e] is type 'a -> [lst] is a 'a list  
+ * requires: [e] is type 'a -> [lst] is a 'a list
  *)
 
 let rec contains e lst =
@@ -895,21 +895,21 @@ let rec contains e lst =
   | [] -> false
   | h :: t -> if h = e then true else contains e t
 
-(* [generate_nums num bound lst accum] returns a list, l1, with [num] numbers 
+(* [generate_nums num bound lst accum] returns a list, l1, with [num] numbers
  * less than bound. Each element in l1 should be a member of lst. If lst has
  * 3 or fewer elements, it returns lst.
- * requires: [num] is an int, [bound] is an int, [lst] is an int list, 
+ * requires: [num] is an int, [bound] is an int, [lst] is an int list,
             [accum] is an int list.  *)
 
 let rec generate_nums num bound lst accum =
-  if List.length lst <= 3 then lst 
-  else 
+  if List.length lst <= 3 then lst
+  else
     if (List.length accum < num) then
         let new_num = Random.int bound in
-        if (contains new_num accum) then 
+        if (contains new_num accum) then
           generate_nums num bound lst accum
-        else 
-          if contains new_num lst then 
+        else
+          if contains new_num lst then
             generate_nums num bound lst (new_num :: accum)
           else generate_nums num bound lst accum
     else accum
@@ -926,7 +926,7 @@ let rec picks_from_index num_lst card_lst =
    to the next set of randomised available picks *)
 
 let refresh_available_picks st =
-  let rp = st.recruit_pool in 
+  let rp = st.recruit_pool in
   let n = List.length rp in
   picks_from_index (generate_nums 3 n rp []) (rp)
 
@@ -1029,9 +1029,9 @@ let rec init_player_states n h accum =
   | 0 -> accum
   | _ -> begin
     match h with
-      | 0 -> let new_ps = (n, (init_player_state n true)) in
+      | 0 -> let new_ps = (n, (init_player_state n false)) in
         init_player_states (n-1) 0 (new_ps :: accum)
-      | _ -> let new_ps = (n, init_player_state n false) in
+      | _ -> let new_ps = (n, init_player_state n true) in
         init_player_states (n-1) (h-1) (new_ps :: accum)
     end
 
@@ -1040,7 +1040,7 @@ let rec init_player_states n h accum =
 
 let rec i_to_j i j accum =
   if i = j then accum
-  else i_to_j i (j-1) (j-1 :: accum)  
+  else i_to_j i (j-1) (j-1 :: accum)
 
 (* [init_state i h] initialises the state. it takes in [i],
    the number of players, and [h], the number of human players *)
@@ -1058,25 +1058,18 @@ let init_state i h =
     player_states = init_player_states i h [];
   }
 
-(* [id_to_card id cl] takes a card id int and returns the card object option 
- * associated with it. The inputs are the card id and the card list 
- * that represents the card set 
+(* [id_to_card id cl] takes a card id int and returns the card object option
+ * associated with it. The inputs are the card id and the card list
+ * that represents the card set
  * requires: [id] is a cardID, [cl] is a card list *)
 
 let id_to_card_lst st idl =
   map_id_list idl cardList []
 
-(* [find_card id] takes a card id and maps to a card 
- * requires: [id] is a cardID *)
-
-let find_card id =
+let lookup_card id =
   id_to_card id cardList
 
-(* [skip_turn_st st] returns a new state with the next player's turn
- * skipped 
- * requires: [st]] is a state. *)
-
-let skip_turn_st st =
+let increase_resource st =
   let current_player = find_player st.player_states st.current_player in
   let current_resource = current_player.player_resource in
   let new_resource = current_resource + 1 in

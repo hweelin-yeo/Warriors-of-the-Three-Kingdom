@@ -79,9 +79,9 @@ val return_player_state: state -> int -> player_state
    the number of players, and [h], the number of human players *)
 val init_state: int -> int -> state
 
-(* [id_to_card id cl] takes a card id int and returns the card object option 
- * associated with it. The inputs are the card id and the card list 
- * that represents the card set 
+(* [id_to_card id cl] takes a card id int and returns the card object option
+ * associated with it. The inputs are the card id and the card list
+ * that represents the card set
  * requires: [id] is a cardID, [cl] is a card list *)
 
 (* val id_to_card: cardID -> card list -> card *)
@@ -89,11 +89,8 @@ val init_state: int -> int -> state
 (*id_to_card_lst maps a list of card ids to their respective cards*)
 val id_to_card_lst: state -> cardID list -> card list
 
-(* [find_card id] takes a card id and maps to a card 
- * requires: [id] is a cardID *)
-val find_card : int -> card
+(*find_card takes a card id and maps to a card*)
+val lookup_card : int -> card
 
-(* [skip_turn_st st] returns a new state with the next player's turn
- * skipped 
- * requires: [st]] is a state. *)
-val skip_turn_st : state -> state
+(*Skip turn is used when to skip turn*)
+val increase_resource : state -> state
