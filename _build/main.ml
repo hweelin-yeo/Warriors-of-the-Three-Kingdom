@@ -265,6 +265,8 @@ and
                                  let card_name = (lookup_card h1).card_name in
                                  print_string "Player picked ";
                                  print_endline card_name;
+                                 (*print_endline ("card_id picked is " ^ (string_of_int h1));
+                                   print_endline ("all available cards are " ^ (string_of_int h1) ^ " " ^ (string_of_int h2) ^ " " ^ (string_of_int h3)); *)
                                  let orig_player_state = return_player_state inc_state inc_state.current_player in
                                  let orig_player_resource = orig_player_state.player_resource in
                                  let selected_card = lookup_card h1 in
@@ -276,6 +278,10 @@ and
                                  let current_player_state = return_player_state substate_1 substate_1.current_player in
                                  print_string "New player score = ";
                                  print_endline (string_of_int current_player_state.player_score);
+                                 (*Testing line to check the resource that player can get*)
+                                 print_endline (string_of_int current_player_state.player_resource);
+                                 print_endline "";
+                                 print_endline (string_of_int (List.length substate_1.recruit_pool));
                                  (*Implement transition turn function*)
                                  let next_state = change_next_player substate_1 in
                                  game next_state (*Game substate the selected card added to the player's state*)
@@ -300,6 +306,10 @@ and
                                    let current_player_state = return_player_state substate_1 substate_1.current_player in
                                    print_string "New player score = ";
                                    print_endline (string_of_int current_player_state.player_score);
+                                   (*Testing line to check the resource that player can get*)
+                                   print_endline (string_of_int current_player_state.player_resource);
+                                   print_endline "";
+                                   print_endline (string_of_int (List.length substate_1.recruit_pool));
                                    (*Implement transition turn function*)
                                    let next_state = change_next_player substate_1 in
                                    game next_state (*Game substate the selected card added to the player's state*)
@@ -324,6 +334,10 @@ and
                                    let current_player_state = return_player_state substate_1 substate_1.current_player in
                                    print_string "New player score = ";
                                    print_endline (string_of_int current_player_state.player_score);
+                                   (*Testing line to check the resource that player can get*)
+                                   print_endline (string_of_int current_player_state.player_resource);
+                                   print_endline "";
+                                   print_endline (string_of_int (List.length substate_1.recruit_pool));
                                    (*Implement transition turn function*)
                                    let next_state = change_next_player substate_1 in
                                    game next_state (*Game substate the selected card added to the player's state*)
