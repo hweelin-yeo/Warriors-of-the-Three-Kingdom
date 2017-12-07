@@ -1,0 +1,1292 @@
+commit 8dc270a9f72f7f7005b1b79cc68b0f654523d1e8
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 16:19:17 2017 -0500
+
+    final with tutorial
+
+commit d002378ad5297b51d71d1d70884ea150c45df192
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 16:19:03 2017 -0500
+
+    final with tutorial
+
+commit 40ef4d95b0a5724aa661c27ad9efb6a4583a20f4
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 15:44:23 2017 -0500
+
+    final repl
+
+commit 862369d9efd2d6ab412c5c689c7a42bcbf68a5e4
+Merge: b2c8a0e baafdde
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 14:41:28 2017 -0500
+
+    more repl changes
+
+commit b2c8a0ec05637ef792ce208a00434884c0804535
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 14:40:11 2017 -0500
+
+    more repl changes
+
+commit baafdde8c6844f3994fec8c046e76c38974b3c0f
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 14:30:39 2017 -0500
+
+    cleaned up the main repl
+
+commit 9e60f2d297942ab502675a08585dccda01517afc
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 14:30:25 2017 -0500
+
+    cleaned up the main repl
+
+commit 5144edd8b8bad52b5261bddff5b0bc757b6fb91b
+Merge: 53ea783 a348c3f
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 14:16:07 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 53ea7833c4fdbd9d76ce423b33f4f58c70c27d36
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 14:15:58 2017 -0500
+
+    nicer play repl
+
+commit 5b9df9f5d27de289d91c57ba40f1209a9e575136
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 14:15:46 2017 -0500
+
+    nicer play repl
+
+commit a348c3fb9582fcb568fbcfe57829b1226c25f98c
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Dec 7 14:15:00 2017 -0500
+
+    main has ascii
+
+commit 2d6431ab86b46c3b3b2760a363bdacfeda5f1e2d
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Dec 7 14:14:48 2017 -0500
+
+    main has ascii
+
+commit df68e0e95cc2709e4488f1067166279ccf724db0
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 14:11:34 2017 -0500
+
+    with ascii fixed
+
+commit 06912ee726c6e3cc346773ca13844e037fdb9dba
+Merge: 0e0ecf0 3c8800b
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 14:06:56 2017 -0500
+
+    repl
+
+commit 0e0ecf09b455f6171f6fa5da50ffe6f876345cc1
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 14:05:53 2017 -0500
+
+    plsssszzzzzzzz work
+
+commit e3b141e7b686b91639c15bdcfa9ff6bb6ae4d054
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 14:05:41 2017 -0500
+
+    pls
+
+commit 3c8800b92014529ea8b6a8beeaa39d32df6309c7
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 14:04:43 2017 -0500
+
+    documented ai
+
+commit e5949c0f29f1be41422724dbf2d00409a7fc8837
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 13:57:06 2017 -0500
+
+    exit 0 to quit
+
+commit 43a53d763903106f5aa0179ffc5f2660c0349c60
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 13:52:48 2017 -0500
+
+    trying to quit
+
+commit 4b8de3e0fdd35ec2469b7beb79804f3283981c3f
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 13:25:50 2017 -0500
+
+    staging updates
+
+commit f29fe879ed199a15679437cc4ec3aebe098bf47a
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 13:16:39 2017 -0500
+
+    yang's stuff
+
+commit aa9d262c514ba84894d0eb6725bb002ae7a1c6e3
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 12:06:09 2017 -0500
+
+    Made readme
+
+commit 7b63dcf6390cfc26b5996986e8b3ad1532b952b7
+Merge: b118b47 4f47a89
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 01:30:32 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit b118b471ece25fabb0b4eb68fc6737773c482e27
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 01:30:23 2017 -0500
+
+    stashing stuff
+
+commit 4f47a89d7d250f66d8c3a0b3eb10805c7476c8bb
+Merge: 18addc4 24b619c
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Dec 7 01:29:17 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 18addc4a502d2b769d087561100ac9c42e6b5d6e
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Dec 7 01:29:03 2017 -0500
+
+    aitestWORKS
+
+commit 53c0d86da62b6b41d76aa780acc4dc4a6fd28dc5
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Dec 7 01:28:22 2017 -0500
+
+    aitestWORKS
+
+commit 24b619cb64806c57f913453a059577ccc4bde087
+Merge: 5b26caa 3f8634c
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 01:26:04 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 5b26caa805e6c21b53c8124b10e938bd5ff6316d
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 01:25:47 2017 -0500
+
+    updated tutorial
+
+commit c50b53b11ec75093a56fcdce35beeb430df20496
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Dec 7 01:25:35 2017 -0500
+
+    updated tutorial
+
+commit 16b3ed02738da5ce1b71b838e7f79c7abd19608e
+Merge: ee93d8e 3f8634c
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 01:15:25 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit ee93d8efd1c3864b4ea286fe5897e5783f210b29
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 01:14:58 2017 -0500
+
+    game is closer to done
+
+commit ebb916290ee88e1828fc2ce10168b50652ae4596
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 01:14:47 2017 -0500
+
+    game is actually done
+
+commit 3f8634caa131829101a3be5dab1340d9f6dac86c
+Merge: d159d54 a5571dd
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Dec 7 01:11:31 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit d159d54c508dd9c9444f93712133d44a8528cb3a
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Dec 7 01:11:27 2017 -0500
+
+    aitestPASSES
+
+commit a5571dd31a81622f60a2691b8cc36ea9ad78fef7
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 01:10:02 2017 -0500
+
+    game is done
+
+commit 7fd44c1387caf6acdc411cea2706f46b92b47f4d
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 01:09:52 2017 -0500
+
+    game is done
+
+commit 44b8b9766f1dc649b4878ab8d44ead3902654471
+Merge: 5d8f5b1 1cdbd7c
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 00:07:55 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 5d8f5b1365ab9471ea0140dbd41c7fc8e0203ee4
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 00:07:42 2017 -0500
+
+    made descriptors
+
+commit 5f69df7290b34ae133f6bf5865d1264d3229db15
+Author: kg346 <kg346@cornell.edu>
+Date:   Thu Dec 7 00:07:30 2017 -0500
+
+    finished descriptor functions
+
+commit 1cdbd7cde3e2336fb97f0a66313407808f6f4427
+Merge: 7ec5452 0a0e2e3
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 23:31:53 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 7ec5452a8e291c804c00aa96e03783b8a05fcb46
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 23:31:48 2017 -0500
+
+    PLAY DOESN'T CRASH
+
+commit 0a0e2e3e19d6bf42817d95b00717d7c316868269
+Merge: 73c88dd 372aa8e
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Wed Dec 6 23:30:35 2017 -0500
+
+    repl updated
+
+commit 73c88dd3e970d6ca882c52ed3373a69b702bf67c
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Wed Dec 6 23:26:32 2017 -0500
+
+    main.ml repl
+
+commit 6edc2cd8daaf6ebd50bc72e9e92dabdace1b8be9
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Wed Dec 6 23:26:19 2017 -0500
+
+    main.ml repl
+
+commit ca18d08e97a0075367b247c7bf514535be4dca64
+Merge: 3b8e796 372aa8e
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 22:16:13 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 3b8e796e020b54a68222a56dd7c5501ddd641bbe
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 22:16:05 2017 -0500
+
+    changes
+
+commit 133226b50b7acfed1940a8f21c2eae25f66efd5d
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 22:15:51 2017 -0500
+
+    changes
+
+commit 372aa8e73dc2a99ec483975cb4a83b0a2a73f293
+Merge: 6efef17 4065300
+Author: kg346 <kg346@cornell.edu>
+Date:   Wed Dec 6 22:06:36 2017 -0500
+
+    fixed merging
+
+commit 6efef177c475f1cf5e76cb3f0a7f6f060ca7c42e
+Author: kg346 <kg346@cornell.edu>
+Date:   Wed Dec 6 22:04:54 2017 -0500
+
+    works for human players
+
+commit 4065300b684b10315722f0490b2c8c9fad3790b9
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 21:10:30 2017 -0500
+
+    cleaned up state.ml
+
+commit c5bccd8889b0214c0c714865bb3d1714d31ecca3
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 20:34:10 2017 -0500
+
+    no syntax errors
+
+commit 420f7d8afc609eaa04692fe2fecf54fb5e0724af
+Merge: 9cec15b 0b14e30
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 20:34:00 2017 -0500
+
+    no syntax errors
+
+commit 9cec15b2e5d2ad6935235d367905d905ee8c8b36
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 20:29:17 2017 -0500
+
+    syntax error fix
+
+commit 1655ec720963dc8ae4a7b4b328c491ac8f7de081
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 20:29:06 2017 -0500
+
+    syntax error fix
+
+commit 0b14e30fd9cc785d70774c0f98b8cbd365a51881
+Merge: d4f1437 bf1a63b
+Author: kg346 <kg346@cornell.edu>
+Date:   Wed Dec 6 20:24:50 2017 -0500
+
+    fixed merge
+
+commit d4f14373106bc24e5ad2cbfb40597425dad311e7
+Author: kg346 <kg346@cornell.edu>
+Date:   Wed Dec 6 20:23:41 2017 -0500
+
+    Core gameplay works now
+
+commit 25d7fbf8c78c811df462f25436a20a59abb39c4a
+Author: kg346 <kg346@cornell.edu>
+Date:   Wed Dec 6 20:23:27 2017 -0500
+
+    Core gameplay works
+
+commit bf1a63bde07fb86133f7a4b0faf4ed1f6ad5b888
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 20:00:08 2017 -0500
+
+    added more conditions to RNG
+
+commit 37ef011db03aa17ee859d5208fbc4d020e020646
+Merge: 93a01e2 a6b8f71
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 19:59:29 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 93a01e22c54fdcce5163a7ca4a031cf17ef7e534
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 19:59:18 2017 -0500
+
+    added more conditions to RNG
+
+commit a6b8f718331bc029b6b7f30e330e8d087cc07076
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Dec 6 19:51:05 2017 -0500
+
+    incorporated ai into main
+
+commit e27aad211fff76682e57f9ccf7773b540ee0ae29
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Dec 6 19:32:18 2017 -0500
+
+    generate_nums change to exclude 24
+
+commit 6859142f11d90158bba9f2fee88033574c8b9876
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Dec 6 18:57:34 2017 -0500
+
+    ai.ml
+
+commit c270e8332cb1e02f478b112f356d1e3fc164213d
+Merge: 958844d 9d9a282
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Dec 6 18:56:37 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 9d9a2822a0250c171f86a2daca3173c55c9575d3
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Wed Dec 6 18:21:39 2017 -0500
+
+    deleted YoJson
+
+commit 46686e2a8c1fee995d3c00e0c761f492aca6f468
+Author: kg346 <kg346@cornell.edu>
+Date:   Wed Dec 6 16:59:51 2017 -0500
+
+    started implementing repl for human playerS
+
+commit 958844d5fb56028e3e1de884c33ac38635d4d95c
+Merge: d5463b0 847f491
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Dec 6 13:54:19 2017 -0500
+
+    merge
+
+commit 847f491c338b71904e0a28d1143937636abe0dd4
+Merge: dd38b59 88d48d2
+Author: kg346 <kg346@cornell.edu>
+Date:   Tue Dec 5 00:23:14 2017 -0500
+
+    finished cards
+
+commit dd38b594b0aa6ab8d92ddbcde725a5dea5e82981
+Author: kg346 <kg346@cornell.edu>
+Date:   Tue Dec 5 00:22:04 2017 -0500
+
+    finished cards
+
+commit 88d48d23ec7498216eac2178fae23b83c8913dd6
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 18:29:41 2017 -0500
+
+    compilation error now because of filter_enough_resources func in ai.ml
+
+commit 4101fa36e17ef270e57e585e22ac0af1b68d81a3
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 18:29:25 2017 -0500
+
+    compilation error now because of filter_enough_resources func in ai.ml
+
+commit 3850d7d6d2030e93d7d6ed6823da6aba7539b6ed
+Merge: fa55033 43ea2ee
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 17:36:56 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit fa55033d5a6a6f64d503e93ce736dfe1ad9745c5
+Merge: e098730 6c7438d
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 17:36:47 2017 -0500
+
+    please compile
+
+commit 43ea2ee866ccf0bc79bbc89dace97dc427376c54
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 17:35:17 2017 -0500
+
+    so far
+
+commit 578e499e79b48c7f0857c8e6fcb060d4611ea6bc
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 17:34:55 2017 -0500
+
+    latest
+
+commit e0987303cdb31a3d0ec09f76562b4892fd12b398
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 17:34:45 2017 -0500
+
+    trying to get back to implementing cards
+
+commit fb47533743b029e806c33d3081a7bf987f79e41c
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 17:34:33 2017 -0500
+
+    trying to get back to implementing cards
+
+commit 6c7438dde0695f3015487e26df1d7ce1146ba1dd
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 17:31:16 2017 -0500
+
+    move map_id_lst
+
+commit 6c5e5216bb6be5552ca44abd5e12050eda96a174
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 17:30:51 2017 -0500
+
+    move map_id_lst
+
+commit e1313f089e5ac9792f9cc348bdf22cc9155a37a7
+Merge: 0aa3d1e 419754b
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 17:24:26 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 0aa3d1e9407f98a1391af6dd541ad4d1c93f5723
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 17:24:14 2017 -0500
+
+    continued work on the card set
+
+commit 82bce4cf51cecec9eab59a3799056eb312d61eab
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 17:23:58 2017 -0500
+
+    continued work on the card set
+
+commit d5463b0fc041a9a69bb8acdf0e0c1a7d74a3894c
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Mon Dec 4 17:14:02 2017 -0500
+
+    did make clean
+
+commit e870fbed962fef48aeccd8dbd3916eaeaa24e338
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Mon Dec 4 17:13:07 2017 -0500
+
+    make cleaned
+
+commit 419754b5938f21e087602512c98d4485475d7005
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Mon Dec 4 17:12:51 2017 -0500
+
+    yes
+
+commit 87ea12654183b7c00f88f3ad48eb95f51f08fa41
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Mon Dec 4 17:12:42 2017 -0500
+
+    yes
+
+commit 0016d4caf93b16bb81af7fce3243bb3854d8e1f7
+Merge: 1dde7c8 71065a3
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Mon Dec 4 17:10:09 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 1dde7c81844d79d0a75484318a88ef9a1892f771
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Mon Dec 4 17:09:48 2017 -0500
+
+    thus far
+
+commit 71065a3a40ddef92ed9b12de42239be14ab95457
+Merge: 1fcbf1b 7438194
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Mon Dec 4 17:06:41 2017 -0500
+
+    before merge
+
+commit 74381948f73dd39fa994fe7ee047d7c71538f6f7
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 17:00:49 2017 -0500
+
+    changes in state
+
+commit 1fcbf1b5e4d5290f18d71258035e95aa79c59200
+Merge: fc4331d 4042b92
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Mon Dec 4 16:52:09 2017 -0500
+
+    resolve conflict
+
+commit fc4331d8c54069dd38d30ebd0c3b60ee90f01793
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Mon Dec 4 16:50:19 2017 -0500
+
+    aitest
+
+commit 4042b92f008281415b91f0214610e96962a97523
+Merge: f3db737 67e125a
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 16:46:06 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit f3db73789c50773e69aa15312b83132c37d8f804
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 16:46:03 2017 -0500
+
+    added new func to statemli
+
+commit 67e125a1a0d654ef88abf0fac1abd8c9ff626dcf
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Mon Dec 4 16:41:41 2017 -0500
+
+    basic repl
+
+commit 7f85d73bd7cb9c27b29d8ea55a2bd513b9ba9dd7
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Mon Dec 4 16:41:08 2017 -0500
+
+    basic repl
+
+commit c3a091b945cab917cc0a318c7adf6dd3f6553bdf
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 16:28:20 2017 -0500
+
+    tests
+
+commit 47f04da9df50015d5c5652c5aabc73734128ed2b
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 16:12:17 2017 -0500
+
+    make clean
+
+commit 95f2f722bad80d03d0e0432bcb3e67074f46838d
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Dec 4 16:08:54 2017 -0500
+
+    state test passed all test
+
+commit a7f987cdaf9826ef42de07c7e0c927dfa6b757fe
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Mon Dec 4 15:42:55 2017 -0500
+
+    made it lower case
+
+commit 4fda8771d5cd82db5642048797ddc4fe90e0c695
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 15:40:25 2017 -0500
+
+    intermediate card set implementation
+
+commit 9681d79b7aa89f43a4c8a1d0e51c3e32d8e399ff
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 15:40:15 2017 -0500
+
+    intermediate implementation stage
+
+commit 8235afa4f97aedbb4677f8e47f3e7506f0050e09
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 03:09:10 2017 -0500
+
+    continued work on cards
+
+commit 3efa052ef7d8437252dd40a695c86e39507fea06
+Merge: 6e9760f dc8f472
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 03:07:40 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 6e9760f582f55274169734433866362dfd0a1dc8
+Author: kg346 <kg346@cornell.edu>
+Date:   Mon Dec 4 03:07:31 2017 -0500
+
+    changes to card set here
+
+commit dc8f472ed497dc163ce89459c816f09d6cac5e42
+Merge: f8c915e ebe8a1f
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sun Dec 3 20:12:21 2017 -0500
+
+    state test all but 1 passed
+
+commit f8c915e13ea49949e35a6a36c45d9643cbd4564c
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sun Dec 3 20:07:16 2017 -0500
+
+    state test all but 1 passed
+
+commit ebe8a1f6f0501872e0c469810d48aea800547355
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Sun Dec 3 19:52:28 2017 -0500
+
+    aitest
+
+commit 21eeb5c3c12d49ea92f3bb7bb2e29f9bd9b43101
+Merge: 95f0e0e 1c8a6c4
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sun Dec 3 19:22:55 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 95f0e0e086cc8be0f109b730341b2fc32a63e47c
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sun Dec 3 19:22:34 2017 -0500
+
+    Continuing to implement cards
+
+commit 1c8a6c41fd900cc587cf34f7d326b13377412efb
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Sun Dec 3 17:35:55 2017 -0500
+
+    statest in MakeFile
+
+commit fe90415c1425fdfda971c0ea04653ce821eda265
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sun Dec 3 17:30:24 2017 -0500
+
+    fixed some smol bugs
+
+commit 20d94debb8059d24145641bbb3f0b92382f95ad1
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sun Dec 3 16:31:31 2017 -0500
+
+    work on the card set
+
+commit 655571f0f8b05498a8ca15e74fbe596fd898823b
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sun Dec 3 02:51:09 2017 -0500
+
+    merlin now properly lints and type checks you're welcome
+
+commit 42ad4590135a4c18321fe47ca6c4a9aa412cf72a
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Dec 2 21:36:28 2017 -0500
+
+    ai.ml changes
+
+commit b053a6d0b57f6bc6ee8194930df12eaf3e38333f
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Dec 2 18:54:33 2017 -0500
+
+    FIRST VERSION THAT ACTUALLY COMPILES WOOHOO
+
+commit 44b42b26c3048e5e9145484e802e91c5939d1c87
+Merge: 4cbc974 3e1c243
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Dec 2 18:39:12 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 4cbc9748b02edfb50adbfd9b18c6c611df379bbc
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Dec 2 18:38:12 2017 -0500
+
+    changes to ai.ml
+
+commit 3e1c2436a41e7450fc782d5fffbc5caca5bdd224
+Merge: 3b362db b9d6dff
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 18:36:11 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 3b362db02cd74d916c7c41224f7b282a039189cc
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 18:35:52 2017 -0500
+
+    hacky solution to the cardID typing problem- changed to ints and it compiles
+
+commit b9d6dfffb34a7cadbd002f9eda40f370ce11a407
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Sat Dec 2 18:30:32 2017 -0500
+
+    pls main.ml don't be overwritten
+
+commit a7fb3573684a5146d6cd8ed39d0a4190cd2b7338
+Merge: 41b9912 e0e22af
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Sat Dec 2 18:17:32 2017 -0500
+
+    Akira's ai.ml changes
+
+commit 41b99122d7ee6136121a3a60c13648a1f9c3d403
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Sat Dec 2 18:15:36 2017 -0500
+
+    akira's ai.ml additions
+
+commit 4765ab6a2640457a8748794800d9e60be6a03844
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Sat Dec 2 18:15:19 2017 -0500
+
+    Akira's ai.ml additions
+
+commit e0e22af322eed02f3e969fa9996f8108b358a6b3
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Dec 2 18:11:34 2017 -0500
+
+    fix state bugs in prog
+
+commit fa8ac4dff22d3a76e89f912b92525dab7cf627f5
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 17:56:52 2017 -0500
+
+    working on hweelin's side
+
+commit 9b79ff9b428186ac3ff312adbebb7e70f1205072
+Merge: e19aa45 1271e36
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 17:55:43 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit e19aa456da68d935031b4c99ef1a51bda41d68a5
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 17:55:24 2017 -0500
+
+    some debugs
+
+commit 1271e36f896c98541d177719ec356feeb32f693b
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Dec 2 17:52:29 2017 -0500
+
+    slight error fix
+
+commit 9efce7f904b2afe9130f140d5d31bb868efcc13b
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Dec 2 17:50:42 2017 -0500
+
+    card to ID changes
+
+commit 7fc0d58da580718177de16385c42eb01f3c67051
+Merge: 2beef48 57789e0
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Dec 2 17:37:52 2017 -0500
+
+    :Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 2beef48c4017125218ae9aa46fd6153af95c0f4a
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Dec 2 17:37:33 2017 -0500
+
+    none
+
+commit 57789e0d98f73b798a9dd90b62bc30b2e4839a03
+Merge: 39ba758 690fcce
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 17:35:00 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 39ba7582968e5b319bd286a24037456e5d6877a5
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 17:33:48 2017 -0500
+
+    added id_to_card and map_id_list functions
+
+commit 690fcce1f913567051c8b07d43299019ba314d8c
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Sat Dec 2 17:03:25 2017 -0500
+
+    main.ml
+
+commit 478e523d4a18182fdd7c63006474f92699c94a64
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Sat Dec 2 17:00:55 2017 -0500
+
+    deleted old Main's
+
+commit e8fdb6c7ba55fe8c03bdafda6d2bf792aba6b203
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 16:56:24 2017 -0500
+
+    added comment line to divide card and state section in state.ml
+
+commit 81491e288a9838a3bde6326e916e59cab652f764
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 00:40:59 2017 -0500
+
+    fixed the state.ml bug
+
+commit 606ff7461180eb0353ee239b9062565cf188e661
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 00:40:47 2017 -0500
+
+    fixed the state bug
+
+commit dae9d4676820464a2729159b10a339f48c0b70cf
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 00:17:01 2017 -0500
+
+    some minor bugfixes
+
+commit 7ae3a14ddd73d95290a2a911cf8bcacfa9af2cad
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Dec 2 00:16:49 2017 -0500
+
+    some minor bugfixes
+
+commit a975b202e8fc987f38898743f165fc59cfd4da08
+Merge: c54cdd3 f433933
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Fri Dec 1 16:59:47 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit c54cdd3305401ecb66005bc669c1effb51685ba3
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Fri Dec 1 16:59:22 2017 -0500
+
+    started to unify card pool with state
+
+commit f0edeefd95fdaa32137424a6433ed74748ba3fc4
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Fri Dec 1 16:59:09 2017 -0500
+
+    started to unify state with card pool
+
+commit f4339331dec12fd93766e2670d8842f27fa09f09
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Fri Dec 1 16:57:45 2017 -0500
+
+    fixed player state
+
+commit 4c33a8012d7ffbf36a39097d40d6e43a007ece07
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Fri Dec 1 16:19:20 2017 -0500
+
+    trying to fix state.ml
+
+commit 30305e15f634caa149ddedc1d58bb01ccf8b0c87
+Merge: b7be63f 37cc798
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Fri Dec 1 15:17:29 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 37cc798e41b1a84a6cd4bb9ac7757ddedd2f5474
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Thu Nov 30 22:59:34 2017 -0500
+
+    Yang's update to main.ml
+
+commit e87620c1fd8af946f2b1ec10635d38aed51bc95e
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Nov 30 22:47:33 2017 -0500
+
+    edited ai.ml
+
+commit 5aa2c52ae1c1f763036a3cd5b0d87b9dd5e89d02
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Nov 30 22:24:52 2017 -0500
+
+    state test
+
+commit b7be63f5ee264fbcee990b2ca39a2dd3857106f4
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Thu Nov 30 22:24:47 2017 -0500
+
+    continued work with cards.ml
+
+commit d25a20d05efd58de96087ed91e8cfe46345b5ac1
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Nov 30 22:24:42 2017 -0500
+
+    state test
+
+commit a66780857b17350d13f893426363ded45a3a1709
+Merge: dff5b6b 0a23cd9
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Nov 30 20:46:22 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit dff5b6b8e8b6a73976781c70140d89622195f26f
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Nov 30 20:46:18 2017 -0500
+
+    state test
+
+commit 0a23cd9a34895560f0b6dae91202bf6bd1666c5a
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Thu Nov 30 20:45:46 2017 -0500
+
+    some missing stuff to add
+
+commit ab136b082ffcd3f8a6022c9c2bb39c7bf7578784
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Thu Nov 30 16:35:04 2017 -0500
+
+    made a set with one card
+
+commit c07c067c2aacab22741d5aeec9ae24ed99a28ac3
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Thu Nov 30 16:34:52 2017 -0500
+
+    created a list with one vanilla card
+
+commit 7af18a061b1c0514d2454f2686ba8a75c15b8e77
+Merge: 9153c84 d3c62f3
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Nov 30 00:11:21 2017 -0500
+
+    state.ml lots of edits
+
+commit 9153c84ab636dddcada97dbf4db6d9c7b65d45a4
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Nov 30 00:10:53 2017 -0500
+
+    state.ml lots of edits
+
+commit d3c62f3d7a266d3661f37dbeede42b32817df121
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Nov 29 23:06:47 2017 -0500
+
+    kinda did greedy AI
+
+commit d2c51950cd2e34c61b406bf16178642b1e7458d0
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Nov 29 22:28:05 2017 -0500
+
+    made some minor fixes
+
+commit 617c9547f9f878541643c75918782aa12809febf
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Nov 29 22:26:50 2017 -0500
+
+    added new field in player state
+
+commit 1dc0fefdf8cc02ddf0d068d1b4f90efdab6d753f
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Nov 29 22:02:01 2017 -0500
+
+    made specifications for player state nice
+
+commit 5388b7a256f8b5b060efae2f16349cab52982eff
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Nov 29 21:53:09 2017 -0500
+
+    should have no mistakes with make play
+
+commit 04cb0fa825762290aa0aa56b05717a482ade13c2
+Merge: c9a1fcc a13ef94
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Nov 29 21:48:56 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit c9a1fcccce89445d7d7ac622ac29e24c52292ba7
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Nov 29 21:48:52 2017 -0500
+
+    more changes
+
+commit a13ef947f0bb4e3e42f95f989a7c23cc7aa4962b
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Nov 29 21:48:11 2017 -0500
+
+    tried to make make play work
+
+commit 9f6ddeb043d7071f3f099e1ffe12edc65d56ba9c
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Nov 29 21:45:11 2017 -0500
+
+    added test cases (I forgot them earlier)
+
+commit e10d3384e7b10d1ed95a2d9e46e35d0f5722c867
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Nov 29 21:42:35 2017 -0500
+
+    pretty much finished player state and testing for that
+
+commit dd58999be195f3f3683e151261186f06b50182f3
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Nov 29 21:41:37 2017 -0500
+
+    changes to state.ml
+
+commit 5cd1284af3448cadf52b395f4826cfbfd2ec1258
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Nov 29 21:20:11 2017 -0500
+
+    changes to state.mli
+
+commit 45c0b649d9ce25b4ce432b23aae6f34fec81368f
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Nov 29 21:19:44 2017 -0500
+
+    changes to state.ml
+
+commit c07259b64855dd27bca4406fadb887bb22aac3c7
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Nov 29 20:26:38 2017 -0500
+
+    edited player state
+
+commit 76088f3dca4a9316591694fd72833d035f072319
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Nov 29 20:24:04 2017 -0500
+
+    state
+
+commit b537d3d372309102ffc8eb89bc0ca7657d96034d
+Merge: 52d77c2 8927d01
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Tue Nov 28 23:45:04 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+    
+    merge # the commit.
+
+commit 52d77c2b42ba2838f0ac8e09a74dad13c8eac7f9
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Tue Nov 28 23:45:00 2017 -0500
+
+    everything
+
+commit f578cf0bc6307bb1028e84566e14eda213d30deb
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Tue Nov 28 23:27:31 2017 -0500
+
+    to make it compile
+
+commit 8927d0121f0d3e8f9de85d4a07b9eb43c9b8c63a
+Merge: 4826270 be0eb18
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Tue Nov 28 23:25:45 2017 -0500
+
+    can i pull now
+
+commit 4826270ceccb25e9c53b9567e280eda994720a5c
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Tue Nov 28 23:23:41 2017 -0500
+
+    stash
+
+commit be0eb18b51af7b3526d78d58816ea903a69b0bf4
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Tue Nov 28 23:17:42 2017 -0500
+
+    did PlayerState.ml
+
+commit 845a0d571ca8ddcc072b3f2aed9de5b31667062f
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Tue Nov 28 22:51:11 2017 -0500
+
+    bound states
+
+commit 9255a6a1bc26d662beb915626685babcf8d39c77
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Tue Nov 28 22:24:28 2017 -0500
+
+    current version
+
+commit 7d52a59b19578e8a37da6e459c7a31165ed8fef1
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Tue Nov 28 22:12:51 2017 -0500
+
+    playerstate ml
+
+commit d495aa0093d25e16a21ecfb3b8b34bc69502c178
+Merge: 68f36ee 0d83a7e
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Sat Nov 25 18:15:07 2017 -0500
+
+    basic repl and makefile
+
+commit 0d83a7e5ced81635b5abc713e0bab1652730d6b1
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Nov 25 14:48:37 2017 -0500
+
+    edited playerstate mli to include init player state
+
+commit 3b7ac6cd950336f30f58640390babd5bd6518d4c
+Merge: 6a09a49 7779d76
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Nov 25 14:46:56 2017 -0500
+
+    Merge branch 'State'
+    
+    # Conflicts:
+    #	State.mli
+
+commit 7779d7611444187904f42a797cef275d855614a9
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Nov 25 14:44:20 2017 -0500
+
+    implemented state
+
+commit 6a09a49816605252a1a2a5dd1368b3aa9b5b2c0d
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Nov 25 14:38:05 2017 -0500
+
+    changed playerstate mli to add additional field
+
+commit 3fab1b512862ac2390dcf101a752ce92ee25750d
+Merge: 86092e6 8956963
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Sat Nov 25 13:03:02 2017 -0500
+
+    bring up to date
+
+commit 895696332890b698e5d84a76184c5e18018b8d70
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Nov 23 03:04:01 2017 -0500
+
+    updated mli
+
+commit a56d9c5f6b75d02edfa0530628862dd9cb6d0212
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Nov 23 01:37:56 2017 -0500
+
+    created State.ml
+
+commit 3fe4a27249e7de191518132d9041e3b28d5368e8
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Thu Nov 23 01:34:07 2017 -0500
+
+    finished recruitpile, added in statetest.ml and playerstate.ml for future testing
+
+commit 7e8a03c7b9ab35c731efc5923f0e63a8b0a09962
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Mon Nov 20 19:35:20 2017 -0500
+
+    removed cards.mli
+
+commit 68f36ee8290b917eb9e7da24af784150da434a26
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Sat Nov 18 18:10:53 2017 -0500
+
+    word
+
+commit 500faafd591f46418e72e08fc0445555469eb629
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sat Nov 18 18:09:50 2017 -0500
+
+    implemented recruitpile.ml
+
+commit 473287add2fb6d3100aeebe55fbd67ca5f5979d9
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Wed Nov 15 17:18:48 2017 -0500
+
+    makefile added. maketest does not work yet
+
+commit 3d6aa67157dfe7173dc7d79e8de7983e10acf954
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Wed Nov 15 16:58:51 2017 -0500
+
+    minor edits
+
+commit c6671bb454551bdcafc247e1b02b1e5aa256134d
+Author: Yang Lu <yl882@cornell.edu>
+Date:   Wed Nov 15 16:57:58 2017 -0500
+
+    main.mli
+
+commit 4600059673e91ef5d1434562e8fd7f1f2f0570e0
+Author: Akira Shindo <as2568@cornell.edu>
+Date:   Wed Nov 15 16:21:50 2017 -0500
+
+    started making make file
+
+commit 86092e677a220ccb37da6a5eca55417a2ba06c89
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Wed Nov 15 15:33:25 2017 -0500
+
+    made makefile
+
+commit af04cd49aac667168ddfe760c1538b1e929dca25
+Merge: 65129cd ff592d0
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Wed Nov 15 15:20:05 2017 -0500
+
+    Merge branch 'master' of https://github.coecis.cornell.edu/kg346/cs3110FinalProject
+
+commit 65129cdf2de90dd8069cd567bbe4ca42faee6419
+Author: vagrant <vagrant@vm3110-2017fa>
+Date:   Wed Nov 15 15:15:53 2017 -0500
+
+    stuff
+
+commit ff592d0e5b5672454ffc567dbc348b0d5dcce8ae
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Wed Nov 15 00:30:16 2017 -0500
+
+    added ai and state.mli; edited playerstate.mli
+
+commit 198ac181d136f2cfa697db091c157d81a97f857d
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Tue Nov 14 00:02:30 2017 -0500
+
+    implemented playerstate.mli
+
+commit d9ce4231e75e1f297c4e345b73bf8465d8b93455
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sun Nov 12 17:52:08 2017 -0500
+
+    more mli files
+
+commit fe9fe5921b5708a8f78ed48d25cfa14d15512b17
+Author: hweelin-yeo <yeohweelin_97@hotmail.com>
+Date:   Sun Nov 12 17:49:46 2017 -0500
+
+    Some mli files
