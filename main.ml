@@ -25,6 +25,12 @@ let rec conv_int str =
                       match read_line () with
                         | line ->conv_int line
                       )
+let rec print_id_list idl =
+  match idl with
+  | [] -> ();
+  | h :: t -> print_string (string_of_int h);
+    print_string " ";
+    print_id_list t
 
 let rec init_game () =
   print_endline "How many players? (Max 4 Players)"; print_string "\n> ";
@@ -119,28 +125,116 @@ game_commands str st =
 
   else if str = "take 1" then (print_endline "You picked option 1";
                                match st.available_picks with
-                               | h1 :: h2 :: h3 :: t ->
+                               | h1 :: t ->
                                  let card_name = (find_card h1).card_name in
                                  print_string "You picked ";
                                  print_endline card_name;
+                                 let orig_player_state = return_player_state st st.current_player in
+                                 let orig_player_resource = orig_player_state.player_resource in
+                                 let selected_card = find_card h1 in
+                                 if (selected_card.cost > orig_player_resource) then
+                                   (print_endline "You do not have the resources necessary to recruit this unit";
+                                    game st;)
+                                else
                                  let substate_1 = draw_card h1 st in
                                  let current_player_state = return_player_state substate_1 substate_1.current_player in
                                  print_string "New player score = ";
                                  print_endline (string_of_int current_player_state.player_score);
+                                 (*Testing line to check the resource that player can get*)
+                                 print_endline (string_of_int current_player_state.player_resource);
                                  print_endline "";
+                                 print_endline (string_of_int (List.length substate_1.recruit_pool));
                                  (*Implement transition turn function*)
-                                 game substate_1
-                               | _ ->
+                                 let next_state = change_next_player substate_1 in
+                                 game next_state (*Game substate the selected card added to the player's state*)
+                               | _ -> print_endline "Option not available";
+                                 game st (*Other methods not implemented yet*))
 
-                               game st)
-  else if str = "take 2" then (print_endline "You picked option 2"; game st)
-  else if str = "take 3" then (print_endline "You picked option 3"; game st)
+  else if str = "take 2" then (print_endline "You picked option 2";
+                               match st.available_picks with
+                               | h1 :: h2 :: t ->
+                                 let card_name = (find_card h2).card_name in
+                                 print_string "You picked ";
+                                 print_endline card_name;
+                                 let orig_player_state = return_player_state st st.current_player in
+                                 let orig_player_resource = orig_player_state.player_resource in
+                                 let selected_card = find_card h1 in
+                                 if (selected_card.cost > orig_player_resource) then
+                                   (print_endline "You do not have the resources necessary to recruit this unit";
+                                    game st;)
+                                 else
+                                   let substate_1 = draw_card h2 st in
+                                   let current_player_state = return_player_state substate_1 substate_1.current_player in
+                                   print_string "New player score = ";
+                                   print_endline (string_of_int current_player_state.player_score);
+                                   (*Testing line to check the resource that player can get*)
+                                   print_endline (string_of_int current_player_state.player_resource);
+                                   print_endline "";
+                                   print_endline (string_of_int (List.length substate_1.recruit_pool));
+                                   (*Implement transition turn function*)
+                                   let next_state = change_next_player substate_1 in
+                                   game next_state (*Game substate the selected card added to the player's state*)
+                               | _ -> print_endline "Option not available";
+                                 game st (*Other methods not implemented yet*))
+
+  else if str = "take 3" then (print_endline "You picked option 2";
+                               match st.available_picks with
+                               | h1 :: h2 :: h3 :: t ->
+                                 let card_name = (find_card h3).card_name in
+                                 print_string "You picked ";
+                                 print_endline card_name;
+                                 let orig_player_state = return_player_state st st.current_player in
+                                 let orig_player_resource = orig_player_state.player_resource in
+                                 let selected_card = find_card h3 in
+                                 if (selected_card.cost > orig_player_resource) then
+                                   (print_endline "You do not have the resources necessary to recruit this unit";
+                                    game st;)
+                                 else
+                                   let substate_1 = draw_card h3 st in
+                                   let current_player_state = return_player_state substate_1 substate_1.current_player in
+                                   print_string "New player score = ";
+                                   print_endline (string_of_int current_player_state.player_score);
+                                   (*Testing line to check the resource that player can get*)
+                                   print_endline (string_of_int current_player_state.player_resource);
+                                   print_endline "";
+                                   print_endline (string_of_int (List.length substate_1.recruit_pool));
+                                   (*Implement transition turn function*)
+                                   let next_state = change_next_player substate_1 in
+                                   game next_state (*Game substate the selected card added to the player's state*)
+                               | _ -> print_endline "Option not available";
+                                 game st (*Other methods not implemented yet*))
+
+  else if str = "skip" then (print_endline "You skipped your turn, gain one extra resource";
+
+                             game (skip_turn_st st))
 
   else game st
 
 
 and
 
+<<<<<<< HEAD
+  game st =
+  (*Print the ids of the current picks*)
+  (*let testValue = List.map (fun x -> print_string (string_of_int x ^ " ")) st.available_picks in*)
+  print_endline ("Player " ^ string_of_int st.current_player ^"'s Turn:");
+  match (id_to_card_lst st st.available_picks) with
+  | h1 :: h2 :: h3::t -> print_string h1.card_name;
+    print_string "\n";
+    print_string h2.card_name;
+    print_string "\n";
+    print_string h3.card_name;
+    print_string "\n> ";
+    let input_string = read_line () in
+    game_commands input_string st;
+  | h1 :: h2 :: t -> print_string h1.card_name;
+    print_string "\n";
+    print_string h2.card_name;
+  | h :: t -> print_string h.card_name;
+  | [] -> print_string "No Picks";
+  match read_line () with
+  | line -> game_commands (String.trim((String.lowercase_ascii line))) st
+=======
 game st =
   print_endline ("Player " ^ string_of_int st.current_player ^ "'s Turn:");
   if ((List.assoc st.current_player st.player_states).player_is_human) then (
@@ -183,6 +277,7 @@ game st =
       game_commands ("take" ^ string_of_int x) st
     | None -> print_string "The computer decided to skip."
   )
+>>>>>>> bf1a63bde07fb86133f7a4b0faf4ed1f6ad5b888
 
 and
 
