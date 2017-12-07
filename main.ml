@@ -262,23 +262,17 @@ and
                                  let card_name = (lookup_card h1).card_name in
                                  print_string "Player picked ";
                                  print_endline card_name;
-                                 (*print_endline ("card_id picked is " ^ (string_of_int h1));
-                                   print_endline ("all available cards are " ^ (string_of_int h1) ^ " " ^ (string_of_int h2) ^ " " ^ (string_of_int h3)); *)
                                  let orig_player_state = return_player_state inc_state inc_state.current_player in
                                  let orig_player_resource = orig_player_state.player_resource in
                                  let selected_card = lookup_card h1 in
-                                 (*if (selected_card.cost > orig_player_resource) then
+                                 if (selected_card.cost > orig_player_resource) then
                                    (print_endline "Player does not have the resources necessary to recruit this unit";
                                     game st;)
-                                   else*)
+                                   else
                                  let substate_1 = draw_card h1 inc_state in
                                  let current_player_state = return_player_state substate_1 substate_1.current_player in
                                  print_string "New player score = ";
                                  print_endline (string_of_int current_player_state.player_score);
-                                 (*Testing line to check the resource that player can get*)
-                                 print_endline (string_of_int current_player_state.player_resource);
-                                 print_endline "";
-                                 print_endline (string_of_int (List.length substate_1.recruit_pool));
                                  (*Implement transition turn function*)
                                  let next_state = change_next_player substate_1 in
                                  game next_state (*Game substate the selected card added to the player's state*)
@@ -303,10 +297,6 @@ and
                                    let current_player_state = return_player_state substate_1 substate_1.current_player in
                                    print_string "New player score = ";
                                    print_endline (string_of_int current_player_state.player_score);
-                                   (*Testing line to check the resource that player can get*)
-                                   print_endline (string_of_int current_player_state.player_resource);
-                                   print_endline "";
-                                   print_endline (string_of_int (List.length substate_1.recruit_pool));
                                    (*Implement transition turn function*)
                                    let next_state = change_next_player substate_1 in
                                    game next_state (*Game substate the selected card added to the player's state*)
@@ -331,10 +321,6 @@ and
                                    let current_player_state = return_player_state substate_1 substate_1.current_player in
                                    print_string "New player score = ";
                                    print_endline (string_of_int current_player_state.player_score);
-                                   (*Testing line to check the resource that player can get*)
-                                   print_endline (string_of_int current_player_state.player_resource);
-                                   print_endline "";
-                                   print_endline (string_of_int (List.length substate_1.recruit_pool));
                                    (*Implement transition turn function*)
                                    let next_state = change_next_player substate_1 in
                                    game next_state (*Game substate the selected card added to the player's state*)
@@ -357,6 +343,10 @@ and
   (*Print the ids of the current picks*)
   (*let testValue = List.map (fun x -> print_string (string_of_int x ^ " ")) st.available_picks in*)
   if ((List.assoc st.current_player st.player_states).player_is_human = true) then (
+    let current_player_state = (List.assoc st.current_player st.player_states) in
+    print_endline ("Current player resources: " ^ (string_of_int current_player_state.player_resource));
+    let cards_remaining = List.length st.recruit_pool in
+    print_endline ("Cards left in recruit pool: " ^ (string_of_int cards_remaining));
     print_endline (
       "\n\nPlayer " ^ string_of_int st.current_player ^"'s Turn:
 ******************************************************************************************************************
