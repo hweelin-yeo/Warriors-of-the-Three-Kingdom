@@ -29,45 +29,71 @@ type card = {
   card_type : string;
 }
 
+(**************************************************************************************)
+(****************************** Observer Functions ************************************
+******************* Find cards, players, opponents and compute scores******************)
+(**************************************************************************************)
 
-(*id_to_card takes a card id int and returns the card object option associated with it.
-  The inputs are the card id and the card list that represents the card set*)
+
+(* [id_to_card id cl] takes a card id int and returns the card object option
+ * associated with it. The inputs are the card id and the card list
+ * that represents the card set
+ * requires: [id] is a cardID
+             [cl] is a card list
+ *)
+
 let rec id_to_card (id : cardID) (cl : card list) =
   match cl with
-  | [] -> failwith "shouldn't happen outside of debugging" (*Should not happen*)
+  | [] -> failwith "invalid cardID: should not happen"
   | h :: t -> if (h.card_id = id) then h
-    else
-      id_to_card id t
+    else id_to_card id t
 
-(*map_id_list maps a list of card ids to their respective cards*)
+(* [map_id_list idl cl acc] maps a list of card ids to their respective cards
+ * requires: [idl] is a list of cardID
+             [cl] is a list of cards
+             [acc] is a list of cards
+ *)
+
 let rec map_id_list idl  (cl : card list) acc =
   match idl with
   | [] -> List.rev acc
   | h :: t -> map_id_list t cl ((id_to_card h cl) :: acc)
 
-(*map_card_list : maps a list of cards into a list of cardIDs*)
+(* [map_card_list cl acc] maps a list of cards into a list of its
+ *  corresponding cardIDs
+ * requires: [cl] is a list of cards
+             [acc] is a list of cardIDs
+ *)
+
 let rec map_card_list (cl : card list) acc =
   match cl with
   | [] -> List.rev acc
   | h :: t -> map_card_list t (h.card_id :: acc)
 
-(*find_player, given the list of int player_state tuples, and a int player id,
-  return the corresponding player_state*)
+(* [find_player psl id] returns the corresponding player_state given
+ * the list of int player_state tuples, and a int player id,
+ * requires: [psl] is a list of (int * player states)
+             [id] is an int
+ *)
+
 let rec find_player (psl : (int * player_state) list) (id : int) =
   match psl with
   | [] -> failwith "Player not found"
   | h :: t -> if (fst h = id) then snd h else find_player t id
 
-(*find_opponents finds the states of all opponents*)
+(* [find_opponents psl id acc] finds the states of all opponent s
+ * requires: [psl] is a list of (int * player_state)
+             [id] is an int
+             [accum] is a list of player_state *)
+
 let rec find_opponents (psl : (int * player_state) list) (id : int) acc =
   match psl with
   | [] -> List.rev acc
   | h :: t -> if (fst h = id) then find_opponents t id acc else
       find_opponents t id (snd h :: acc)
 
-
-(*Compute_effects takes a player's state and computes bonus scores offered by
-  anthem functions*)
+(* [compute_effects al ps acc] takes a player's state and computes
+   bonus scores offered by anthem functions *)
 let rec compute_anthem_helper al ps acc =
   match al with
   | [] -> acc
@@ -77,10 +103,8 @@ let compute_anthem (ps : player_state) =
   let anthem_list = ps.player_functions in
   compute_anthem_helper anthem_list ps 0
 
-
-
-(*compute_deck_score takes in a card_list that represents the deck and returns
-  the total score of the deck*)
+(* [compute_deck_score cl acc] takes in a card_list that represents
+  the deck and returns the total score of the deck *)
 let rec compute_deck_score (cl : card list) acc =
   match cl with
   | [] -> + acc
@@ -92,8 +116,17 @@ let rec make_new_states (pl : player_state) (ps : (int * player_state) list) acc
   | h :: t -> if (pl.player_id = fst h)
     then make_new_states pl t ((pl.player_id, pl) :: acc) else
       make_new_states pl t (h :: acc)
-(*Function for vanilla cards, simulates a blank abilities box thus
-  the returned state is the same as the called state*)
+
+
+(**************************************************************************************)
+(****************************** Card Functions ****************************************
+************************ Vanilla and Customised functions of cards ********************)
+(**************************************************************************************)
+
+
+(* Function for vanilla cards, simulates a blank abilities box thus
+  the returned state is the same as the called state *)
+
 let vanilla (s : state) (cid : cardID) (cl : card list) =
   let current_player_id = s.current_player in
   let current_player = find_player s.player_states current_player_id in
@@ -104,7 +137,7 @@ let vanilla (s : state) (cid : cardID) (cl : card list) =
   let new_player_states = make_new_states new_player_state s.player_states [] in
   {s with player_states = new_player_states}
 
-(*Zhuge liang helper*)
+(* Zhuge liang helper *)
 let rec zhuge_liang_helper (pd : card list) acc =
   match pd with
   | [] -> List.rev acc
@@ -112,7 +145,7 @@ let rec zhuge_liang_helper (pd : card list) acc =
     else
       zhuge_liang_helper t (h :: acc)
 
-(*zhuge_liang_funct*)
+(* Zhuge_liang_funct *)
 let zhuge_liang_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -129,7 +162,7 @@ let zhuge_liang_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states new_player_final s.player_states [] in
   {s with player_states = new_player_states}
 
-(*Shu Recruiter functions, pd = player deck, nc = num copies*)
+(* Shu Recruiter functions, pd = player deck, nc = num copies *)
 let rec shu_recruiter_helper (pd : int list) (nc : int) acc =
   match nc with
   | 0 -> acc
@@ -150,7 +183,7 @@ let shu_recruiter_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states new_player_final s.player_states [] in
   {s with player_states = new_player_states}
 
-(*Shu Sergant function*)
+(* Shu Sergant function *)
 let shu_sergant_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -163,12 +196,12 @@ let shu_sergant_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states new_player_final s.player_states [] in
   {s with player_states = new_player_states}
 
-(*Functions to help implement enchantment spells*)
+(* Functions to help implement enchantment spells *)
 let shu_anthem_effect (ps : player_state) =
   let pd = ps.player_deck in
   List.length pd
 
-(*Anthem of shu helper*)
+(* Anthem of shu helper *)
 let shu_anthem_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -182,7 +215,7 @@ let shu_anthem_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states newPlayer s.player_states [] in
   {s with player_states = new_player_states}
 
-(*Liu Bei Function*)
+(* Liu Bei Function *)
 let rec liu_bei_helper cd acc =
   match cd with
   | [] -> if (acc > 2) then true else false
@@ -202,9 +235,7 @@ let liu_bei_funct (s : state) (cid : int) (cl : card list) =
   | true -> shu_anthem_funct {s with player_states = new_player_states} cid cl
   | false -> {s with player_states = new_player_states}
 
-
-
-(*Sima Yi functions*)
+(* Sima Yi functions *)
 let sima_yi_helper (ids : int list) =
   (*h1 = 7, id of Sima Yi*)
   match ids with
@@ -226,14 +257,14 @@ let sima_yi_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states new_player_final s.player_states [] in
   {s with player_states = new_player_states}
 
-(*Xiahou Dun Functions*)
-(*Need to finish, not completed yet*)
+(* Xiahou Dun Functions*)
+(* Need to finish, not completed yet*)
 let rec remove_top_element (pd : int list) =
   match pd with
   | [] -> []
   | h :: t -> t
 
-(*opl = original_player_list cps = current_player_state, nol = new_opponent_list
+(* opl = original_player_list cps = current_player_state, nol = new_opponent_list
 onol = original new opponent list*)
                 (*NTS: Need to fix*)
 let rec rebuild_player_list (opl : (int * player_state) list) cps nol acc =
@@ -251,7 +282,6 @@ let rec rebuild_player_list (opl : (int * player_state) list) cps nol acc =
             rebuild_player_list opl cps t1 acc
       end*)
 
-
 let rec xiahou_dun_helper (opponentList : player_state list) acc cl =
   match opponentList with
   | [] -> List.rev acc
@@ -264,7 +294,6 @@ let rec xiahou_dun_helper (opponentList : player_state list) acc cl =
     let new_score_1 = newPlayer.player_score + compute_anthem newPlayer in
     let new_player_final = {newPlayer with player_score = new_score_1} in
     xiahou_dun_helper t (new_player_final :: acc) cl
-
 
 
 let xiahou_dun_funct (s : state) (cid : int) (cl : card list) =
@@ -281,7 +310,7 @@ let xiahou_dun_funct (s : state) (cid : int) (cl : card list) =
   let new_player_list = rebuild_player_list original_player_list new_player_state new_opponent_list [] in
   {s with player_states = new_player_list}
 
-(*Wei Recruit helpers*)
+(* Wei Recruit helpers *)
 let wei_recruit_helper (cd : int list) acc =
   match cd with
   | [] -> []
@@ -302,7 +331,7 @@ let wei_recruit_funct (s:state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states new_player_final s.player_states [] in
   {s with player_states = new_player_states}
 
-(*Dian Wei Helpers*)
+(* Dian Wei Helpers *)
 let dian_wei_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let original_player_list = s.player_states in
@@ -317,14 +346,13 @@ let dian_wei_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states newPlayer original_player_list [] in
   {s with player_states = new_player_states}
 
-(*Wei Polluter Effect*)
+(* Wei Polluter Effect *)
 let rec wei_polluter_helper opponentList acc =
   match opponentList with
   | [] -> List.rev acc
   | h :: t ->
     let new_opponent_state = {h with player_resource = h.player_resource - 1} in
     wei_polluter_helper t (new_opponent_state :: acc)
-
 
 let wei_polluter_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
@@ -340,7 +368,7 @@ let wei_polluter_funct (s : state) (cid : int) (cl : card list) =
   let new_player_list = rebuild_player_list original_player_list new_player_state new_opponent_list [] in
   {s with player_states = new_player_list}
 
-(*Wu Scout helpers*)
+(* Wu Scout helpers *)
 let wu_scout_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let original_player_list = s.player_states in
@@ -370,7 +398,7 @@ let lu_meng_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states newPlayer original_player_list [] in
   {s with player_states = new_player_states}
 
-(*Lady Sun functions*)
+(* Lady Sun functions *)
 let rec lady_sun_helper cl =
   match cl with
   | [] -> false
@@ -395,7 +423,7 @@ let lady_sun_funct (s : state) (cid : int) (cl : card list) =
     let newPlayer1 = {current_player_state with player_score = new_score} in
     let new_player_states = make_new_states newPlayer1 original_player_list [] in
     {s with player_states = new_player_states}
-(*Todo still need to finish*)
+(* Todo still need to finish *)
 
 let lu_su_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
@@ -410,7 +438,7 @@ let lu_su_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states newPlayer original_player_list [] in
   {s with player_states = new_player_states}
 
-(*Wu anthem helpers*)
+(* Wu anthem helpers *)
 let wu_anthem_effect (ps : player_state) = ps.player_resource
 
 let wu_anthem_funct (s : state) (cid : int) (cl : card list) =
@@ -426,7 +454,7 @@ let wu_anthem_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states newPlayer s.player_states [] in
   {s with player_states = new_player_states}
 
-(*Helper function to implement Lu Zuishen*)
+(* Helper function to implement Lu Zuishen *)
 let lu_da_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayerInt = s.current_player in
   let currentPlayer = find_player s.player_states currentPlayerInt in
@@ -450,7 +478,7 @@ let lu_da_funct (s : state) (cid : int) (cl : card list) =
     {s with player_states = new_player_states}
   | _ -> failwith "Random number doesnt generate > 1"
 
-(*Functions to implement Hundred-Faced Hassad*)
+(* Functions to implement Hundred-Faced Hassad *)
 let hassan_helper ids =
   match ids with
   | [] -> []
@@ -471,7 +499,7 @@ let hassan_funct (s : state) (cid : int) (cl : card list) =
   let new_player_states = make_new_states new_player_final s.player_states [] in
   {s with player_states = new_player_states}
 
-(*Atilla the conquerer function, dl = deck list, odl = original deck list*)
+(* Atilla the conquerer function, dl = deck list, odl = original deck list *)
 let rec atilla_helper (dl : card list) (odl : card list) (sl : string list) =
   match sl with
   | [] -> true
@@ -503,7 +531,7 @@ let atilla_funct (s: state) (cid : int) (cl : card list) =
     let new_player_states = make_new_states new_player_final s.player_states [] in
     {s with player_states = new_player_states}
 
-(*Tiago Chan functions here*)
+(* Tiago Chan functions here *)
 let tiago_chan_helper current_deck_ids =
   match current_deck_ids with
   | [] -> None
@@ -520,7 +548,7 @@ let rec tiago_chan_funct (s : state) (cid : int) (cl : card list) =
   | Some c -> let target_card = id_to_card c cl in
     target_card.abilities s cid cl
 
-(*The great david gries is implemented here*)
+(* The great david gries is implemented here *)
 let rec obliterate (opponentList : player_state list) acc cl =
   match opponentList with
   | [] -> List.rev acc
@@ -555,8 +583,12 @@ let david_gries_funct (s : state) (cid : int) (cl : card list) =
       {s with player_states = new_player_states}
 
 
+(**************************************************************************************)
+(****************************** Card List***** ****************************************
+***************************************************************************************)
+(**************************************************************************************)
 
-    (*List of card records that simulates every card available*)
+
 let cardList = [
   {
     card_name = "Shu Footsoldier";
@@ -747,7 +779,7 @@ Dragon, Zhuge Liang";
     power = 1;
     flavor = "Caught between her brother Sun Quan and her husband Liu Bei, \n Lady Sun was caught between Wu and Shu";
     card_text = "When you draft Lady Sun, if you have Liu Bei, gain a 3 Shu   \n Footsolider tokens";
-    abilities = vanilla;
+    abilities = lady_sun_funct;
     card_type = "Solider";
   };
 
@@ -849,19 +881,38 @@ is 56 then destroy all your opponents decks. \n if the result is 1, discard your
   }
 ]
 
-    (****************************************************************************************************)
+(**************************************************************************************)
+(****************************** State Functions ****************************************
+************************ RNG for cards, Update States,  ....... ********************)
+(**************************************************************************************)
+
+(* [contains e lst] returns true if e is an element of lst, false otherwise
+ * requires: [e] is type 'a -> [lst] is a 'a list
+ *)
 
 let rec contains e lst =
   match lst with
   | [] -> false
   | h :: t -> if h = e then true else contains e t
 
-let rec generate_nums num bound accum =
-  if (List.length accum < num) then
-    let new_num = Random.int bound in
-    if (contains new_num accum) then generate_nums num bound accum
-    else generate_nums num bound (new_num :: accum)
-  else accum
+(* [generate_nums num bound lst accum] returns a list, l1, with [num] numbers
+ * less than bound. Each element in l1 should be a member of lst. If lst has
+ * 3 or fewer elements, it returns lst.
+ * requires: [num] is an int, [bound] is an int, [lst] is an int list,
+            [accum] is an int list.  *)
+
+let rec generate_nums num bound lst accum =
+  if List.length lst <= 3 then lst
+  else
+    if (List.length accum < num) then
+        let new_num = Random.int bound in
+        if (contains new_num accum) then
+          generate_nums num bound lst accum
+        else
+          if contains new_num lst then
+            generate_nums num bound lst (new_num :: accum)
+          else generate_nums num bound lst accum
+    else accum
 
 (* [cpicks_from_index num_lst card_lst] returns a list of elements in
     card_lst whose positions correspond to the numbers in the num_lst *)
@@ -875,13 +926,18 @@ let rec picks_from_index num_lst card_lst =
    to the next set of randomised available picks *)
 
 let refresh_available_picks st =
-  let n = List.length (st.recruit_pool) in
-  picks_from_index (generate_nums 3 n []) (st.recruit_pool)
+  let rp = st.recruit_pool in
+  let n = List.length rp in
+  picks_from_index (generate_nums 3 n rp []) (rp)
 
+(* [return_next_player] returns an int reflecting the
+ * the next player *)
 
 let return_next_player st prev =
   if prev = st.total_players then 1
   else prev+1
+
+(* [change_next_player st ] returns a new state for the next player *)
 
 let change_next_player (st: state) =
   { st with card_drawn = None;
@@ -889,19 +945,20 @@ let change_next_player (st: state) =
             available_picks = refresh_available_picks st
   }
 
+(* [change_current_player st p] returns a new state with
+   the next player p
+ * Use case: skip function
+ * requires: p <= state.total_players *)
 let change_to_player st i =
   { st with card_drawn = None;
             current_player = i;
             available_picks = refresh_available_picks st}
 
-(* SPECIFICATION  *)
-
-let card_f_state st f = f st
-
 (* [change s p_id c_id f] returns a new player state after f, a card
    function of card with id [c_id] is applied to the state. *)
 
 (* let change s p_id c_id f = failwith "unimplemented" *)
+
 let add_card_recruit_pool st card =
   { st with recruit_pool = card :: st.recruit_pool}
 
@@ -915,8 +972,8 @@ let remove_card_recruit_pool st card =
   let recpool_new = remove_card (st.recruit_pool) card in
   { st with recruit_pool = recpool_new }
 
-  (* [return_pstate ps i] is a helper function for [return_player_state s id].
-    It returns a playerstate with player_id_int [i]. *)
+(* [return_pstate ps i] is a helper function for [return_player_state s id].
+ * Returns a playerstate with player_id_int [i]. *)
 
 let rec return_pstate ps i =
   match ps with
@@ -935,8 +992,15 @@ let change_player_state s ps  =
   let new_player_states = (i, ps) :: pstates in
   { s with player_states = new_player_states}
 
+(* [cardID_to_card id] returns a card corresponding to id
+ * requires: [id] is an cardID. *)
+
 let cardID_to_card id =
   id_to_card id cardList
+
+(* [draw_card c st] returns a new state with card [c] drawn
+ * requires: [c] is an cardID
+             [st] is a state *)
 
 let draw_card (c: cardID) (st: state) =
   let remove_rec_pool_st = remove_card_recruit_pool st c in
@@ -965,18 +1029,21 @@ let rec init_player_states n h accum =
   | 0 -> accum
   | _ -> begin
     match h with
-      | 0 -> let new_ps = (n, (init_player_state n true)) in
+      | 0 -> let new_ps = (n, (init_player_state n false)) in
         init_player_states (n-1) 0 (new_ps :: accum)
-      | _ -> let new_ps = (n, init_player_state n false) in
+      | _ -> let new_ps = (n, init_player_state n true) in
         init_player_states (n-1) (h-1) (new_ps :: accum)
     end
 
-(* [generate_0_to_n_lst n accum] returns an int list [0; ...; n]
- * requires: n is an int *)
-let rec generate_0_to_n_lst n accum =
-  match n with
-  | -1 -> accum
-  | _ -> generate_0_to_n_lst (n-1) (n :: accum)
+(* [i_to_j i j accum] returns an int list [i; ...; j-1]
+ * requires: i < j *)
+
+let rec i_to_j i j accum =
+  if i = j then accum
+  else i_to_j i (j-1) (j-1 :: accum)
+
+(* [init_state i h] initialises the state. it takes in [i],
+   the number of players, and [h], the number of human players *)
 
 let init_state i h =
   {
@@ -986,17 +1053,29 @@ let init_state i h =
     card_drawn = None;
     current_player = 1;
     (* current_player_id = "Player 1"; *)
-    recruit_pool = generate_0_to_n_lst 24 [];
-    available_picks = generate_nums 3 24 [];
+    recruit_pool = i_to_j 0 24 [];
+    available_picks = generate_nums 3 24 (i_to_j 0 24 []) [];
     player_states = init_player_states i h [];
   }
+
+(* [id_to_card id cl] takes a card id int and returns the card object option
+ * associated with it. The inputs are the card id and the card list
+ * that represents the card set
+ * requires: [id] is a cardID, [cl] is a card list *)
 
 let id_to_card_lst st idl =
   map_id_list idl cardList []
 
-let find_card id =
-  id_to_card id cardList 
+let lookup_card id =
+  id_to_card id cardList
 
+let increase_resource st =
+  let current_player = find_player st.player_states st.current_player in
+  let current_resource = current_player.player_resource in
+  let new_resource = current_resource + 1 in
+  let new_player_state = {current_player with player_resource = new_resource} in
+  let new_player_states = make_new_states new_player_state st.player_states [] in
+  {st with player_states = new_player_states}
 
 (* let change_description st str =
   { st with description = str }
