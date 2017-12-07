@@ -460,7 +460,7 @@ let lu_da_funct (s : state) (cid : int) (cl : card list) =
   let currentPlayer = find_player s.player_states currentPlayerInt in
   let current_deck_ids = currentPlayer.player_deck in
   let coin_flip = Random.int 2 in
-  match coin_flip with
+  match coin_flip with 
   | 0 -> let removed_deck = List.tl current_deck_ids in
     let new_deck = map_id_list removed_deck cl [] in
     let new_deck_ids = map_card_list new_deck [] in
@@ -901,6 +901,7 @@ let rec contains e lst =
  * requires: [num] is an int, [bound] is an int, [lst] is an int list,
             [accum] is an int list.  *)
 
+
 let rec generate_nums num bound lst accum =
   if List.length lst <= 3 then lst
   else
@@ -914,21 +915,13 @@ let rec generate_nums num bound lst accum =
           else generate_nums num bound lst accum
     else accum
 
-(* [cpicks_from_index num_lst card_lst] returns a list of elements in
-    card_lst whose positions correspond to the numbers in the num_lst *)
-
-let rec picks_from_index num_lst card_lst =
-  match num_lst with
-  | [] -> []
-  | h :: t -> (List.nth card_lst h) :: picks_from_index t card_lst
-
 (* [refresh_available_picks s] returns a card list that corresponds
    to the next set of randomised available picks *)
 
 let refresh_available_picks st =
   let rp = st.recruit_pool in
   let n = List.length rp in
-  picks_from_index (generate_nums 3 n rp []) (rp)
+  generate_nums 3 24 rp []
 
 (* [return_next_player] returns an int reflecting the
  * the next player *)

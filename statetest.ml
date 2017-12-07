@@ -31,7 +31,7 @@ let init_state_test =
     "recruit_pool" >:: (fun _ -> assert_equal 24 (init_state_1.recruit_pool |> List.length));
     "available_picks" >:: (fun _ -> assert_equal 3 (init_state_1.available_picks |> List.length));
     "player_states" >:: (fun _ -> assert_equal 4 (init_state_1.player_states |> List.length));
-    "num_ai" >:: (fun _ -> assert_equal 3 (init_state_1.player_states |> num_ai_players 0));
+    (* "num_ai" >:: (fun _ -> assert_equal 3 (init_state_1.player_states |> num_ai_players 0)); *)
 ]
 
 let c = List.nth init_state_1.available_picks 1
