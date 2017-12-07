@@ -75,20 +75,25 @@ val remove_card_recruit_pool: state -> cardID -> state
 
 val return_player_state: state -> int -> player_state
 
-(* [init_state i j] initialises the state. it takes in int i,
-   the number of players, and a json file for the recruit pool*)
+(* [init_state i h] initialises the state. it takes in [i],
+   the number of players, and [h], the number of human players *)
 val init_state: int -> int -> state
 
-(*id_to_card takes a card id int and returns the card object option associated with it.
-  The inputs are the card id and the card list that represents the card set*)
+(* [id_to_card id cl] takes a card id int and returns the card object option 
+ * associated with it. The inputs are the card id and the card list 
+ * that represents the card set 
+ * requires: [id] is a cardID, [cl] is a card list *)
 
-val id_to_card: cardID -> card list -> card
+(* val id_to_card: cardID -> card list -> card *)
 
 (*id_to_card_lst maps a list of card ids to their respective cards*)
 val id_to_card_lst: state -> cardID list -> card list
 
-(*find_card takes a card id and maps to a card*)
+(* [find_card id] takes a card id and maps to a card 
+ * requires: [id] is a cardID *)
 val find_card : int -> card
 
-(*Skip turn is used when to skip turn*)
+(* [skip_turn_st st] returns a new state with the next player's turn
+ * skipped 
+ * requires: [st]] is a state. *)
 val skip_turn_st : state -> state
